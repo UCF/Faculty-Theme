@@ -1,7 +1,7 @@
 <?php disallow_direct_load( 'search.php' ); ?>
 <?php get_header(); ?>
 
-<main class="page page-search">
+<main>
 
 <?php if ( get_theme_option( 'enable_google' ) ): ?>
 

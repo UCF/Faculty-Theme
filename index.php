@@ -1,7 +1,7 @@
 <?php disallow_direct_load( 'index.php' ); ?>
 <?php get_header(); ?>
 
-<main class="index">
+<main>
 	<div class="container">
 		<?php while ( have_posts() ): the_post(); ?>
 		<article class="<?php echo $post->post_status; ?>">

@@ -2,7 +2,7 @@
 
 <?php get_header(); the_post(); ?>
 
-<main class="page">
+<main>
 	<div class="container">
 		<article>
 			<h1><?php echo the_title(); ?></h1>

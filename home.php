@@ -2,7 +2,7 @@
 
 <?php get_header(); the_post(); ?>
 
-<main class="page page-home">
+<main>
 	TODO
 </main>
 
