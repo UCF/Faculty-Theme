@@ -318,7 +318,7 @@ class FAQ extends CustomPostType {
 		$use_thumbnails = False,
 		$use_order      = True,
 		$use_title      = True,
-		$use_metabox    = True,
+		$use_metabox    = False,
 		$use_shortcode  = True;
 
 	public function objectsToHTML( $faqs, $css_classes ) {
