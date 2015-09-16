@@ -40,54 +40,24 @@
 				this.data         = data;
 			};
 		</script>
-
-
-		<?php
-		global $post;
-		if ( $post ):
-			$post_type = get_post_type( $post->ID );
-			if (
-				( $stylesheet_id = get_post_meta( $post->ID, $post_type.'_stylesheet', True ) ) !== False
-				&& ( $stylesheet_url = wp_get_attachment_url( $stylesheet_id ) ) !== False
-			):
-		?>
-				<link rel="stylesheet" href="<?php echo $stylesheet_url; ?>" type="text/css" media="all">
-		<?php
-			endif;
-		endif;
-		?>
-
 	</head>
-	<body ontouchstart class="<?php echo body_classes(); ?>">
-		<div class="container">
-			<div class="row">
-				<div id="header" class="row-border-bottom-top">
-					<h1 class="span9"><a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a></h1>
-					<?php
-					$facebook_url = get_theme_option( 'facebook_url' );
-					$twitter_url = get_theme_option( 'twitter_url' );
+	<body ontouchstart <?php body_class( body_classes() ); ?>>
+		<header id="site-header">
+			<nav id="site-nav">
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'header-menu',
+					'container' => false,
+					'menu_class' => 'list-inline',
+					'menu_id' => 'header-menu',
+					'walker' => new Bootstrap_Walker_Nav_Menu()
+				) );
+				?>
+			</nav>
 
-					if ( $facebook_url || $twitter_url ):
-					?>
-					<ul class="social menu horizontal span3">
-						<?php if ( $facebook_url ): ?>
-						<li><a class="ignore-external facebook" href="<?php echo $facebook_url; ?>">Facebook</a></li>
-						<?php endif; ?>
-						<?php if ( $twitter_url ): ?>
-						<li><a class="ignore-external twitter" href="<?php echo $twitter_url; ?>">Twitter</a></li>
-						<?php endif; ?>
-					</ul>
-					<?php else: ?>
-					<div class="social span3">&nbsp;</div>
-					<?php endif; ?>
-				</div>
-			</div>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'header-menu',
-				'container' => false,
-				'menu_class' => 'menu ' . get_header_styles(),
-				'menu_id' => 'header-menu',
-				'walker' => new Bootstrap_Walker_Nav_Menu()
-			) );
-			?>
+			<?php if ( is_home() || is_front_page() ): ?>
+			<h1 id="site-title"><a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a></h1>
+			<?php else: ?>
+			<span id="site-title"><a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a></span>
+			<?php endif; ?>
+		</header>

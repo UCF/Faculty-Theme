@@ -26,55 +26,6 @@ function __init__() {
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 	) );
-	register_sidebar( array(
-		'name'          => __( 'Below the Fold - Left' ),
-		'id'            => 'bottom-left',
-		'description'   => 'Left column on the bottom of pages, after flickr images if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Below the Fold - Center' ),
-		'id'            => 'bottom-center',
-		'description'   => 'Center column on the bottom of pages, after news if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Below the Fold - Right' ),
-		'id'            => 'bottom-right',
-		'description'   => 'Right column on the bottom of pages, after events if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Footer - Column One' ),
-		'id' => 'bottom-one',
-		'description' => 'Far left column in footer on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Footer - Column Two' ),
-		'id' => 'bottom-two',
-		'description' => 'Second column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Footer - Column Three' ),
-		'id' => 'bottom-three',
-		'description' => 'Third column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Footer - Column Four' ),
-		'id' => 'bottom-four',
-		'description' => 'Far right in footer on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	) );
 
 	global $timer;
 	$timer = Timer::start();
@@ -168,18 +119,12 @@ define( 'CB_DOMAIN', get_theme_option( 'cb_domain' ) );
  **/
 
 Config::$custom_post_types = array(
-	'Video',
-	'Document',
-	'Publication',
 	'Page',
-	'Person',
 	'Post'
 );
 
 
-Config::$custom_taxonomies = array(
-	'OrganizationalGroups'
-);
+Config::$custom_taxonomies = array();
 
 
 Config::$body_classes = array( 'default', );
@@ -207,28 +152,6 @@ Config::$theme_settings = array(
 		) ),
 	),
 	'Events' => array(
-		new RadioField( array(
-			'name'        => 'Enable Events Below the Fold',
-			'id'          => THEME_OPTIONS_NAME.'[enable_events]',
-			'description' => 'Display events in the bottom page content, appearing on most pages.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => get_theme_option( 'enable_events' ),
-		) ),
-		new RadioField( array(
-			'name'        => 'Enable Events on Search Page',
-			'id'          => THEME_OPTIONS_NAME.'[enable_search_events]',
-			'description' => 'Display events on the search results page.',
-			'value'       => get_theme_option( 'enable_search_events' ),
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-		) ),
 		new SelectField( array(
 			'name'        => 'Events Max Items',
 			'id'          => THEME_OPTIONS_NAME.'[events_max_items]',
@@ -252,17 +175,6 @@ Config::$theme_settings = array(
 		) ),
 	),
 	'News' => array(
-		new RadioField( array(
-			'name'        => 'Enable News Below the Fold',
-			'id'          => THEME_OPTIONS_NAME.'[enable_news]',
-			'description' => 'Display UCF Today news in the bottom page content, appearing on most pages.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => get_theme_option( 'enable_news' ),
-		) ),
 		new SelectField( array(
 			'name'        => 'News Max Items',
 			'id'          => THEME_OPTIONS_NAME.'[news_max_items]',
@@ -382,20 +294,6 @@ Config::$theme_settings = array(
 				'12' => 12,
 				'18' => 18,
 			),
-		) ),
-	),
-	'Styles' => array(
-		new SelectField( array(
-			'name'        => 'Header Menu Styles',
-			'id'          => THEME_OPTIONS_NAME.'[bootstrap_menu_styles]',
-			'description' => 'Adjust the styles that the header menu links will use.  Non-default options Twitter Bootstrap navigation components for sub-navigation support.',
-			'default'     => 'default',
-			'choices'     => array(
-				'Default (list of links with dropdowns)'  => 'default',
-				'Tabs with dropdowns' => 'nav-tabs',
-				'Pills with dropdowns' => 'nav-pills'
-			),
-			'value'       => get_theme_option( 'bootstrap_menu_styles' ),
 		) ),
 	),
 );

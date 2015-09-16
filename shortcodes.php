@@ -13,101 +13,6 @@ add_shortcode( 'search_form', 'sc_search_form' );
 
 
 /**
- * Include the defined publication, referenced by pub title:
- *
- *     [publication name="Where are the robots Magazine"]
- * */
-function sc_publication( $attr, $content=null ) {
-	$pub      = @$attr['pub'];
-	$pub_name = @$attr['name'];
-	$pub_id   = @$attr['id'];
-
-	if ( !$pub and is_numeric( $pub_id ) ) {
-		$pub = get_post( $pub );
-	}
-	if ( !$pub and $pub_name ) {
-		$pub = get_page_by_title( $pub_name, OBJECT, 'publication' );
-	}
-
-	$pub->url   = get_post_meta( $pub->ID, 'publication_url', true );
-	$pub->thumb = get_the_post_thumbnail( $pub->ID, 'publication-thumb' );
-
-	ob_start(); ?>
-
-	<div class="pub">
-		<a class="track pub-track" title="<?php echo $pub->post_title; ?>" data-toggle="modal" href="#pub-modal-<?php echo $pub->ID; ?>">
-			<?php echo $pub->thumb; ?>
-			<span><?php echo $pub->post_title; ?></span>
-		</a>
-		<p class="pub-desc"><?php echo $pub->post_content; ?></p>
-		<div class="modal hide fade" id="pub-modal-<?php echo $pub->ID?>" role="dialog" aria-labelledby="<?php echo $pub->post_title; ?>" aria-hidden="true">
-			<iframe src="<?php echo $pub->url; ?>" width="100%" height="100%" scrolling="no"></iframe>
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-		</div>
-	</div>
-
-	<?php
-	return ob_get_clean();
-}
-add_shortcode( 'publication', 'sc_publication' );
-
-
-function sc_person_picture_list( $atts ) {
-	$atts['type'] = ( $atts['type'] ) ? $atts['type'] : null;
-	$row_size     = ( $atts['row_size'] ) ? ( intval( $atts['row_size'] ) ) : 5;
-	$categories   = ( $atts['categories'] ) ? $atts['categories'] : null;
-	$org_groups   = ( $atts['org_groups'] ) ? $atts['org_groups'] : null;
-	$limit        = ( $atts['limit'] ) ? ( intval( $atts['limit'] ) ) : -1;
-	$join         = ( $atts['join'] ) ? $atts['join'] : 'or';
-	$people       = sc_object_list(
-		array(
-			'type' => 'person',
-			'limit' => $limit,
-			'join' => $join,
-			'categories' => $categories,
-			'org_groups' => $org_groups
-		),
-		array(
-			'objects_only' => True,
-	) );
-
-	ob_start();
-?>
-<div class="person-picture-list">
-	<?php
-	$count = 0;
-	foreach ( $people as $person ) {
-
-		$image_url = get_featured_image_url( $person->ID );
-
-		$link = ( $person->post_content != '' ) ? True : False;
-		if ( ( $count % $row_size ) == 0 ) {
-			if ( $count > 0 ) {
-				?></div><?php
-			}
-			?><div class="row"><?php
-		}
-	?>
-		<div class="span2 person-picture-wrap">
-			<?php if ( $link ): ?><a href="<?php echo get_permalink( $person->ID ); ?>"><?php endif; ?>
-				<img src="<?php echo $image_url ? $image_url : get_bloginfo( 'stylesheet_directory' ).'/static/img/no-photo.jpg'; ?>">
-				<div class="name"><?php echo Person::get_name( $person ); ?></div>
-				<div class="title"><?php echo get_post_meta( $person->ID, 'person_jobtitle', True ); ?></div>
-			<?php if ( $link ): ?></a><?php endif; ?>
-		</div>
-		<?php
-		$count++;
-	}
-	?>
-	</div>
-</div>
-	<?php
-	return ob_get_clean();
-}
-add_shortcode( 'person-picture-list', 'sc_person_picture_list' );
-
-
-/**
  * Post search
  *
  * @return string
@@ -121,7 +26,7 @@ function sc_post_type_search( $params=array(), $content='' ) {
 		'meta_value'              => '',
 		'show_empty_sections'     => false,
 		'non_alpha_section_name'  => 'Other',
-		'column_width'            => 'span4',
+		'column_width'            => 'col-md-4',
 		'column_count'            => '3',
 		'order_by'                => 'title',
 		'order'                   => 'ASC',
@@ -259,14 +164,14 @@ function sc_post_type_search( $params=array(), $content='' ) {
 		<div class="post-type-search-header">
 			<form class="post-type-search-form" action="." method="get">
 				<label><?php echo $params['default_search_label']; ?></label>
-				<input type="text" class="span3" placeholder="<?php echo $params['default_search_text']; ?>">
+				<input type="text" placeholder="<?php echo $params['default_search_text']; ?>">
 			</form>
 		</div>
 		<div class="post-type-search-results"></div>
 		<?php if ( $params['show_sorting'] ) { ?>
 		<div class="btn-group post-type-search-sorting">
-			<button class="btn<?php if ( $params['default_sorting'] == 'term' ) echo ' active'; ?>"><i class="icon-list-alt"></i></button>
-			<button class="btn<?php if ( $params['default_sorting'] == 'alpha' ) echo ' active'; ?>"><i class="icon-font"></i></button>
+			<button class="btn<?php if ( $params['default_sorting'] == 'term' ) echo ' active'; ?>"><span class="glyphicon glyphicon-list-alt"></i></button>
+			<button class="btn<?php if ( $params['default_sorting'] == 'alpha' ) echo ' active'; ?>"><span class="glyphicon glyphicon-font"></i></button>
 		</div>
 		<?php } ?>
 	<?php
@@ -356,5 +261,6 @@ function sc_post_type_search( $params=array(), $content='' ) {
 	return ob_get_clean();
 }
 add_shortcode( 'post-type-search', 'sc_post_type_search' );
+
 
 ?>
