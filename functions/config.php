@@ -303,6 +303,8 @@ Config::$theme_settings = array(
  * If Yoast SEO is activated, assume we're handling ALL SEO-related
  * modifications with it.  Don't add Facebook Opengraph theme options.
  **/
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 if ( !is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
 	array_unshift( Config::$theme_settings['Social'],
 		new RadioField(array(
@@ -341,7 +343,7 @@ Config::$styles = array(
 
 Config::$scripts = array(
 	array( 'admin' => True, 'src' => THEME_JS_URL.'/admin.js', ),
-	array( 'name' => 'ucfhb-script', 'src' => '//universityheader.ucf.edu/bar/js/university-header.js', ),
+	array( 'name' => 'ucfhb-script', 'src' => '//universityheader.ucf.edu/bar/js/university-header.js?use-1200-breakpoint=1', ),
 	array( 'name' => 'theme-script', 'src' => THEME_JS_URL.'/script.min.js', ),
 );
 
