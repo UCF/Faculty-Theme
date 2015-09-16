@@ -16,11 +16,4 @@
 		</div>
 	</div>
 
-	<?php
-	$hide_fold = get_post_meta( $post->ID, 'post_hide_fold', True );
-	if ( $hide_fold && $hide_fold[0] !== 'On' ) {
-		get_template_part( 'includes/below-the-fold' );
-	}
-	?>
-
 <?php get_footer(); ?>
