@@ -26,4 +26,13 @@ function enqueue_custom_files() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_custom_files' );
 
+
+/**
+ * Returns a theme mod, the theme mod's default defined in
+ * Config::$setting_defaults, or $fallback.
+ **/
+function get_theme_mod_or_default( $mod, $fallback='' ) {
+	return get_theme_mod( $mod, get_setting_default( $mod, $fallback ) );
+}
+
 ?>

@@ -12,6 +12,7 @@ function __init__() {
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'html5' );
 
 	add_image_size( 'homepage', 620 );
 	add_image_size( 'homepage-secondary', 540 );
@@ -22,15 +23,15 @@ function __init__() {
 	register_sidebar( array(
 		'name'          => __( 'Sidebar' ),
 		'id'            => 'sidebar',
-		'description'   => 'Sidebar found on two column page templates and search pages',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
+		'description'   => 'Sidebar found on two column page templates and search pages.',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
 	) );
 
 	global $timer;
 	$timer = Timer::start();
-
-	set_defaults_for_options();
 }
 add_action( 'after_setup_theme', '__init__' );
 
@@ -85,16 +86,7 @@ add_action( 'admin_enqueue_scripts', 'enqueue_backend_theme_assets' );
  * Set theme constants
  **/
 
-define( 'THEME_OPTIONS_GROUP', 'settings' );
-define( 'THEME_OPTIONS_NAME', 'theme' );
-define( 'THEME_OPTIONS_PAGE_TITLE', 'Theme Options' );
-
-$theme_options = get_option( THEME_OPTIONS_NAME );
-
-function get_theme_option( $key ) {
-	global $theme_options;
-	return isset( $theme_options[$key] ) ? $theme_options[$key] : null;
-}
+define( 'THEME_CUSTOMIZER_PREFIX', 'ucffaculty_' ); // a unique prefix for panel/section IDs
 
 // define( 'DEBUG', True );   # Always on
 // define( 'DEBUG', False );  # Always off
@@ -107,9 +99,9 @@ define( 'THEME_STATIC_URL', THEME_URL.'/static' );
 define( 'THEME_IMG_URL', THEME_STATIC_URL.'/img' );
 define( 'THEME_JS_URL', THEME_STATIC_URL.'/js' );
 define( 'THEME_CSS_URL', THEME_STATIC_URL.'/css' );
-define( 'GA_ACCOUNT', get_theme_option( 'ga_account' ) );
-define( 'CB_UID', get_theme_option( 'cb_uid' ) );
-define( 'CB_DOMAIN', get_theme_option( 'cb_domain' ) );
+define( 'GA_ACCOUNT', get_theme_mod_or_default( 'ga_account' ) );
+define( 'CB_UID', get_theme_mod_or_default( 'cb_uid' ) );
+define( 'CB_DOMAIN', get_theme_mod_or_default( 'cb_domain' ) );
 
 
 /**
@@ -131,202 +123,379 @@ Config::$body_classes = array( 'default', );
 
 
 /**
- * Configure theme settings, see abstract class Field's descendants for
- * available fields. -- functions/base.php
- * */
-Config::$theme_settings = array(
-	'Analytics' => array(
-		new TextField( array(
-			'name'        => 'Google WebMaster Verification',
-			'id'          => THEME_OPTIONS_NAME.'[gw_verify]',
-			'description' => 'Example: <em>9Wsa3fspoaoRE8zx8COo48-GCMdi5Kd-1qFpQTTXSIw</em>',
-			'default'     => null,
-			'value'       => get_theme_option( 'gw_verify' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Google Analytics Account',
-			'id'          => THEME_OPTIONS_NAME.'[ga_account]',
-			'description' => 'Example: <em>UA-9876543-21</em>. Leave blank for development.',
-			'default'     => null,
-			'value'       => get_theme_option( 'ga_account' ),
-		) ),
-	),
-	'Events' => array(
-		new SelectField( array(
-			'name'        => 'Events Max Items',
-			'id'          => THEME_OPTIONS_NAME.'[events_max_items]',
-			'description' => 'Maximum number of events to display whenever outputting event information.',
-			'value'       => get_theme_option( 'events_max_items' ),
-			'default'     => 4,
-			'choices'     => array(
-				'1' => 1,
-				'2' => 2,
-				'3' => 3,
-				'4' => 4,
-				'5' => 5,
-			),
-		) ),
-		new TextField( array(
-			'name'        => 'Events Calendar URL',
-			'id'          => THEME_OPTIONS_NAME.'[events_url]',
-			'description' => 'Base URL for the calendar you wish to use. Example: <em>http://events.ucf.edu/mycalendar</em>',
-			'value'       => get_theme_option( 'events_url' ),
-			'default'     => 'http://events.ucf.edu/upcoming/feed.rss',
-		) ),
-	),
-	'News' => array(
-		new SelectField( array(
-			'name'        => 'News Max Items',
-			'id'          => THEME_OPTIONS_NAME.'[news_max_items]',
-			'description' => 'Maximum number of articles to display when outputting news information.',
-			'value'       => get_theme_option( 'news_max_items' ),
-			'default'     => 2,
-			'choices'     => array(
-				'1' => 1,
-				'2' => 2,
-				'3' => 3,
-				'4' => 4,
-				'5' => 5,
-			),
-		) ),
-		new TextField( array(
-			'name'        => 'News Feed',
-			'id'          => THEME_OPTIONS_NAME.'[news_url]',
-			'description' => 'Use the following URL for the news RSS feed <br>Example: <em>http://today.ucf.edu/feed/</em>',
-			'value'       => get_theme_option( 'news_url' ),
-			'default'     => 'http://today.ucf.edu/feed/',
-		) ),
-	),
-	'Search' => array(
-		new RadioField( array(
-			'name'        => 'Enable Google Search',
-			'id'          => THEME_OPTIONS_NAME.'[enable_google]',
-			'description' => 'Enable to use the google search appliance to power the search functionality.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => get_theme_option( 'enable_google' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Search Domain',
-			'id'          => THEME_OPTIONS_NAME.'[search_domain]',
-			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
-			'default'     => null,
-			'value'       => get_theme_option( 'search_domain' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Search Results Per Page',
-			'id'          => THEME_OPTIONS_NAME.'[search_per_page]',
-			'description' => 'Number of search results to show per page of results',
-			'default'     => 10,
-			'value'       => get_theme_option( 'search_per_page' ),
-		) ),
-	),
-	'Site' => array(
-		new TextField( array(
-			'name'        => 'Contact Email',
-			'id'          => THEME_OPTIONS_NAME.'[site_contact]',
-			'description' => 'Contact email address that visitors to your site can use to contact you.',
-			'value'       => get_theme_option( 'site_contact' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Organization Name',
-			'id'          => THEME_OPTIONS_NAME.'[organization_name]',
-			'description' => 'Your organization\'s name',
-			'value'       => get_theme_option( 'organization_name' ),
-		) ),
-		new FileField( array(
-			'name'        => 'Home Image',
-			'id'          => THEME_OPTIONS_NAME.'[site_image]',
-			'description' => 'Image to feature on the homepage.',
-			'value'       => get_theme_option( 'site_image' ),
-		) ),
-		new TextareaField( array(
-			'name'        => 'Site Description',
-			'id'          => THEME_OPTIONS_NAME.'[site_description]',
-			'description' => 'A quick description of your organization and its role.',
-			'default'     => 'This is the site\'s default description, change or remove it on the <a href="'.get_admin_url().'admin.php?page=theme-options#site">theme options page</a> in the admin site.',
-			'value'       => get_theme_option( 'site_description' ),
-		) ),
-	),
-	'Social' => array(
-		new TextField( array(
-			'name'        => 'Facebook URL',
-			'id'          => THEME_OPTIONS_NAME.'[facebook_url]',
-			'description' => 'URL to the facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/CSBrisketBus</em>',
-			'default'     => null,
-			'value'       => get_theme_option( 'facebook_url' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Twitter URL',
-			'id'          => THEME_OPTIONS_NAME.'[twitter_url]',
-			'description' => 'URL to the twitter user account you would like to direct visitors to.  Example: <em>http://twitter.com/csbrisketbus</em>',
-			'value'       => get_theme_option( 'twitter_url' ),
-		) ),
-		new RadioField( array(
-			'name'        => 'Enable Flickr',
-			'id'          => THEME_OPTIONS_NAME.'[enable_flickr]',
-			'description' => 'Automatically display flickr images throughout the site',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => get_theme_option( 'enable_flickr' ),
-		) ),
-		new TextField( array(
-			'name'        => 'Flickr Photostream ID',
-			'id'          => THEME_OPTIONS_NAME.'[flickr_id]',
-			'description' => 'ID of the flickr photostream you would like to show pictures from.  Example: <em>65412398@N05</em>',
-			'default'     => '36226710@N08',
-			'value'       => get_theme_option( 'flickr_id' ),
-		) ),
-		new SelectField( array(
-			'name'        => 'Flickr Max Images',
-			'id'          => THEME_OPTIONS_NAME.'[flickr_max_items]',
-			'description' => 'Maximum number of flickr images to display',
-			'value'       => get_theme_option( 'flickr_max_items' ),
-			'default'     => 12,
-			'choices'     => array(
-				'6'  => 6,
-				'12' => 12,
-				'18' => 18,
-			),
-		) ),
-	),
-);
+ * Configure the WP Customizer with panels, sections, settings and
+ * controls.
+ *
+ * Serves as a replacement for Config::$theme_options in this theme.
+ *
+ * NOTE: Panel and Section IDs should be prefixed with THEME_CUSTOMIZER_PREFIX
+ * to avoid conflicts with plugins that may add their own panels/sections to
+ * the Customizer.
+ *
+ * See developer docs for more info:
+ * https://developer.wordpress.org/themes/advanced-topics/customizer-api/
+ **/
+
+function define_customizer_panels( $wp_customize ) {
+	$wp_customize->add_panel(
+		THEME_CUSTOMIZER_PREFIX . 'home',
+		array(
+			'title'           => 'Home Page',
+			'active_callback' => function() { return is_home() || is_front_page(); }
+		)
+	);
+}
+add_action( 'customize_register', 'define_customizer_panels' );
+
+
+function define_customizer_sections( $wp_customize ) {
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'analytics',
+		array(
+			'title' => 'Analytics'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'events',
+		array(
+			'title'       => 'Events',
+			'description' => 'Settings for event lists used throughout the site.'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'news',
+		array(
+			'title'       => 'News',
+			'description' => 'Settings for news feeds used throughout the site.'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'search',
+		array(
+			'title'       => 'Search',
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'contact_info',
+		array(
+			'title' => 'Contact Information'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'social',
+		array(
+			'title' => 'Social Media'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'webfonts',
+		array(
+			'title' => 'Web Fonts'
+		)
+	);
+
+	// Move 'Static Front Page' section to new 'Home Page' panel
+	$wp_customize->get_section( 'static_front_page' )->panel = THEME_CUSTOMIZER_PREFIX . 'home';
+}
+add_action( 'customize_register', 'define_customizer_sections' );
 
 
 /**
- * If Yoast SEO is activated, assume we're handling ALL SEO-related
- * modifications with it.  Don't add Facebook Opengraph theme options.
+ * Define customizer setting defaults here to make them accessible when calling
+ * get_theme_mod().
  **/
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-if ( !is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
-	array_unshift( Config::$theme_settings['Social'],
-		new RadioField(array(
-			'name'        => 'Enable OpenGraph',
-			'id'          => THEME_OPTIONS_NAME.'[enable_og]',
-			'description' => 'Turn on the opengraph meta information used by Facebook.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => get_theme_option( 'enable_og' ),
-	    )),
-		new TextField(array(
-			'name'        => 'Facebook Admins',
-			'id'          => THEME_OPTIONS_NAME.'[fb_admins]',
-			'description' => 'Comma seperated facebook usernames or user ids of those responsible for administrating any facebook pages created from pages on this site. Example: <em>592952074, abe.lincoln</em>',
-			'default'     => null,
-			'value'       => get_theme_option( 'fb_admins' ),
-		))
-	);
+Config::$setting_defaults = array(
+	'news_max_items' => 4,
+	'news_url' => 'http://events.ucf.edu/feed.rss',
+	'news_max_items' => 2,
+	'news_url' => 'http://today.ucf.edu/feed/',
+	'enable_google' => 1,
+	'search_per_page' => 10,
+	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // TODO: update to use PROD css key
+);
+
+function get_setting_default( $setting, $fallback=null ) {
+	return isset( Config::$setting_defaults[$setting] ) ? Config::$setting_defaults[$setting] : $fallback;
 }
+
+
+/**
+ * Register Customizer Controls and Settings here.
+ *
+ * Any new settings should be registered here with type 'theme_mod' (and NOT
+ * 'option'/do not use an array key structure for ID names).
+ **/
+
+function define_customizer_fields( $wp_customize ) {
+
+	// Analytics
+	$wp_customize->add_setting(
+		'gw_verify'
+	);
+	$wp_customize->add_control(
+		'gw_verify',
+		array(
+			'type'        => 'text',
+			'label'       => 'Google WebMaster Verification',
+			'description' => 'Example: <em>9Wsa3fspoaoRE8zx8COo48-GCMdi5Kd-1qFpQTTXSIw</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'analytics',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'gw_account'
+	);
+	$wp_customize->add_control(
+		'gw_account',
+		array(
+			'type'        => 'text',
+			'label'       => 'Google Analytics Account',
+			'description' => 'Example: <em>UA-9876543-21</em>. Leave blank for development.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'analytics'
+		)
+	);
+
+
+	// Events
+	$wp_customize->add_setting(
+		'events_max_items',
+		array(
+			'default'     => get_setting_default( 'events_max_items' ),
+		)
+	);
+	$wp_customize->add_control(
+		'news_max_items',
+		array(
+			'type'        => 'select',
+			'label'       => 'Events Max Items',
+			'description' => 'Maximum number of events to display when outputting event information.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'events',
+			'choices'     => array(
+				1 => 1,
+				2 => 2,
+				3 => 3,
+				4 => 4,
+				5 => 5
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'events_url',
+		array(
+			'default'     => get_setting_default( 'events_url' ),
+		)
+	);
+	$wp_customize->add_control(
+		'news_url',
+		array(
+			'type'        => 'text',
+			'label'       => 'Events Calendar URL',
+			'description' => 'Base URL for the calendar you wish to use. Example: <em>http://events.ucf.edu/mycalendar</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'events'
+		)
+	);
+
+
+	// News
+	$wp_customize->add_setting(
+		'news_max_items',
+		array(
+			'default'     => get_setting_default( 'news_max_items' ),
+		)
+	);
+	$wp_customize->add_control(
+		'news_max_items',
+		array(
+			'type'        => 'select',
+			'label'       => 'News Max Items',
+			'description' => 'Maximum number of articles to display when outputting news information.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'news',
+			'choices'     => array(
+				1 => 1,
+				2 => 2,
+				3 => 3,
+				4 => 4,
+				5 => 5
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'news_url',
+		array(
+			'default'     => get_setting_default( 'news_url' ),
+		)
+	);
+	$wp_customize->add_control(
+		'news_url',
+		array(
+			'type'        => 'text',
+			'label'       => 'News Feed',
+			'description' => 'Use the following URL for the news RSS feed <br>Example: <em>http://today.ucf.edu/feed/</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'news'
+		)
+	);
+
+
+	// Search
+	$wp_customize->add_setting(
+		'enable_google',
+		array(
+			'default'     => get_setting_default( 'enable_google' ),
+		)
+	);
+	$wp_customize->add_control(
+		'enable_google',
+		array(
+			'type'        => 'checkbox',
+			'label'       => 'Enable Google Search',
+			'description' => 'Enable to use the google search appliance to power the search functionality.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'search'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'search_domain'
+	);
+	$wp_customize->add_control(
+		'search_domain',
+		array(
+			'type'        => 'text',
+			'label'       => 'Search Domain',
+			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'search'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'search_per_page',
+		array(
+			'default'     => get_setting_default( 'search_per_page' ),
+			'type'        => 'option'
+		)
+	);
+	$wp_customize->add_control(
+		'search_per_page',
+		array(
+			'type'        => 'number',
+			'label'       => 'Search Results Per Page',
+			'description' => 'Number of search results to show per page of results',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'search',
+			'input_attrs' => array(
+				'min'  => 1,
+				'max'  => 50,
+				'step' => 1
+			)
+		)
+	);
+
+
+	// Contact Info
+	$wp_customize->add_setting(
+		'site_contact'
+	);
+	$wp_customize->add_control(
+		'site_contact',
+		array(
+			'type'        => 'email',
+			'label'       => 'Contact Email',
+			'description' => 'Contact email address that visitors to your site can use to contact you.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'contact_info'
+		)
+	);
+
+
+	// Social Media
+	$wp_customize->add_setting(
+		'facebook_url'
+	);
+	$wp_customize->add_control(
+		'facebook_url',
+		array(
+			'type'        => 'url',
+			'label'       => 'Facebook URL',
+			'description' => 'URL to the Facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/UCF</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'twitter_url'
+	);
+	$wp_customize->add_control(
+		'twitter_url',
+		array(
+			'type'        => 'url',
+			'label'       => 'Twitter URL',
+			'description' => 'URL to the Twitter user account you would like to direct visitors to.  Example: <em>http://twitter.com/UCF</em>',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
+		)
+	);
+
+
+	// Web Fonts
+	$wp_customize->add_setting(
+		'cloud_typography_key',
+		array(
+			'default'     => get_setting_default( 'cloud_typography_key' )
+		)
+	);
+	$wp_customize->add_control(
+		'cloud_typography_key',
+		array(
+			'type'        => 'text',
+			'label'       => 'Cloud.Typography CSS Key URL',
+			'description' => 'The CSS Key provided by Cloud.Typography for this project.  <strong>Only include the value in the "href" portion of the link
+								tag provided; e.g. "//cloud.typography.com/000000/000000/css/fonts.css".</strong><br><br>NOTE: Make sure the Cloud.Typography
+								project has been configured to deliver fonts to this site\'s domain.<br>
+								See the <a target="_blank" href="http://www.typography.com/cloud/user-guide/managing-domains">Cloud.Typography docs on managing domains</a> for more info.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'webfonts'
+		)
+	);
+
+
+	/**
+	 * If Yoast SEO is activated, assume we're handling ALL SEO-related
+	 * modifications with it.  Don't add Facebook Opengraph theme options.
+	 **/
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+	if ( !is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+
+		$wp_customize->add_setting(
+			'enable_og',
+			array(
+				'default'     => 1,
+			)
+		);
+		$wp_customize->add_control(
+			'enable_og',
+			array(
+				'type'        => 'checkbox',
+				'label'       => 'Enable Opengraph',
+				'description' => 'Turn on the Opengraph meta information used by Facebook.',
+				'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'fb_admins'
+		);
+		$wp_customize->add_control(
+			'fb_admins',
+			array(
+				'type'        => 'textarea',
+				'label'       => 'Facebook Admins',
+				'description' => 'Comma separated facebook usernames or user ids of those responsible for administrating any facebook pages created from pages on this site. Example: <em>592952074, abe.lincoln</em>',
+				'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
+			)
+		);
+	}
+
+}
+add_action( 'customize_register', 'define_customizer_fields' );
 
 
 Config::$links = array(
@@ -354,9 +523,9 @@ Config::$metas = array(
 	array( 'name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0' ),
 );
 
-if ( get_theme_option( 'gw_verify' ) ) {
+if ( get_theme_mod_or_default( 'gw_verify' ) ) {
 	Config::$metas[] = array(
 		'name'    => 'google-site-verification',
-		'content' => htmlentities( get_theme_option( 'gw_verify' ) ),
+		'content' => htmlentities( get_theme_mod_or_default( 'gw_verify' ) ),
 	);
 }

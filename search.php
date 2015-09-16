@@ -3,11 +3,11 @@
 
 <main>
 
-<?php if ( get_theme_option( 'enable_google' ) ): ?>
+<?php if ( get_theme_mod_or_default( 'enable_google' ) ): ?>
 
 	<?php
-	$domain  = get_theme_option( 'search_domain' );
-	$limit   = intval( get_theme_option( 'search_per_page' ) );
+	$domain  = get_theme_mod_or_default( 'search_domain' );
+	$limit   = intval( get_theme_mod_or_default( 'search_per_page' ) );
 	$start   = ( isset( $_GET['start'] ) && is_numeric( $_GET['start'] ) ) ? ( int )$_GET['start'] : 0;
 	$results = get_search_results( $_GET['s'], $start, $limit, $domain );
 	?>
