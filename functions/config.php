@@ -202,7 +202,7 @@ add_action( 'customize_register', 'define_customizer_sections' );
 
 /**
  * Define customizer setting defaults here to make them accessible when calling
- * get_theme_mod().
+ * get_theme_mod()/get_theme_mod_or_default().
  **/
 
 Config::$setting_defaults = array(
@@ -508,6 +508,10 @@ Config::$styles = array(
 	array( 'admin' => True, 'src' => THEME_CSS_URL.'/admin.css', ),
 	THEME_CSS_URL . '/style.min.css'
 );
+
+if ( get_theme_mod_or_default( 'cloud_typography_key' ) ) {
+	Config::$styles[] = array( 'name' => 'font-cloudtypography', 'src' => get_theme_mod_or_default( 'cloud_typography_key' ) );
+}
 
 
 Config::$scripts = array(
