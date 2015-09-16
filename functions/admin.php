@@ -155,4 +155,13 @@ function add_icon_or_thumb_to_attachmentjs( $response, $attachment, $meta ) {
 }
 add_filter( 'wp_prepare_attachment_for_js', 'add_icon_or_thumb_to_attachmentjs', 10, 3 );
 
+
+/**
+ * Hide unused admin tools
+ **/
+function hide_admin_links() {
+	remove_menu_page( 'edit-comments.php' );
+}
+add_action( 'admin_menu', 'hide_admin_links' );
+
 ?>
