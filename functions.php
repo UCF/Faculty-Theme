@@ -16,10 +16,12 @@ require_once 'shortcodes.php';        // Per theme shortcodes
 function enqueue_custom_files() {
 	global $post;
 
-	$custom_css_id = get_post_meta( $post->ID, 'page_stylesheet', True );
+	if ( $post ) {
+		$custom_css_id = get_post_meta( $post->ID, 'page_stylesheet', True );
 
-	if ( $custom_css_id ) {
-		wp_enqueue_style( $post->post_name.'-stylesheet', wp_get_attachment_url( $custom_css_id ) );
+		if ( $custom_css_id ) {
+			wp_enqueue_style( $post->post_name.'-stylesheet', wp_get_attachment_url( $custom_css_id ) );
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_custom_files' );
