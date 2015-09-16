@@ -303,4 +303,49 @@ class Post extends CustomPostType {
 		);
 	}
 }
+
+
+class FAQ extends CustomPostType {
+	public
+		$name           = 'faq',
+		$plural_name    = 'FAQs',
+		$singular_name  = 'FAQ',
+		$add_new_item   = 'Add New FAQ',
+		$edit_item      = 'Edit FAQ',
+		$new_item       = 'New FAQ',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = False,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True,
+		$use_shortcode  = True;
+
+	public function objectsToHTML( $faqs, $css_classes ) {
+		if ( count( $faqs ) < 1 ) { return ''; }
+
+		ob_start();
+
+		?> <div class="row"><?php
+
+		foreach( $faqs as $i=>$faq ) {
+			?>
+			<div class="col-md-6">
+				<article class="faq">
+					<h2 class="faq-q"><span class="ucf-gold">Q:</span> <?php echo $faq->post_title; ?></h2>
+					<p class="faq-a"><span class="ucf-gold">A:</span> <?php echo $faq->post_content; ?></p>
+				</article>
+			</div>
+			<?php
+			if ( $i % 2 == 1 ) {
+				?></div><div class="row"><?php
+			}
+		}
+
+		?> </div> <?php
+
+		return ob_get_clean();
+	}
+}
+
 ?>
