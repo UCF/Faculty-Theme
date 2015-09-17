@@ -3,12 +3,12 @@
 <?php get_header(); the_post(); ?>
 
 <main>
-	<div class="container">
-		<article>
+	<article>
+		<div class="container">
 			<h1><?php echo the_title(); ?></h1>
 			<?php the_content(); ?>
-		</article>
-	</div>
+		</div>
+	</article>
 </main>
 
 <?php get_footer();?>
