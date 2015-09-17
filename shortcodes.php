@@ -269,16 +269,25 @@ function sc_faculty_clusters_list($attr, $content=null) {
 	) );
 
 	ob_start();
-
-	if ( $clusters ):
-		foreach ( $clusters as $post ):
-			$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
-			$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
-			if ($short_description === "") {
-				$short_description = strtok($post->post_content, "\r\n");
-			}
 	?>
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 cluster-short">
+
+	</div> <!-- Close .container -->
+	<div class="container"> <!-- Re-open .container -->
+	<div class="row">
+
+	<?php
+		if ( $clusters ):
+			$cluster_count = 0;
+			foreach ( $clusters as $post ):
+				$cluster_count++;
+				$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
+				if ($short_description === "") {
+					$short_description = strtok($post->post_content, "\r\n");
+				}
+		?>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+				<div class="">
 					<p>
 						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
 					</p>
@@ -298,13 +307,21 @@ function sc_faculty_clusters_list($attr, $content=null) {
 					</ul>
 
 					<?php endif; ?>
-				</div>
+					</div>
+			</div>
 	<?php
-		endforeach;
-	endif;
-?>
 
-<?php
+		if ( $cluster_count % 3 == 0 && $cluster_count != count( $clusters )): ?>
+			</div>
+			<div class="row">
+		<?php endif;
+
+			endforeach;
+		endif;
+	?>
+			</div>
+
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
