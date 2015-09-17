@@ -286,7 +286,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 					$short_description = strtok($post->post_content, "\r\n");
 				}
 		?>
-			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+			<div class="col-sm-4 col-md-4 col-lg-4">
 				<div class="cluster-short">
 					<h3>
 						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
@@ -309,9 +309,14 @@ function sc_faculty_clusters_list($attr, $content=null) {
 						<?php
 							endforeach;
 						?>
-						</dl>
-
+					</dl>
 					<?php endif; ?>
+
+					<div class="cluster-short-buttons-container">
+						<a href="#" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
+						<a href="#" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
+					</div>
+
 				</div>
 			</div>
 	<?php
