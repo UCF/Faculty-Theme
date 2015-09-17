@@ -262,6 +262,46 @@ function sc_post_type_search( $params=array(), $content='' ) {
 }
 add_shortcode( 'post-type-search', 'sc_post_type_search' );
 
+function sc_faculty_clusters_list($attr, $content=null) {
+	$query = new WP_Query( array( 'post_type' => 'faculty_cluster' ) );
+	ob_start();
+	?>
+	<div class="row">
+		<?php
+		while ( $query->have_posts() ): $query->the_post();
+			$cluster_leads = get_the_terms($post->ID, 'cluster_leads');
+			?>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 faculty-cluster">
+					<p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
+					<?php
+					// Get short description meta field. If one is not specified, truncate the content
+					// to the first new line.
+					$short_description = get_post_meta( get_the_ID(), 'faculty_cluster_short_description', true );
+					if ($short_description !== "") {
+						echo $short_description;
+					} else {
+						$the_content = get_the_content();
+						echo strtok($the_content, "\r\n");
+					}
+					?>
+					<?php if (count($cluster_leads) > 0): ?>
+						<p><i>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</i></p>
+						<ul>
+							<?php foreach ( $cluster_leads as $cluster_lead ): ?>
+								<li><?php echo $cluster_lead->name ?></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</div>
+			<?php
+		endwhile;
+		?>
+	</div>
+	<?php
+
+	return ob_get_clean();
+}
+add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
 
 /**
  * Displays a list of Faculty Clusters using large parallax images.
