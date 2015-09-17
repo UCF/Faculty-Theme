@@ -341,7 +341,7 @@ function sc_cluster_parallax_list( $params, $content='' ) {
 
 						<?php if ( $cluster_leads ): ?>
 
-						<h3 class="cluster-pl-sidebar-title">Cluster Leads:</h3>
+						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
 						<?php foreach ( $cluster_leads as $term ): ?>
