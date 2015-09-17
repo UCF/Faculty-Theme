@@ -271,7 +271,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 		while ( $query->have_posts() ): $query->the_post();
 			$cluster_leads = get_the_terms($post->ID, 'cluster_leads');
 			?>
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 faculty-cluster">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 faculty-cluster-short">
 					<p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
 					<?php
 					// Get short description meta field. If one is not specified, truncate the content
