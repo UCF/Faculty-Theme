@@ -281,6 +281,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 			foreach ( $clusters as $post ):
 				$cluster_count++;
 				$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+				$positions_url = get_post_meta( $post->ID, 'faculty_cluster_positions_url', true );
 				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
 				if ($short_description === "") {
 					$short_description = strtok($post->post_content, "\r\n");
@@ -289,7 +290,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<div class="cluster-short">
 					<h3>
-						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
+						<a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a>
 					</h3>
 
 					<div class="cluster-short-desc">
@@ -314,7 +315,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 
 					<div class="cluster-short-buttons-container">
 						<a href="#" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
-						<a href="#" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
+						<a href="<?php echo $positions_url; ?>" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
 					</div>
 
 				</div>
