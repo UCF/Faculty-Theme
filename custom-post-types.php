@@ -375,6 +375,18 @@ class FacultyCluster extends CustomPostType {
 				'id' => $prefix . 'stylesheet',
 				'type' => 'file',
 			),
+			array(
+				'name' => 'Header Image',
+				'desc' => 'Full-width image to show when displaying this Faculty Cluster in a list.',
+				'id' => $prefix . 'header_image',
+				'type' => 'file',
+			),
+			array(
+				'name' => 'List of Positions URL',
+				'desc' => 'URL to use when linking to this cluster\'s list of positions.',
+				'id' => $prefix . 'positions_url',
+				'type' => 'text',
+			),
 		);
 	}
 }
