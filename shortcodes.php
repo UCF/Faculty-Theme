@@ -262,5 +262,23 @@ function sc_post_type_search( $params=array(), $content='' ) {
 }
 add_shortcode( 'post-type-search', 'sc_post_type_search' );
 
+function sc_faculty_clusters_list($attr, $content=null) {
+	$query = new WP_Query( array( 'post_type' => 'faculty_cluster' ) );
+	ob_start();
+	?>
+	<div class="row">
+		<?php
+		while ( $query->have_posts() ): $query->the_post();
+		?>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 faculty-cluster"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
+		<?php
+		endwhile;
+		?>
+	</div>
+	<?php
+
+	return ob_get_clean();
+}
+add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
 
 ?>
