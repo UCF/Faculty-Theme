@@ -35,4 +35,40 @@ function get_theme_mod_or_default( $mod, $fallback='' ) {
 	return get_theme_mod( $mod, get_setting_default( $mod, $fallback ) );
 }
 
+
+/**
+ * Returns markup for displaying a parallax image.
+ **/
+function display_parallax_image( $image_url, $args=array() ) {
+	if ( !$image_url ) { return ''; }
+
+	$data_attrs = '';
+	if ( is_array( $args ) ) {
+		foreach ( $args as $key => $val ) {
+			$data_attrs .= "{$key}=\"{$val}\" ";
+		}
+	}
+
+	ob_start();
+?>
+	<div class="parallax-image" data-parallax="scroll" data-image-src="<?php echo $image_url; ?>" <?php echo $data_attrs; ?>></div>
+<?php
+	return ob_get_clean();
+}
+
+
+/**
+ * TODO - fetch btn content, href from post
+ * Display's a Faculty Cluster's call-to-action button.
+ **/
+function display_cluster_cta( $post_id, $classes='', $id='' ) {
+	ob_start();
+?>
+	<a class="btn btn-primary btn-cta btn-block <?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?> href="#">
+		Apply Now for Open Cluster Positions
+	</a>
+<?php
+	return ob_get_clean();
+}
+
 ?>

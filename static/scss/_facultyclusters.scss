@@ -1,0 +1,39 @@
+// Faculty Cluster Parallax Lists ("pl")
+
+.cluster-pl-title {
+  background: url('../img/gold-dots-horizontal.png') center center repeat-x;
+  display: block;
+  font-size: 36px;
+
+  span {
+    background-color: #fff;
+    display: inline-block;
+    margin: 0 20px 0 0; // Force at least 20px of visible dotted line (in case title is multiline)
+    padding: 0 20px 0 0;
+  }
+}
+
+.cluster-pl-cta {
+  margin-top: -40px;
+}
+
+.cluster-pl-sidebar-title {
+  color: #787878;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.cluster-pl-sidebar-list {
+  @include list-unstyled;
+  font-weight: 500;
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+.cluster-pl-desc,
+.cluster-pl-sidebar-list {
+  margin-bottom: 60px;
+}

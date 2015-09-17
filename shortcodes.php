@@ -263,4 +263,63 @@ function sc_post_type_search( $params=array(), $content='' ) {
 add_shortcode( 'post-type-search', 'sc_post_type_search' );
 
 
+/**
+ * Displays a list of Faculty Clusters using large parallax images.
+ **/
+function sc_cluster_parallax_list( $params, $content='' ) {
+	$clusters = get_posts( array(
+		'post_type' => 'faculty_cluster',
+		'posts_per_page' => -1
+	) );
+
+	ob_start();
+
+	if ( $clusters ):
+		foreach ( $clusters as $post ):
+			$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
+			$img = wp_get_attachment_url( $img_id );
+			$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+	?>
+			</div> <!-- Close .container -->
+	<?php
+			echo display_parallax_image( $img );
+	?>
+			<div class="container"> <!-- Re-open .container -->
+				<div class="row">
+					<div class="col-md-8 col-sm-8">
+						<h2 class="cluster-pl-title">
+							<span>
+								<?php echo $post->post_title; ?>
+							</span>
+						</h2>
+						<div class="cluster-pl-desc">
+							<?php echo apply_filters( 'the_content', $post->post_content ); // TODO: replace with alternate meta field for extended description ?>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<?php echo display_cluster_cta( $post->ID, 'cluster-pl-cta' ); ?>
+
+						<?php if ( $cluster_leads ): ?>
+
+						<h3 class="cluster-pl-sidebar-title">Cluster Leads:</h3>
+
+						<ul class="cluster-pl-sidebar-list">
+						<?php foreach ( $cluster_leads as $term ): ?>
+							<li><?php echo $term; ?></li>
+						<?php endforeach; ?>
+						</ul>
+
+						<?php endif; ?>
+					</div>
+				</div>
+	<?php
+		endforeach;
+	endif;
+?>
+
+<?php
+	return ob_get_clean();
+}
+add_shortcode( 'faculty-cluster-parallax-list', 'sc_cluster_parallax_list' ); // TODO: better name for this shortcode?
+
 ?>

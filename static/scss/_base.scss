@@ -11,9 +11,11 @@
 
 // Styles for components and Bootstrap component overrides
 @import 'components';
+@import 'parallax';
 
 // Styles for our base header/footer templates and specific, per-view templates
 // @import 'header';
 // @import 'footer';
 // @import 'home';
 // @import 'page';
+@import 'facultyclusters';

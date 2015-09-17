@@ -4,8 +4,8 @@
 <?php get_header(); the_post(); ?>
 
 <main class="page page-404">
-	<div class="container">
-		<article>
+	<article>
+		<div class="container">
 			<h1>Page Not Found</h1>
 			<?php
 			$page = get_page_by_title( '404' );
@@ -20,8 +20,8 @@
 			<?php else: ?>
 				<p>The page you requested doesn't exist.  Sorry about that.</p>
 			<?php endif; ?>
-		</article>
-	</div>
+		</div>
+	</article>
 </main>
 
 <?php get_footer();?>
