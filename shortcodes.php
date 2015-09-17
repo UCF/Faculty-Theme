@@ -269,9 +269,20 @@ function sc_faculty_clusters_list($attr, $content=null) {
 	<div class="row">
 		<?php
 		while ( $query->have_posts() ): $query->the_post();
-		?>
-			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 faculty-cluster"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
-		<?php
+			$cluster_leads = get_the_terms($post->ID, 'cluster_leads');
+			?>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 faculty-cluster">
+					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+					<?php if (count($cluster_leads) > 0): ?>
+						<p><i>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</i></p>
+						<ul>
+							<?php foreach ( $cluster_leads as $cluster_lead ): ?>
+								<li><?php echo $cluster_lead->name ?></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</div>
+			<?php
 		endwhile;
 		?>
 	</div>
