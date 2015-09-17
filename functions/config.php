@@ -210,8 +210,8 @@ add_action( 'customize_register', 'define_customizer_sections' );
  **/
 
 Config::$setting_defaults = array(
-	'news_max_items' => 4,
-	'news_url' => 'http://events.ucf.edu/feed.rss',
+	'events_max_items' => 4,
+	'events_url' => 'http://events.ucf.edu/feed.rss',
 	'news_max_items' => 2,
 	'news_url' => 'http://today.ucf.edu/feed/',
 	'enable_google' => 1,
