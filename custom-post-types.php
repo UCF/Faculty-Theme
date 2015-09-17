@@ -387,6 +387,12 @@ class FacultyCluster extends CustomPostType {
 				'id' => $prefix . 'positions_url',
 				'type' => 'text',
 			),
+			array(
+				'name' => 'Short Description',
+				'desc' => 'Short description to show when displaying this Faculty Cluster in a list.',
+				'id' => $prefix . 'short_description',
+				'type' => 'textarea',
+			),
 		);
 	}
 }

@@ -272,7 +272,15 @@ function sc_faculty_clusters_list($attr, $content=null) {
 			$cluster_leads = get_the_terms($post->ID, 'cluster_leads');
 			?>
 				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 faculty-cluster">
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+					<p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
+					<?php
+					$short_description = get_post_meta( get_the_ID(), 'faculty_cluster_short_description', true );
+					if ($short_description !== "") {
+						echo $short_description;
+					} else {
+						echo the_content();
+					}
+					?>
 					<?php if (count($cluster_leads) > 0): ?>
 						<p><i>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</i></p>
 						<ul>
