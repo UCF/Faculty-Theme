@@ -326,22 +326,26 @@ function sc_cluster_parallax_list( $params, $content='' ) {
 	?>
 			<div class="container"> <!-- Re-open .container -->
 				<div class="row">
-					<div class="col-md-8 col-sm-8">
+					<div class="col-md-8 col-sm-7">
 						<h2 class="cluster-pl-title">
 							<span>
 								<?php echo $post->post_title; ?>
 							</span>
 						</h2>
-						<div class="cluster-pl-desc">
-							<?php echo apply_filters( 'the_content', $post->post_content ); // TODO: replace with alternate meta field for extended description ?>
+						<div class="row">
+							<div class="col-md-11 col-sm-11">
+								<div class="cluster-pl-desc">
+									<?php echo apply_filters( 'the_content', get_post_meta( $post->ID, 'faculty_cluster_short_description', true ) ); ?>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-4">
+					<div class="col-md-4 col-sm-5">
 						<?php echo display_cluster_cta( $post->ID, 'cluster-pl-cta' ); ?>
 
 						<?php if ( $cluster_leads ): ?>
 
-						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</h3>
+						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
 						<?php foreach ( $cluster_leads as $term ): ?>

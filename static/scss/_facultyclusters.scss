@@ -3,17 +3,36 @@
 .cluster-pl-title {
   background: url('../img/gold-dots-horizontal.png') center center repeat-x;
   display: block;
-  font-size: 36px;
+  font-size: 34px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+
+  @media (min-width: $screen-lg-min) {
+    font-size: 36px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    background-position: center bottom;
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
 
   span {
     background-color: #fff;
     display: inline-block;
     margin: 0 20px 0 0; // Force at least 20px of visible dotted line (in case title is multiline)
     padding: 0 20px 0 0;
+
+    @media (max-width: $screen-sm-max) {
+      background-color: transparent;
+      margin: 0;
+      padding: 0 0 15px;
+    }
   }
 }
 
 .cluster-pl-cta {
+  margin-bottom: 40px;
   margin-top: -40px;
 }
 
@@ -29,11 +48,11 @@
   font-weight: 500;
 
   li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 }
 
 .cluster-pl-desc,
 .cluster-pl-sidebar-list {
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
