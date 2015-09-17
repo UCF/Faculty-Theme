@@ -1,3 +1,9 @@
+body {
+  @media (max-width: $screen-sm-max) {
+    font-size: 16px;
+  }
+}
+
 p:empty {
   display: none;
 }

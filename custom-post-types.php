@@ -382,16 +382,31 @@ class FacultyCluster extends CustomPostType {
 				'type' => 'file',
 			),
 			array(
+				'name' => 'Short Description',
+				'desc' => 'Short description to show when displaying this Faculty Cluster in a list.',
+				'id' => $prefix . 'short_description',
+				'type' => 'textarea',
+			),
+			array(
 				'name' => 'List of Positions URL',
 				'desc' => 'URL to use when linking to this cluster\'s list of positions.',
 				'id' => $prefix . 'positions_url',
 				'type' => 'text',
 			),
 			array(
-				'name' => 'Short Description',
-				'desc' => 'Short description to show when displaying this Faculty Cluster in a list.',
-				'id' => $prefix . 'short_description',
+				'name' => 'CTA Text',
+				'desc' => 'Text to use within this cluster\'s call-to-action button.  Accepts HTML.',
+				'id' => $prefix . 'cta_text',
 				'type' => 'textarea',
+				'default' => '<span class="btn-cta-left">Apply Now</span>
+<span class="sr-only"> for </span>
+<span class="btn-cta-right">Open Cluster Positions</span>'
+			),
+			array(
+				'name' => 'CTA URL',
+				'desc' => 'URL to use when linking to this cluster\'s call-to-action.',
+				'id' => $prefix . 'cta_url',
+				'type' => 'text',
 			),
 		);
 	}

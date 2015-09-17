@@ -51,21 +51,30 @@ function display_parallax_image( $image_url, $args=array() ) {
 
 	ob_start();
 ?>
-	<div class="parallax-image" data-parallax="scroll" data-image-src="<?php echo $image_url; ?>" <?php echo $data_attrs; ?>></div>
+	<div class="parallax-image" data-parallax="scroll" data-image-src="<?php echo $image_url; ?>" style="background-image: url('<?php echo $image_url; ?>')" <?php echo $data_attrs; ?>></div>
 <?php
 	return ob_get_clean();
 }
 
 
 /**
- * TODO - fetch btn content, href from post
  * Display's a Faculty Cluster's call-to-action button.
  **/
 function display_cluster_cta( $post_id, $classes='', $id='' ) {
+	$text = get_post_meta( $post_id, 'faculty_cluster_cta_text', true );
+	$url = get_post_meta( $post_id, 'faculty_cluster_cta_url', true );
+
+	if ( !$text ) {
+		$text = 'Apply Now for Open Cluster Positions';
+	}
+	if ( !$url ) {
+		$url = '#';
+	}
+
 	ob_start();
 ?>
-	<a class="btn btn-primary btn-cta btn-block <?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?> href="#">
-		Apply Now for Open Cluster Positions
+	<a class="btn btn-primary btn-cta btn-block <?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?> href="<?php echo $url; ?>">
+		<?php echo wptexturize( $text ); ?>
 	</a>
 <?php
 	return ob_get_clean();

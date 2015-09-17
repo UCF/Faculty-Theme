@@ -1,4 +1,9 @@
 .parallax-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; // fallback until parallax.js loads. Bg url is set inline.
   height: 400px;
+  position: relative;
   width: 100%;
+  z-index: -101; // should be lower than parallax.js's default mirror z-index
 }
