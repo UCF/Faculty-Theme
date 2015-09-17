@@ -85,4 +85,23 @@ abstract class CustomTaxonomy {
 	}
 }
 
+
+class ClusterLeads extends CustomTaxonomy {
+	public
+		$name               = 'cluster_leads',
+		$general_name       = 'Cluster Leads',
+		$singular_name      = 'Cluster Lead',
+		$search_items       = 'Search Cluster Leads',
+		$popular_items      = 'Popular Cluster Leads',
+		$all_times          = 'All Cluster Leads',
+		$parent_item        = 'Parent Cluster Lead',
+		$parent_item_colon  = 'Parent Cluster Lead:',
+		$edit_item          = 'Edit Cluster Lead',
+		$update_item        = 'Update Cluster Lead',
+		$add_new_item       = 'Add New Cluster Lead',
+		$new_item_name      = 'New Cluster Lead',
+
+		$hierarchical = False;
+}
+
 ?>

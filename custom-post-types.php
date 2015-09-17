@@ -288,7 +288,7 @@ class Post extends CustomPostType {
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
-		$taxonomies     = array('post_tag', 'category'),
+		$taxonomies     = array( 'post_tag', 'category' ),
 		$built_in       = True;
 
 	public function fields() {
@@ -345,6 +345,37 @@ class FAQ extends CustomPostType {
 		?> </div> <?php
 
 		return ob_get_clean();
+	}
+}
+
+
+class FacultyCluster extends CustomPostType {
+	public
+		$name           = 'faculty_cluster',
+		$plural_name    = 'Faculty Clusters',
+		$singular_name  = 'Faculty Cluster',
+		$add_new_item   = 'Add New Faculty Cluster',
+		$edit_item      = 'Edit Faculty Cluster',
+		$new_item       = 'New Faculty Cluster',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = False,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True,
+		$taxonomies     = array( 'cluster_leads' ),
+		$use_shortcode  = True;
+
+	public function fields() {
+		$prefix = $this->options('name') . '_';
+		return array(
+			array(
+				'name' => 'Stylesheet',
+				'desc' => '',
+				'id' => $prefix . 'stylesheet',
+				'type' => 'file',
+			),
+		);
 	}
 }
 
