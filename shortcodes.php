@@ -288,9 +288,9 @@ function sc_faculty_clusters_list($attr, $content=null) {
 		?>
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 				<div class="">
-					<p>
+					<h3>
 						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
-					</p>
+					</h3>
 
 					<div class="cluster-pl-desc">
 						<?php echo $short_description ?>
@@ -298,7 +298,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 
 					<?php if ( $cluster_leads ): ?>
 
-					<p class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</p>
+					<h4 class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</h4>
 
 					<ul class="cluster-pl-sidebar-list">
 					<?php foreach ( $cluster_leads as $term ): ?>
