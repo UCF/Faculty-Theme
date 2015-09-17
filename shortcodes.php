@@ -277,8 +277,6 @@ function sc_faculty_clusters_list($attr, $content=null) {
 			if ($short_description === "") {
 				$short_description = strtok($post->post_content, "\r\n");
 			}
-
-			echo display_parallax_image( $img );
 	?>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 cluster-short">
 					<p>
