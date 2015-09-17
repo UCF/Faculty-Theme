@@ -38,3 +38,32 @@
   margin-bottom: 60px;
 }
 
+.cluster-short h3 a {
+  color: #000;
+  font-family: $font-family-sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.cluster-short-desc {
+  font-family: $font-family-sans-serif-alt;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.cluster-short-inline-list {
+  font-family: $font-family-sans-serif-alt;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 10px 0 0 0;
+
+  dt {
+    font-weight: 500;
+    display: inline;
+  }
+
+  dd {
+    display: inline;
+  }
+}

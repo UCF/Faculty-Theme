@@ -287,27 +287,32 @@ function sc_faculty_clusters_list($attr, $content=null) {
 				}
 		?>
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-				<div class="">
+				<div class="cluster-short">
 					<h3>
 						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
 
-					<div class="cluster-pl-desc">
+					<div class="cluster-short-desc">
 						<?php echo $short_description ?>
 					</div>
 
 					<?php if ( $cluster_leads ): ?>
-
-					<h4 class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</h4>
-
-					<ul class="cluster-pl-sidebar-list">
-					<?php foreach ( $cluster_leads as $term ): ?>
-						<li><?php echo $term; ?></li>
-					<?php endforeach; ?>
-					</ul>
+					<dl class="cluster-short-inline-list">
+						<dt>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</dt>
+						<?php
+							$cluster_lead_count = 0;
+							foreach ( $cluster_leads as $term ):
+								$cluster_lead_count++;
+						?>
+							<dd>
+								<?php echo $term; ?><?php if ($cluster_lead_count !== count($cluster_leads)): ?>, <?php endif; ?></dd>
+						<?php
+							endforeach;
+						?>
+						</dl>
 
 					<?php endif; ?>
-					</div>
+				</div>
 			</div>
 	<?php
 
