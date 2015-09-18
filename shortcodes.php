@@ -269,42 +269,70 @@ function sc_faculty_clusters_list($attr, $content=null) {
 	) );
 
 	ob_start();
-
-	if ( $clusters ):
-		foreach ( $clusters as $post ):
-			$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
-			$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
-			if ($short_description === "") {
-				$short_description = strtok($post->post_content, "\r\n");
-			}
 	?>
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 cluster-short">
-					<p>
-						<a href="<?php the_permalink(); ?>"><?php echo $post->post_title; ?></a>
-					</p>
 
-					<div class="cluster-pl-desc">
+	</div> <!-- Close .container -->
+	<div class="container"> <!-- Re-open .container -->
+	<div class="row">
+
+	<?php
+		if ( $clusters ):
+			$cluster_count = 0;
+			foreach ( $clusters as $post ):
+				$cluster_count++;
+				$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+				$positions_url = get_post_meta( $post->ID, 'faculty_cluster_positions_url', true );
+				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
+				if ($short_description === "") {
+					$short_description = strtok($post->post_content, "\r\n");
+				}
+		?>
+			<div class="col-sm-4 col-md-4 col-lg-4">
+				<div class="cluster-short">
+					<h3>
+						<a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a>
+					</h3>
+
+					<div class="cluster-short-desc">
 						<?php echo $short_description ?>
 					</div>
 
 					<?php if ( $cluster_leads ): ?>
-
-					<p class="cluster-pl-sidebar-title">Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</p>
-
-					<ul class="cluster-pl-sidebar-list">
-					<?php foreach ( $cluster_leads as $term ): ?>
-						<li><?php echo $term; ?></li>
-					<?php endforeach; ?>
-					</ul>
-
+					<dl class="cluster-short-inline-list">
+						<dt>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</dt>
+						<?php
+							$cluster_lead_count = 0;
+							foreach ( $cluster_leads as $term ):
+								$cluster_lead_count++;
+						?>
+							<dd>
+								<?php echo $term; ?><?php if ($cluster_lead_count !== count($cluster_leads)): ?>, <?php endif; ?></dd>
+						<?php
+							endforeach;
+						?>
+					</dl>
 					<?php endif; ?>
-				</div>
-	<?php
-		endforeach;
-	endif;
-?>
 
-<?php
+					<div class="cluster-short-buttons-container">
+						<a href="<?php echo $post->guid; ?>" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
+						<a href="<?php echo $positions_url; ?>" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
+					</div>
+
+				</div>
+			</div>
+	<?php
+
+		if ( $cluster_count % 3 == 0 && $cluster_count != count( $clusters )): ?>
+			</div>
+			<div class="row">
+		<?php endif;
+
+			endforeach;
+		endif;
+	?>
+			</div>
+
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
@@ -372,4 +400,99 @@ function sc_cluster_parallax_list( $params, $content='' ) {
 }
 add_shortcode( 'faculty-cluster-parallax-list', 'sc_cluster_parallax_list' ); // TODO: better name for this shortcode?
 
-?>
+/**
+ * Create a full-width callout box.
+ **/
+function sc_callout( $attr, $content ) {
+	$bgcolor = isset($attr['background']) ? $attr['background'] : '#f0f0f0';
+	$textcolor = isset($attr['text']) ? $attr['text'] : '#000';
+	$content_align = isset($attr['content_align']) ? 'text-' . $attr['content_align'] : '';
+	$content = do_shortcode( $content );
+	$extra_classes = isset($attr['class']) ? ' ' . $attr['class'] : '';
+
+	// Close out our existing .span, .row and .container
+	$html = '</div></div></div>';
+	$html .= '<div class="container-wide callout' . $extra_classes . '" style="background-color: ' . $bgcolor . ';">';
+	$html .= '<div class="container"><div class="row content-wrap">';
+	$html .= '<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 callout-inner ' . $content_align . '"';
+	$html .= ' style="color: ' . $textcolor . '">';
+	$html .= $content;
+	$html .= '</div></div></div></div>';
+	// Reopen standard .container, .row and .span
+	$html .= '<div class="container"><div class="row content-wrap"><div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">';
+
+	return $html;
+}
+add_shortcode( 'callout', 'sc_callout' );
+
+/**
+ * Wraps content in a Bootstrap .row.
+ **/
+function sc_row( $attr, $content='' ) {
+	$class = isset( $attr['class'] ) ? $attr['class'] : '';
+	ob_start();
+	?>
+	<div class="row <?php echo $class; ?>">
+		<?php echo do_shortcode( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'row', 'sc_row' );
+/**
+ * Wraps content in a Bootstrap .col-.
+ **/
+function sc_column( $attr, $content='' ) {
+	// For compatibility with some older content using this shortcode:
+	if ( !empty( $attr['prefix'] ) ) {
+		$attr[$attr['prefix']] = $attr['size'];
+	}
+	else if ( !empty( $attr['size'] ) ) {
+		$attr['md'] = $attr['size'];
+	}
+	// size classes
+	$size_xs = isset($attr['xs']) ? 'col-xs-' . $attr['xs'] : '';
+	$size_sm = isset($attr['sm']) ? 'col-sm-' . $attr['sm'] : '';
+	$size_md = isset($attr['md']) ? 'col-md-' . $attr['md'] : '';
+	$size_lg = isset($attr['lg']) ? 'col-lg-' . $attr['lg'] : '';
+	// offset classes
+	$offset_xs = isset($attr['xs_offset']) ? 'col-xs-offset-' . $attr['xs_offset'] : '';
+	$offset_sm = isset($attr['sm_offset']) ? 'col-sm-offset-' . $attr['sm_offset'] : '';
+	$offset_md = isset($attr['md_offset']) ? 'col-md-offset-' . $attr['md_offset'] : '';
+	$offset_lg = isset($attr['lg_offset']) ? 'col-lg-offset-' . $attr['lg_offset'] : '';
+	// push classes
+	$push_xs = isset($attr['xs_push']) ? 'col-xs-push-' . $attr['xs_push'] : '';
+	$push_sm = isset($attr['sm_push']) ? 'col-sm-push-' . $attr['sm_push'] : '';
+	$push_md = isset($attr['md_push']) ? 'col-md-push-' . $attr['md_push'] : '';
+	$push_lg = isset($attr['lg_push']) ? 'col-lg-push-' . $attr['lg_push'] : '';
+	// pull classes
+	$pull_xs = isset($attr['xs_pull']) ? 'col-xs-pull-' . $attr['xs_pull'] : '';
+	$pull_sm = isset($attr['sm_pull']) ? 'col-sm-pull-' . $attr['sm_pull'] : '';
+	$pull_md = isset($attr['md_pull']) ? 'col-md-pull-' . $attr['md_pull'] : '';
+	$pull_lg = isset($attr['lg_pull']) ? 'col-lg-pull-' . $attr['lg_pull'] : '';
+	$extra_classes = isset($attr['class']) ? $attr['class'] : '';
+	$inline_css = isset($attr['style']) ? $attr['style'] : '';
+	$additional_classes = 'col';
+	$all_classes = array(
+		$additional_classes, $size_xs, $size_sm, $size_md,
+		$size_lg, $offset_xs, $offset_sm, $offset_md,
+		$offset_lg, $push_xs, $push_sm, $push_md, $push_lg,
+		$pull_xs, $pull_sm, $pull_md, $pull_lg,
+		$extra_classes
+	);
+	$all_classes_str = '';
+	foreach ( $all_classes as $class ) {
+		if ( $class != '' ) {
+			$all_classes_str .= $class . ' ';
+		}
+	}
+	$all_classes_str = trim( $all_classes_str );
+	ob_start();
+	?>
+	<div class="<?php echo $all_classes_str; ?>" style="<?php echo $inline_css; ?>">
+		<?php echo do_shortcode( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'column', 'sc_column' );

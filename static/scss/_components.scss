@@ -103,6 +103,108 @@
   }
 }
 
+// Custom callout classes
+
+.cluster-callout { //.cluster-overview
+  font-family: $font-family-sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 60px 0 45px;
+
+  h2 {
+    font-family: $font-family-sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 25px;
+    text-transform: uppercase;
+  }
+
+  .bordered {
+    border: 2px solid lighten($ucf-gold, 25%);
+
+    &.dots {
+      background: url('../img/gold-dots-vertical.png') 0% 0% repeat-y;
+      border: 0;
+      padding-left: 34px;
+
+      &.left {
+        background-position: 0% 0%;
+        background-repeat: repeat-y;
+      }
+    }
+  }
+
+  .smaller {
+    font-family: $font-family-sans-serif-alt;
+    font-size: 15px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-family: $font-family-sans-serif;
+      font-weight: 600;
+      list-style-type: none;
+      margin: 0 0 7px;
+      padding: 0;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cluster-callout .bordered.dots.left {
+      background: transparent;
+      padding-left: 15px;
+
+      ul {
+        text-align: center;
+        li {
+          margin: 20px 0 0;
+        }
+        a {
+          padding: 10px 20px;
+        }
+      }
+  }
+}
+
+.cluster-callout.faculty-statistics {
+
+  .row .col {
+    border: solid $ucf-gold 1px;
+    height: 255px;
+    text-align: center;
+    font-size: 23px;
+    text-transform: uppercase;
+
+    &.highlighted {
+      background: $ucf-gold;
+      color: #000;
+    }
+
+    &.middle {
+      border-right: 0;
+      border-left: 0;
+    }
+    &.full {
+      height: auto;
+      padding: 20px 15px;
+      margin-top: -1px;
+    }
+
+    &> strong {
+      font-size: 100px;
+      display: block;
+    }
+  }
+}
+
 
 // Add animations to dropdowns
 // Adapted from https://gist.github.com/orizens/4994397

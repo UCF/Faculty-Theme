@@ -57,8 +57,69 @@
   margin-bottom: 70px;
 }
 
-// Faculty Cluster Short Desciption List
+.cluster-short h3 {
+  height: 70px;
+  line-height: 25px;
+  margin: 15px 0 10px 0;
 
-.cluster-short {
-  padding-bottom: 20px;
+   a {
+    color: #000;
+    font-family: $font-family-sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+}
+
+.cluster-short-desc {
+  font-family: $font-family-sans-serif-alt;
+  font-size: 13px;
+  line-height: 18px;
+  height: 190px;
+}
+
+.cluster-short-inline-list {
+  font-family: $font-family-sans-serif-alt;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 10px 0 0;
+
+  dt {
+    font-weight: 500;
+    display: inline;
+  }
+
+  dd {
+    display: inline;
+  }
+}
+
+.cluster-short-buttons-container {
+  background: url('../img/gold-dots-horizontal.png') left top repeat-x;
+  display: block;
+  margin-bottom: 50px;
+
+  .cluster-short-btn.btn {
+    font-family: $font-family-sans-serif;
+    font-size: 14px;
+    font-weight: 500px;
+    width: 140px;
+    display: inline-block;
+    padding: 10px 14px;
+    margin: 20px 10px 0 0;
+    text-align: left;
+    text-transform: capitalize;
+    border: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .cluster-short-buttons-container {
+    text-align: center;
+
+    .cluster-short-btn.btn {
+      text-align: center;
+      margin: 20px 10px 0 10px;
+    }
+  }
 }

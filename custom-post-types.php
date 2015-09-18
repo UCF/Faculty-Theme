@@ -392,6 +392,7 @@ class FacultyCluster extends CustomPostType {
 				'desc' => 'URL to use when linking to this cluster\'s list of positions.',
 				'id' => $prefix . 'positions_url',
 				'type' => 'text',
+				'default' => 'https://www.jobswithucf.com/'
 			),
 			array(
 				'name' => 'CTA Text',
