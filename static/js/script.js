@@ -2,98 +2,123 @@
 /* global console */
 
 
-if (typeof jQuery !== 'undefined'){
-  (function() {
+/**
+ * Enable parallax scrolling on images contained within elements with
+ * class .parallax.
+ *
+ * Expects markup like:
+ * <div class="parallax-container"><div class="parallax"><img src="..."></div></div>
+ *
+ * Adapted from:
+ * http://materializecss.com/parallax.html
+ **/
+function parallax() {
+  var parallaxElems = [];
+  var windowProperties = {};
 
-    /**
-     * Parallax plugin, borrowed from the Materialize framework.
-     * http://materializecss.com/parallax.html
-     **/
-    $.fn.parallax = function () {
-      var window_width = $(window).width();
-      // Parallax Scripts
-      return this.each(function(i) {
-        var $this = $(this);
-        $this.addClass('parallax');
+  // Store references to each .parallax element and their images
+  function setParallaxElems() {
+    $('.parallax').each(function() {
+      var parallaxElem = {};
 
-        function updateParallax(initial) {
-          var container_height;
-          if (window_width < 601) {
-            container_height = ($this.height() > 0) ? $this.height() : $this.children("img").height();
-          }
-          else {
-            container_height = ($this.height() > 0) ? $this.height() : 500;
-          }
-          var $img = $this.children("img").first();
-          var img_height = $img.height();
-          var parallax_dist = img_height - container_height;
-          var bottom = $this.offset().top + container_height;
-          var top = $this.offset().top;
-          var scrollTop = $(window).scrollTop();
-          var windowHeight = window.innerHeight;
-          var windowBottom = scrollTop + windowHeight;
-          var percentScrolled = (windowBottom - top) / (container_height + windowHeight);
-          var parallax = Math.round((parallax_dist * percentScrolled));
+      parallaxElem.element = $(this);
+      parallaxElem.image = parallaxElem.element.children('img').first();
 
-          if (initial) {
-            $img.css('display', 'block');
-          }
-          if ((bottom > scrollTop) && (top < (scrollTop + windowHeight))) {
-            $img.css('transform', "translate3D(-50%," + parallax + "px, 0)");
-          }
+      parallaxElems.push(parallaxElem);
+    });
+  }
 
-        }
+  // Store window properties outside of parallaxElems loops to reduce
+  // number of calls to $(window) and its properties
+  function setWindowProperties() {
+    var win = $(window);
+    windowProperties.top = win.scrollTop();
+    windowProperties.width = win.width();
+    windowProperties.height = win.height();
+    windowProperties.bottom = windowProperties.top + windowProperties.height;
+  }
 
-        // Wait for image load
-        $this.children("img").one("load", function() {
-          updateParallax(true);
-        }).each(function() {
-          if(this.complete) $(this).load();
-        });
+  // Performs the actual positioning logic for parallax images
+  function updateParallax(parallaxElem, initial) {
+    var imageHeight = parallaxElem.image.height(),
+        elemHeight = parallaxElem.element.height() > 0 ? parallaxElem.element.height() : imageHeight,
+        parallaxDistance = imageHeight - elemHeight,
+        top = parallaxElem.element.offset().top,
+        bottom = top + elemHeight,
+        percentScrolled = (windowProperties.bottom - top) / (elemHeight + windowProperties.height).toFixed(2),
+        parallax = Math.round((parallaxDistance * percentScrolled));
 
-        $(window).scroll(function() {
-          window_width = $(window).width();
-          updateParallax(false);
-        });
 
-        $(window).resize(function() {
-          window_width = $(window).width();
-          updateParallax(false);
-        });
+    if (initial) {
+      parallaxElem.image.addClass('visible');
+    }
 
+    if ((bottom > windowProperties.top) && (top < (windowProperties.top + windowProperties.height))) {
+      parallaxElem.image.css('transform', 'translate3D(-50%,' + parallax + 'px, 0)');
+    }
+  }
+
+  function parallaxUpdateHandler() {
+    setWindowProperties();
+
+    $.each(parallaxElems, function(index, parallaxElem) {
+      updateParallax(parallaxElem, false);
+    });
+  }
+
+  function setupEventHandlers() {
+    $(window).on('scroll resize', parallaxUpdateHandler);
+  }
+
+  function initParallax() {
+    setParallaxElems();
+    setWindowProperties();
+
+    // Wait for image load (requires imagesloaded.js)
+    $.each(parallaxElems, function(index, parallaxElem) {
+      parallaxElem.element.imagesLoaded().done(function() {
+        updateParallax(parallaxElem, true);
       });
+    });
 
-    };
+    setupEventHandlers();
+  }
 
 
-    // Guess whether or not this is a mobile device based on window size.
-    // Definitely not perfect, but should catch most smartphones at least.
-    function isMobileSize() {
-      if ($(window).width() <= 768) {
-        return true;
-      }
-      return false;
-    }
+  initParallax();
+}
 
-    // Detect touch-enabled browsers, sort of.  (Modernizr check)
-    function isTouchDevice() {
-      return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
-    }
+
+/**
+ * Guess whether or not this is a mobile device based on window size.
+ * Definitely not perfect, but should catch most smartphones at least.
+ **/
+function isMobileSize() {
+  if ($(window).width() <= 768) {
+    return true;
+  }
+  return false;
+}
+
+
+/**
+ * Detect touch-enabled browsers, for the most part.  (Modernizr check)
+ **/
+function isTouchDevice() {
+  return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+}
+
+
+if (typeof jQuery !== 'undefined') {
+  jQuery(document).ready(function($) {
 
     // Initialize parallax scrolling on non-mobile, non-touch devices for
     // optimal performance.
-    function parallaxInit() {
-      if (!isMobileSize() && !isTouchDevice()) {
-        $('.parallax').parallax();
-      }
+    if (!isMobileSize() && !isTouchDevice()) {
+      parallax();
     }
 
-
-    $(document).ready(function() {
-      parallaxInit();
-    });
-
-  })(jQuery);
+  });
 }
 else {
   console.log('jQuery dependency failed to load');
