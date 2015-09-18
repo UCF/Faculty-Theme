@@ -472,10 +472,11 @@ function sc_column( $attr, $content='' ) {
 	$pull_lg = isset($attr['lg_pull']) ? 'col-lg-pull-' . $attr['lg_pull'] : '';
 	$extra_classes = isset($attr['class']) ? $attr['class'] : '';
 	$inline_css = isset($attr['style']) ? $attr['style'] : '';
+	$additional_classes = 'col';
 	$all_classes = array(
-		$size_xs, $size_sm, $size_md, $size_lg,
-		$offset_xs, $offset_sm, $offset_md, $offset_lg,
-		$push_xs, $push_sm, $push_md, $push_lg,
+		$additional_classes, $size_xs, $size_sm, $size_md,
+		$size_lg, $offset_xs, $offset_sm, $offset_md,
+		$offset_lg, $push_xs, $push_sm, $push_md, $push_lg,
 		$pull_xs, $pull_sm, $pull_md, $pull_lg,
 		$extra_classes
 	);
