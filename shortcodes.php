@@ -314,7 +314,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 					<?php endif; ?>
 
 					<div class="cluster-short-buttons-container">
-						<a href="#" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
+						<a href="<?php echo $post->guid; ?>" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
 						<a href="<?php echo $positions_url; ?>" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
 					</div>
 
