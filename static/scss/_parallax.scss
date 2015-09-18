@@ -1,9 +1,32 @@
-.parallax-image {
+// Parallax setup borrowed from Materialize framework
+// http://materializecss.com/parallax.html
+
+.parallax-container {
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax {
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover; // fallback until parallax.js loads. Bg url is set inline.
-  height: 400px;
-  position: relative;
-  width: 100%;
-  z-index: -101; // should be lower than parallax.js's default mirror z-index
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+
+  img {
+    bottom: 0;
+    display: none;
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transform: translateX(-50%);
+  }
 }

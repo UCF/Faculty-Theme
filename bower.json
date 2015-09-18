@@ -16,7 +16,6 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": "~3.3.5",
-    "parallax.js": "~1.3.2",
     "placeholders": "~4.0.1"
   }
 }

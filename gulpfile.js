@@ -64,7 +64,6 @@ gulp.task('js', function() {
       var minified = [
         config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js',
         config.bowerDir + '/placeholders/dist/placeholders.jquery.js',
-        config.bowerDir + '/parallax.js/parallax.min.js',
         config.jsPath + '/webcom-base.js',
         config.jsPath + '/generic-base.js',
         config.jsPath + '/script.js'
