@@ -178,10 +178,11 @@
 
   .row .col {
     border: solid $ucf-gold 1px;
-    height: 255px;
+    height: 235px;
     text-align: center;
     font-size: 23px;
     text-transform: uppercase;
+    padding: 15px 0 0;
 
     &.highlighted {
       background: $ucf-gold;
