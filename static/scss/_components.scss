@@ -178,7 +178,7 @@
 
   .row .col {
     border: solid $ucf-gold 1px;
-    height: 235px;
+    height: 255px;
     text-align: center;
     font-size: 23px;
     text-transform: uppercase;
@@ -198,8 +198,9 @@
       margin-top: -1px;
     }
 
-    > strong {
+    &> strong {
       font-size: 100px;
+      display: block;
     }
   }
 }
