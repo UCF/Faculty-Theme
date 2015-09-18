@@ -51,7 +51,11 @@ function display_parallax_image( $image_url, $args=array() ) {
 
 	ob_start();
 ?>
-	<div class="parallax-image" data-parallax="scroll" data-image-src="<?php echo $image_url; ?>" style="background-image: url('<?php echo $image_url; ?>')" <?php echo $data_attrs; ?>></div>
+	<div class="parallax-container">
+		<div class="parallax" style="background-image: url('<?php echo $image_url; ?>')">
+			<img src="<?php echo $image_url; ?>">
+		</div>
+	</div>
 <?php
 	return ob_get_clean();
 }
