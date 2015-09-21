@@ -111,9 +111,9 @@
   ul {
     @include list-unstyled;
     font-family: $font-family-sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 18px;
+    line-height: 16px;
 
     li {
       margin-bottom: 7px;
