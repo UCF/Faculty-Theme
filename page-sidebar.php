@@ -58,7 +58,6 @@ if ($featured_image) { ?>
 				</div>
 			</div>
 		</div>
-		<?php the_content(); ?>
 	</section>
 <?php } ?>
 </main>
