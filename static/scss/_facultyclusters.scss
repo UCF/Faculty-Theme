@@ -77,6 +77,7 @@
 .cluster-short-desc {
   font-family: $font-family-sans-serif-alt;
   font-size: 13px;
+  font-weight: 400;
   height: 190px;
   line-height: 18px;
 }
@@ -95,6 +96,35 @@
   dt {
     font-weight: 500;
   }
+}
+
+.faculty-cluster-sidebar-container {
+  font-family: $font-family-sans-serif-alt;
+  margin-top: -20px;
+  padding: 28px 28px 18px;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  ul {
+    @include list-unstyled;
+    font-family: $font-family-sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+
+    li {
+      margin-bottom: 7px;
+
+      a {
+        color: $ucf-gold;
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
 
 .cluster-short-buttons-container {

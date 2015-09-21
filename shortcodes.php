@@ -461,6 +461,22 @@ function sc_callout( $attr, $content ) {
 }
 add_shortcode( 'callout', 'sc_callout' );
 
+/**
+ * Sidebar container for main pages
+ **/
+function sc_sidebar_content( $attr, $content ) {
+	$content = do_shortcode( $content );
+
+	ob_start();
+	?>
+	<div class="page-sidebar-content">
+	<?php echo($content); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'sidebar-content', 'sc_sidebar_content' );
+
 
 /**
  * Wraps content in a Bootstrap .row.
