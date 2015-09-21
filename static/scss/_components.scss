@@ -21,7 +21,6 @@
   font-family: $font-family-sans-serif;
 }
 
-
 // btn overrides
 .btn {
   border-left: 0 solid transparent;
@@ -139,8 +138,6 @@
 }
 
 
-
-
 // Custom callout classes
 
 .cluster-callout { //.cluster-overview
@@ -159,17 +156,22 @@
 
   .bordered {
     border: 2px solid lighten($ucf-gold, 25%);
+  }
 
-    &.dots {
-      background: url('../img/gold-dots-vertical.png') 0% 0% repeat-y;
-      border: 0;
-      padding-left: 34px;
+  .bordered-dots {
+    background: url('../img/gold-dots-vertical.png') 0% 0% repeat-y;
+    border: 0;
+    padding-left: 34px;
 
-      &.left {
-        background-position: 0% 0%;
-        background-repeat: repeat-y;
-      }
+    @media (max-width: $screen-xs-max) {
+      background: transparent;
+      padding-left: 15px;
     }
+  }
+
+  .bordered-dots-left {
+    background-position: 0% 0%;
+    background-repeat: repeat-y;
   }
 
   .smaller {
@@ -181,46 +183,40 @@
     margin: 0;
     padding: 0;
 
-    li {
-      font-family: $font-family-sans-serif;
-      font-weight: 600;
-      list-style-type: none;
-      margin: 0 0 7px;
-      padding: 0;
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+  }
 
-      a {
-        text-decoration: underline;
+  li {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    list-style-type: none;
+    margin: 0 0 7px;
+    padding: 0;
+
+    @media (max-width: $screen-xs-max) {
+      margin: 20px 0 0;
+    }
+
+    a {
+      text-decoration: underline;
+
+      @media (max-width: $screen-xs-max) {
+        padding: 10px 20px;
       }
     }
   }
 }
 
-@media (max-width: 768px) {
-  .cluster-callout .bordered.dots.left {
-      background: transparent;
-      padding-left: 15px;
-
-      ul {
-        text-align: center;
-        li {
-          margin: 20px 0 0;
-        }
-        a {
-          padding: 10px 20px;
-        }
-      }
-  }
-}
-
-.cluster-callout.faculty-statistics {
-
-  .row .col {
-    border: solid $ucf-gold 1px;
-    height: 235px;
-    text-align: center;
+.faculty-statistics {
+  .col {
+    border: 1px solid $ucf-gold;
     font-size: 23px;
+    height: 235px;
+    padding: 45px 0 0;
+    text-align: center;
     text-transform: uppercase;
-    padding: 15px 0 0;
 
     &.highlighted {
       background: $ucf-gold;
@@ -228,18 +224,20 @@
     }
 
     &.middle {
-      border-right: 0;
       border-left: 0;
-    }
-    &.full {
-      height: auto;
-      padding: 20px 15px;
-      margin-top: -1px;
+      border-right: 0;
     }
 
-    &> strong {
-      font-size: 100px;
+    &.full {
+      height: auto;
+      margin-top: -1px;
+      padding: 20px 15px;
+    }
+
+    > strong {
       display: block;
+      font-size: 100px;
+      line-height: 105px;
     }
   }
 }

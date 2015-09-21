@@ -43,7 +43,7 @@
 	</head>
 	<body ontouchstart <?php body_class( body_classes() ); ?>>
 		<header id="site-header">
-			<nav id="site-nav">
+			<nav id="site-nav" class="hidden-xs">
 				<?php
 				wp_nav_menu( array(
 					'theme_location' => 'header-menu',
@@ -53,6 +53,28 @@
 					'walker' => new Bootstrap_Walker_Nav_Menu()
 				) );
 				?>
+			</nav>
+			<nav id="site-nav-xs" class="visible-xs-block navbar navbar-inverse">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-menu-xs-collapse" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<span class="navbar-brand">Navigation</span>
+				</div>
+				<div class="collapse navbar-collapse" id="header-menu-xs-collapse">
+					<?php
+					wp_nav_menu( array(
+						'theme_location' => 'header-menu',
+						'container' => false,
+						'menu_class' => 'nav navbar-nav',
+						'menu_id' => 'header-menu-xs',
+						'walker' => new Bootstrap_Walker_Nav_Menu()
+					) );
+					?>
+				</div>
 			</nav>
 
 			<?php if ( is_home() || is_front_page() ): ?>
