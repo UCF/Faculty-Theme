@@ -102,41 +102,6 @@
 }
 
 
-.bar-image-container {
-  height: 400px;
-  overflow: hidden;
-  position: relative;
-}
-
-.bar-image {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: -1;
-
-  img {
-    bottom: 0;
-    display: none;
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    transform: translateX(-50%);
-
-    &.visible {
-      display: block;
-    }
-  }
-}
-
-
 // Custom callout classes
 
 .cluster-callout { //.cluster-overview
