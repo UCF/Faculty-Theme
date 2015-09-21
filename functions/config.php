@@ -154,6 +154,12 @@ add_action( 'customize_register', 'define_customizer_panels' );
 
 function define_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'header',
+		array(
+			'title' => 'Header',
+		)
+	);
+	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'analytics',
 		array(
 			'title' => 'Analytics'
@@ -210,6 +216,8 @@ add_action( 'customize_register', 'define_customizer_sections' );
  **/
 
 Config::$setting_defaults = array(
+	'header_text_primary' => 'Faculty Jobs',
+	'header_text_secondary' => 'We\'re Hiring.',
 	'events_max_items' => 4,
 	'events_url' => 'http://events.ucf.edu/feed.rss',
 	'news_max_items' => 2,
@@ -232,6 +240,40 @@ function get_setting_default( $setting, $fallback=null ) {
  **/
 
 function define_customizer_fields( $wp_customize ) {
+
+	// Header
+	$wp_customize->add_setting(
+		'header_text_primary',
+		array(
+			'default'     => get_setting_default( 'header_text_primary' ),
+		)
+	);
+	$wp_customize->add_control(
+		'header_text_primary',
+		array(
+			'type'        => 'text',
+			'label'       => 'Primary Header Text',
+			'description' => 'Smaller text displayed within the site\'s primary title.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'header_text_secondary',
+		array(
+			'default'     => get_setting_default( 'header_text_secondary' ),
+		)
+	);
+	$wp_customize->add_control(
+		'header_text_secondary',
+		array(
+			'type'        => 'text',
+			'label'       => 'Secondary Header Text',
+			'description' => 'Larger text displayed within the site\'s primary title.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
+		)
+	);
+
 
 	// Analytics
 	$wp_customize->add_setting(

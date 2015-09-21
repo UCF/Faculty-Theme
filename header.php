@@ -77,9 +77,7 @@
 				</div>
 			</nav>
 
-			<?php if ( is_home() || is_front_page() ): ?>
-			<h1 id="site-title"><a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a></h1>
-			<?php else: ?>
-			<span id="site-title"><a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a></span>
-			<?php endif; ?>
+			<div class="container">
+				<?php echo display_site_title(); ?>
+			</div>
 		</header>
