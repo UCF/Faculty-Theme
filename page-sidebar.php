@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page with Faculty Cluster Info Sidebar
+ * Template Name: With Faculty Cluster Sidebar
  */
 
 get_header(); the_post();
