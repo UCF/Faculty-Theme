@@ -39,7 +39,7 @@ function get_theme_mod_or_default( $mod, $fallback='' ) {
 /**
  * Returns markup for displaying a parallax image.
  **/
-function display_parallax_image( $image_url, $attrs=array() ) {
+function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 	if ( !$image_url ) { return ''; }
 
 	$attrs_str = '';
@@ -54,6 +54,12 @@ function display_parallax_image( $image_url, $attrs=array() ) {
 	<div class="parallax-container" <?php echo $attrs_str; ?>>
 		<div class="parallax" style="background-image: url('<?php echo $image_url; ?>')">
 			<img src="<?php echo $image_url; ?>">
+
+			<?php if ( $content ): ?>
+			<div class="parallax-content">
+				<?php echo apply_filters( 'the_content', $content ); ?>
+			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 <?php

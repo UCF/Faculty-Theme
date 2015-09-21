@@ -2,7 +2,7 @@
 // http://materializecss.com/parallax.html
 
 .parallax-container {
-  height: 400px;
+  height: 360px;
   overflow: hidden;
   position: relative;
 }
@@ -28,9 +28,15 @@
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     transform: translateX(-50%);
+    z-index: 1;
 
     &.visible {
       display: block;
     }
   }
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
 }

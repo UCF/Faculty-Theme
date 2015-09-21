@@ -24,28 +24,6 @@ hr {
   }
 }
 
-.page-content {
-  font-family: $font-family-sans-serif-alt;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 27px;
-
-  strong, b {
-    font-family: $font-family-sans-serif;
-    font-weight: 400;
-  }
-}
-
-h1.page-header {
-  border: 0;
-  font-family: $font-family-sans-serif;
-  font-size: 28px;
-  font-weight: 500;
-  margin: 40px 0 30px;
-  padding: 0;
-  text-transform: uppercase;
-}
-
 h2 {
   font-family: $font-family-sans-serif;
   font-size: 26px;
@@ -58,4 +36,17 @@ blockquote {
   font-family: $font-family-sans-serif;
   font-size: 18px;
   line-height: 27px;
+}
+
+// Highlighter text with fixed multiline padding
+.highlighted {
+  line-height: 2;
+
+  span {
+    background-color: $ucf-gold;
+    box-decoration-break: clone;
+    box-shadow: 0 0 0 5px $ucf-gold, -5px 0 0 0 $ucf-gold;
+    color: #000;
+    display: inline;
+  }
 }
