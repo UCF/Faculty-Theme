@@ -340,21 +340,34 @@ add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
 
 
 /**
- * Displays a list of Faculty Clusters using large parallax images.
+ * Displays a single Faculty Cluster by ID or slug using a parallax
+ * header image.
  **/
-function sc_cluster_parallax_list( $params, $content='' ) {
-	$clusters = get_posts( array(
-		'post_type' => 'faculty_cluster',
-		'posts_per_page' => -1
-	) );
+function sc_cluster_parallax( $attr, $content='' ) {
+	$post = null;
+	$attr = shortcode_atts( array(
+		'id' => null,
+		'slug' => null
+	), $attr, 'faculty_cluster-parallax' );
+
+	if ( $attr['id'] ) {
+		$post = get_post( $attr['id'] );
+	}
+	else if ( $attr['slug'] ) {
+		$post = get_posts( array(
+			'post_type' => 'faculty_cluster',
+			'posts_per_page' => 1,
+			'post_slug' => $attr['slug']
+		) );
+		$post = $post[0];
+	}
 
 	ob_start();
 
-	if ( $clusters ):
-		foreach ( $clusters as $post ):
-			$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
-			$img = wp_get_attachment_url( $img_id );
-			$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+	if ( $post ):
+		$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
+		$img = wp_get_attachment_url( $img_id );
+		$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
 	?>
 			</div> <!-- Close .container -->
 	<?php
@@ -392,15 +405,35 @@ function sc_cluster_parallax_list( $params, $content='' ) {
 						<?php endif; ?>
 					</div>
 				</div>
-	<?php
-		endforeach;
-	endif;
+	<?php endif;
+
+	return ob_get_clean();
+}
+add_shortcode( 'faculty_cluster-parallax', 'sc_cluster_parallax' );
+
+
+/**
+ * Displays a list of Faculty Clusters using large parallax images.
+ **/
+function sc_cluster_parallax_list( $attr, $content='' ) {
+	$clusters = get_posts( array(
+		'post_type' => 'faculty_cluster',
+		'posts_per_page' => -1
+	) );
+
+	ob_start();
+
+	if ( $clusters ) {
+		foreach ( $clusters as $post ) {
+			echo sc_cluster_parallax( array( 'id' => $post->ID ) );
+		}
+	}
 ?>
 
 <?php
 	return ob_get_clean();
 }
-add_shortcode( 'faculty-cluster-parallax-list', 'sc_cluster_parallax_list' ); // TODO: better name for this shortcode?
+add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
 
 
 /**
