@@ -23,3 +23,33 @@ hr {
     margin-top: 20px;
   }
 }
+
+.page-content {
+  font-family: $font-family-sans-serif-alt;
+  font-size: 18px;
+  line-height: 27px;
+
+  h1.page-header {
+    font-family: $font-family-sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 40px 0 30px 0;
+    text-transform: uppercase;
+    border: 0;
+    padding: 0;
+  }
+}
+
+h2 {
+  font-family: $font-family-sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  margin: 25px 0;
+  text-transform: uppercase;
+}
+
+blockquote {
+  font-family: $font-family-sans-serif;
+  font-size: 18px;
+  line-height: 27px;
+}
