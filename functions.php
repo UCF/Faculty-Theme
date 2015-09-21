@@ -83,5 +83,3 @@ function display_cluster_cta( $post_id, $classes='', $id='' ) {
 <?php
 	return ob_get_clean();
 }
-
-?>

@@ -15,17 +15,11 @@ if ($featured_image) { ?>
 	<section class="page-content">
 		<div class="container">
 			<div class="row">
-				<div class="span12">
+				<div class="col-sm-12 col-md-12 col-lg-12">
 					<h1 class="page-header"><?php the_title();?></h1>
 				</div>
 			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="span12">
-					<?php the_content(); ?>
-				</div>
-			</div>
+			<?php the_content(); ?>
 		</div>
 	</section>
 <?php } else { ?>
@@ -33,7 +27,7 @@ if ($featured_image) { ?>
 	<section class="page-content">
 		<div class="container">
 			<div class="row">
-				<div class="span12">
+				<div class="col-sm-12 col-md-12 col-lg-12">
 					<h1><?php the_title();?></h1>
 				</div>
 			</div>

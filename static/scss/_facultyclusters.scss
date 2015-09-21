@@ -97,6 +97,35 @@
   }
 }
 
+.faculty-cluster-sidebar-container {
+  margin-top: -20px;
+  font-family: $font-family-sans-serif-alt;
+  padding: 28px 28px 18px 28px;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  ul {
+    font-family: $font-family-sans-serif;
+    @include list-unstyled;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    li {
+      margin-bottom: 7px;
+
+      a {
+        text-decoration: underline;
+        color: $ucf-gold;
+      }
+    }
+  }
+
+}
+
 .cluster-short-buttons-container {
   background: url('../img/gold-dots-horizontal.png') left top repeat-x;
   display: block;
