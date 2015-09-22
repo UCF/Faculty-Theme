@@ -435,6 +435,61 @@ function sc_cluster_parallax_list( $attr, $content='' ) {
 }
 add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
 
+/**
+ * Displays a list of Faculty Clusters using large parallax images.
+ **/
+function sc_cluster_open_positions_list( $attr, $content='' ) {
+	$positions = array(
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			),
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			),
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			),
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			),
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			),
+			array(
+				'field' => 'Prosthetic Interfaces',
+				'college' => 'College of Medicine',
+			)
+	);
+
+	ob_start();
+	?>
+
+	<div class="container-wide open-positions-container">
+		<div class="container">
+			<h2>Open Positions</h2>
+			<ul>
+	<?php
+		if ( $positions ) {
+			foreach ( $positions as $position ) {
+				echo '<li class="open-position"><a href="#"><span class="field">' . $position['field'] . '</span> ';
+				echo '<span class="college">' . $position['college'] . '</span></a></li>';
+			}
+		}
+	?>
+			</ul>
+		</div>
+	</div>
+
+<?php
+	return ob_get_clean();
+}
+add_shortcode( 'faculty_cluster-open-positions-list', 'sc_cluster_open_positions_list' );
+
 
 /**
  * Create a full-width callout box.
@@ -476,7 +531,6 @@ function sc_sidebar_content( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'sidebar-content', 'sc_sidebar_content' );
-
 
 /**
  * Wraps content in a Bootstrap .row.

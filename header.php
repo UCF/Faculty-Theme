@@ -80,4 +80,5 @@
 			<div class="container">
 				<?php echo display_site_title(); ?>
 			</div>
+			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
 		</header>
