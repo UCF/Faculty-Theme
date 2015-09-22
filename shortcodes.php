@@ -471,7 +471,7 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 
 	<div class="container-wide open-positions-container">
 		<div class="container">
-			<h2>Open Positions</h2>
+			<h2>Open Positions In</h2>
 			<ul>
 	<?php
 		if ( $positions ) {
