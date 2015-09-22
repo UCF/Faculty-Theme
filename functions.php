@@ -68,6 +68,7 @@ function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 	return ob_get_clean();
 }
 
+
 /**
 * Adds a first and last class to respective menu items
 **/
@@ -77,6 +78,7 @@ function add_first_and_last_class_to_menu($items) {
     return $items;
 }
 add_filter('wp_nav_menu_objects', 'add_first_and_last_class_to_menu');
+
 
 /**
  * Displays a generic call-to-action button.
@@ -123,7 +125,7 @@ function display_site_title() {
 
 	ob_start();
 ?>
-	<<?php echo $elem; ?> id="site-title">
+	<<?php echo $elem; ?> id="site-title" class="clearfix">
 		<a href="<?php echo bloginfo( 'url' ); ?>">
 			<?php if ( $primary_text ): ?>
 			<span class="site-title-primary">
