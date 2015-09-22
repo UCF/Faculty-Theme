@@ -1,15 +1,12 @@
 // Header text
 
 #site-title {
-  font-family: $font-family-sans-serif;
   display: block;
-  position: relative;
-  bottom: -17px;
+  font-family: $font-family-sans-serif;
+  margin: 40px 0 15px;
 }
 
 .home #site-title {
-  margin: 40px 0 15px;
-
   a {
     display: inline-block;
 
@@ -127,7 +124,6 @@
 
   .last a {
     background-color: #fc0;
-    // border: 1px solid transparent;
     border-radius: 4px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 14px;
