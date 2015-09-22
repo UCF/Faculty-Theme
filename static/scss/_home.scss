@@ -1,0 +1,33 @@
+#parallax-home-header {
+  margin-top: -55px; // #site-title margin-bottom + extra negative space to push up under it
+
+  @media (max-width: $screen-sm-max) {
+    margin-top: -40px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    margin-top: -15px;
+  }
+
+  .highlighted {
+    @include font-smoothing();
+    font-size: 21px;
+    font-weight: 400;
+    margin-top: 4em;
+
+    @media (max-width: $screen-xs-max) {
+      font-size: 17px;
+      margin-top: 15px;
+    }
+  }
+}
+
+#home-header-cta {
+  font-size: 30px;
+  margin-top: -90px; // push up into #parallax-home-header
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 21px;
+    margin-top: -15px;
+  }
+}

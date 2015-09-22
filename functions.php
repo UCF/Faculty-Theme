@@ -39,7 +39,7 @@ function get_theme_mod_or_default( $mod, $fallback='' ) {
 /**
  * Returns markup for displaying a parallax image.
  **/
-function display_parallax_image( $image_url, $attrs=array() ) {
+function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 	if ( !$image_url ) { return ''; }
 
 	$attrs_str = '';
@@ -54,6 +54,12 @@ function display_parallax_image( $image_url, $attrs=array() ) {
 	<div class="parallax-container" <?php echo $attrs_str; ?>>
 		<div class="parallax" style="background-image: url('<?php echo $image_url; ?>')">
 			<img src="<?php echo $image_url; ?>">
+
+			<?php if ( $content ): ?>
+			<div class="parallax-content">
+				<?php echo apply_filters( 'the_content', $content ); ?>
+			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 <?php
@@ -71,9 +77,26 @@ function add_first_and_last_class_to_menu($items) {
 add_filter('wp_nav_menu_objects', 'add_first_and_last_class_to_menu');
 
 /**
+ * Displays a generic call-to-action button.
+ * $attrs array allows for arbitrary element attributes to be passed to the
+ * generated <a> tag.
+ **/
+function display_cta_btn( $url, $text, $classes='', $id='' ) {
+	$classes = 'btn btn-primary btn-cta ' . $classes;
+	ob_start();
+?>
+	<a href="<?php echo $url; ?>" class="<?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?>>
+		<?php echo wptexturize( $text ); ?>
+	</a>
+<?php
+	return ob_get_clean();
+}
+
+
+/**
  * Display's a Faculty Cluster's call-to-action button.
  **/
-function display_cluster_cta( $post_id, $classes='', $id='' ) {
+function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
 	$text = get_post_meta( $post_id, 'faculty_cluster_cta_text', true );
 	$url = get_post_meta( $post_id, 'faculty_cluster_cta_url', true );
 
@@ -84,13 +107,7 @@ function display_cluster_cta( $post_id, $classes='', $id='' ) {
 		$url = '#';
 	}
 
-	ob_start();
-?>
-	<a class="btn btn-primary btn-cta btn-block <?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?> href="<?php echo $url; ?>">
-		<?php echo wptexturize( $text ); ?>
-	</a>
-<?php
-	return ob_get_clean();
+	return display_cta_btn( $url, $text, $classes . ' btn-block', $id );
 }
 
 
@@ -105,17 +122,19 @@ function display_site_title() {
 	ob_start();
 ?>
 	<<?php echo $elem; ?> id="site-title">
-		<?php if ( $primary_text ): ?>
-		<span class="site-title-primary">
-			<?php echo wptexturize( $primary_text ); ?>
-		</span>
-		<?php endif; ?>
+		<a href="<?php echo bloginfo( 'url' ); ?>">
+			<?php if ( $primary_text ): ?>
+			<span class="site-title-primary">
+				<?php echo wptexturize( $primary_text ); ?>
+			</span>
+			<?php endif; ?>
 
-		<?php if ( $secondary_text ): ?>
-		<span class="site-title-secondary">
-			<?php echo wptexturize( $secondary_text ); ?>
-		</span>
-		<?php endif; ?>
+			<?php if ( $secondary_text ): ?>
+			<span class="site-title-secondary">
+				<?php echo wptexturize( $secondary_text ); ?>
+			</span>
+			<?php endif; ?>
+		</a>
 	</<?php echo $elem; ?>>
 <?php
 	return ob_get_clean();

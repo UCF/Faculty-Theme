@@ -162,6 +162,13 @@ function define_customizer_sections( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'home_header',
+		array(
+			'title' => 'Home Page Header',
+			'panel' => THEME_CUSTOMIZER_PREFIX . 'home'
+		)
+	);
+	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'analytics',
 		array(
 			'title' => 'Analytics'
@@ -226,6 +233,15 @@ add_action( 'customize_register', 'define_customizer_sections' );
 Config::$setting_defaults = array(
 	'header_text_primary' => 'Faculty Jobs',
 	'header_text_secondary' => 'We\'re Hiring.',
+	'home_header_content' => '<div class="container">
+<div class="row">
+<div class="col-md-8 col-sm-8">
+<p class="highlighted"><span>We\'re looking for 100 faculty members who like <strong>opportunity</strong>, growth, and sunshine.</span></p>
+</div></div></div>',
+	'home_header_cta_url' => 'https://www.jobswithucf.com',
+	'home_header_cta_text' => '<span class="btn-cta-left">Join Us</span>
+<span class="sr-only">: </span>
+<span class="btn-cta-right">View Open Faculty Positions</span>',
 	'events_max_items' => 4,
 	'events_url' => 'http://events.ucf.edu/feed.rss',
 	'news_max_items' => 2,
@@ -279,6 +295,56 @@ function define_customizer_fields( $wp_customize ) {
 			'label'       => 'Secondary Header Text',
 			'description' => 'Larger text displayed within the site\'s primary title.',
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
+		)
+	);
+
+
+	// Home Page Header
+	$wp_customize->add_setting(
+		'home_header_content',
+		array(
+			'default'     => get_setting_default( 'home_header_content' ),
+		)
+	);
+	$wp_customize->add_control(
+		'home_header_content',
+		array(
+			'type'        => 'textarea',
+			'label'       => 'Home Page Header Content',
+			'description' => 'Content to be displayed within the home page\'s header image. Accepts HTML and shortcode content.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'home_header_cta_url',
+		array(
+			'default'     => get_setting_default( 'home_header_cta_url' ),
+		)
+	);
+	$wp_customize->add_control(
+		'home_header_cta_url',
+		array(
+			'type'        => 'text',
+			'label'       => 'Home Page Header Call-to-Action URL',
+			'description' => 'URL for the call-to-action (CTA) button in the home page\'s header.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'home_header_cta_text',
+		array(
+			'default'     => get_setting_default( 'home_header_cta_text' ),
+		)
+	);
+	$wp_customize->add_control(
+		'home_header_cta_text',
+		array(
+			'type'        => 'textarea',
+			'label'       => 'Home Page Header Call-to-Action Text',
+			'description' => 'Text displayed in the call-to-action (CTA) button in the home page\'s header. Accepts HTML content.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
 		)
 	);
 
