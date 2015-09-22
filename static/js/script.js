@@ -13,8 +13,8 @@
  * http://materializecss.com/parallax.html
  **/
 function parallax() {
-  var parallaxElems = [];
-  var windowProperties = {};
+  var parallaxElems = [],
+      windowProperties = {};
 
   // Store references to each .parallax element and their images
   function setParallaxElems() {
