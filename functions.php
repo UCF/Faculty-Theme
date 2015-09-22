@@ -52,15 +52,17 @@ function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 	ob_start();
 ?>
 	<div class="parallax-container" <?php echo $attrs_str; ?>>
-		<div class="parallax" style="background-image: url('<?php echo $image_url; ?>')">
-			<img src="<?php echo $image_url; ?>">
-
-			<?php if ( $content ): ?>
-			<div class="parallax-content">
-				<?php echo apply_filters( 'the_content', $content ); ?>
+		<div class="parallax-container-inner">
+			<div class="parallax" style="background-image: url('<?php echo $image_url; ?>')">
+				<img src="<?php echo $image_url; ?>">
 			</div>
-			<?php endif; ?>
 		</div>
+
+		<?php if ( $content ): ?>
+		<div class="parallax-content">
+			<?php echo do_shortcode( wptexturize( $content ) ); ?>
+		</div>
+		<?php endif; ?>
 	</div>
 <?php
 	return ob_get_clean();

@@ -4,6 +4,8 @@
   display: block;
   font-family: $font-family-sans-serif;
   margin: 40px 0 15px;
+  position: relative;
+  z-index: 999;
 }
 
 .home #site-title {

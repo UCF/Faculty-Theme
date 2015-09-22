@@ -268,10 +268,12 @@
   }
 }
 
+
 // Modals
 .modal-dialog {
   margin-top: 75px; // UCF Header height + 25px pad
 }
+
 
 // Sidebars
 
@@ -305,18 +307,22 @@
 
 }
 
+
+// Open Positions lists
+
 .open-positions-container {
   background: #f9f9f9;
 }
 
 .open-positions {
-  padding: 30px 0;
+  font-family: $font-family-sans-serif;
+  padding-bottom: 30px;
+  padding-top: 30px;
 
   h2 {
     color: #7c7c7c;
-    font-family: $font-family-sans-serif;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 800;
     margin: 0 0 20px;
   }
 
@@ -328,15 +334,24 @@
 
   ul {
     @include list-unstyled;
+    @include make-row;
+    margin-bottom: 0;
 
     li {
-      display: inline-block;
-      font-size: 14px;
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-12;
+      font-size: 13px;
       font-weight: 500;
-      line-height: 16px;
-      margin-right: 6px;
-      padding-right: 11px;
-      width: 180px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .field,
+    .college {
+      display: block;
+      padding-right: 20px; // space for arrow-right.png
     }
 
     .field {
@@ -347,10 +362,12 @@
       color: $dark-gold;
       font-size: 11px;
       font-weight: 600;
+      margin-top: 2px;
       text-transform: uppercase;
     }
   }
 }
+
 
 // Social Buttons
 .share-twitter,
