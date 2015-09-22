@@ -390,7 +390,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-5">
-						<?php echo display_cluster_cta( $post->ID, 'cluster-pl-cta' ); ?>
+						<?php echo display_cluster_cta_btn( $post->ID, 'cluster-pl-cta' ); ?>
 
 						<?php if ( $cluster_leads ): ?>
 
@@ -550,3 +550,18 @@ function sc_column( $attr, $content='' ) {
 	return ob_get_clean();
 }
 add_shortcode( 'column', 'sc_column' );
+
+
+/**
+ * Displays a generic call-to-action button.
+ **/
+function sc_cta_btn( $attr, $content='' ) {
+	$attr = shortcode_atts( array(
+		'href' => '',
+		'class' => '',
+		'id' => ''
+	), $attr, 'cta-btn' );
+
+	return display_cta_btn( $attr['href'], $content, $attr['class'], $attr['id'] );
+}
+add_shortcode( 'cta-btn', 'sc_cta_btn' );

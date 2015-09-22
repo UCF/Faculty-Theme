@@ -72,6 +72,7 @@
 }
 
 .btn-cta-left {
+  color: #000;
   padding-right: 15px;
   text-align: right;
   width: 38%;
@@ -104,7 +105,7 @@
 
 // Custom callout classes
 
-.cluster-callout { //.cluster-overview
+.callout { //.cluster-overview
   font-family: $font-family-sans-serif;
   font-weight: 300;
   margin: 0;
@@ -204,6 +205,30 @@
       font-weight: 600;
       line-height: 105px;
     }
+  }
+}
+
+.callout-cta {
+  @media (min-width: $screen-lg-min) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  h2 {
+    color: $ucf-gold;
+    font-size: 100px;
+    font-weight: 600;
+    letter-spacing: -.08em;
+    margin-bottom: 15px;
+    text-transform: none;
+
+    @media (min-width: $screen-lg-min) {
+      font-size: 110px;
+    }
+  }
+
+  .btn-cta {
+    color: #fff;
   }
 }
 

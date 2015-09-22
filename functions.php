@@ -68,9 +68,26 @@ function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 
 
 /**
+ * Displays a generic call-to-action button.
+ * $attrs array allows for arbitrary element attributes to be passed to the
+ * generated <a> tag.
+ **/
+function display_cta_btn( $url, $text, $classes='', $id='' ) {
+	$classes = 'btn btn-primary btn-cta ' . $classes;
+	ob_start();
+?>
+	<a href="<?php echo $url; ?>" class="<?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?>>
+		<?php echo wptexturize( $text ); ?>
+	</a>
+<?php
+	return ob_get_clean();
+}
+
+
+/**
  * Display's a Faculty Cluster's call-to-action button.
  **/
-function display_cluster_cta( $post_id, $classes='', $id='' ) {
+function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
 	$text = get_post_meta( $post_id, 'faculty_cluster_cta_text', true );
 	$url = get_post_meta( $post_id, 'faculty_cluster_cta_url', true );
 
@@ -81,13 +98,7 @@ function display_cluster_cta( $post_id, $classes='', $id='' ) {
 		$url = '#';
 	}
 
-	ob_start();
-?>
-	<a class="btn btn-primary btn-cta btn-block <?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?> href="<?php echo $url; ?>">
-		<?php echo wptexturize( $text ); ?>
-	</a>
-<?php
-	return ob_get_clean();
+	return display_cta_btn( $url, $text, $classes . ' btn-block', $id );
 }
 
 
