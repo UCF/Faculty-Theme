@@ -102,17 +102,19 @@ function display_site_title() {
 	ob_start();
 ?>
 	<<?php echo $elem; ?> id="site-title">
-		<?php if ( $primary_text ): ?>
-		<span class="site-title-primary">
-			<?php echo wptexturize( $primary_text ); ?>
-		</span>
-		<?php endif; ?>
+		<a href="<?php echo bloginfo( 'url' ); ?>">
+			<?php if ( $primary_text ): ?>
+			<span class="site-title-primary">
+				<?php echo wptexturize( $primary_text ); ?>
+			</span>
+			<?php endif; ?>
 
-		<?php if ( $secondary_text ): ?>
-		<span class="site-title-secondary">
-			<?php echo wptexturize( $secondary_text ); ?>
-		</span>
-		<?php endif; ?>
+			<?php if ( $secondary_text ): ?>
+			<span class="site-title-secondary">
+				<?php echo wptexturize( $secondary_text ); ?>
+			</span>
+			<?php endif; ?>
+		</a>
 	</<?php echo $elem; ?>>
 <?php
 	return ob_get_clean();

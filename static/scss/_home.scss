@@ -1,12 +1,12 @@
 #parallax-home-header {
-  margin-top: -90px; // #site-title margin-bottom + extra negative space to push up under it
+  margin-top: -55px; // #site-title margin-bottom + extra negative space to push up under it
 
   @media (max-width: $screen-sm-max) {
-    margin-top: -75px;
+    margin-top: -40px;
   }
 
   @media (max-width: $screen-xs-max) {
-    margin-top: -45px;
+    margin-top: -15px;
   }
 
   .highlighted {
