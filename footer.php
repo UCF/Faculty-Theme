@@ -69,5 +69,5 @@
 
 		</div><!-- .container -->
 	</body>
-	<?="\n".footer_()."\n"?>
+	<?php echo footer_(); ?>
 </html>
