@@ -34,11 +34,14 @@ $cta_text = get_theme_mod_or_default( 'home_header_cta_text' );
 	?>
 
 	<article class="page-content">
-		<div class="container">
-			<section class="open-positions">
-				OPEN POSITIONS LIST GOES HERE
+		<div class="container-wide open-positions-container">
+			<section class="open-positions container">
+			<?php
+				echo do_shortcode( '[faculty_cluster-open-positions-list]' );
+			?>
 			</section>
-
+		</div>
+		<div class="container">
 			<?php the_content(); ?>
 		</div>
 	</article>

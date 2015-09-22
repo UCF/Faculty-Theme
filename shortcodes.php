@@ -469,10 +469,8 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 	ob_start();
 	?>
 
-	<div class="container-wide open-positions-container">
-		<div class="container">
-			<h2>Open Positions In</h2>
-			<ul>
+	<h2>Open Positions In</h2>
+	<ul>
 	<?php
 		if ( $positions ) {
 			foreach ( $positions as $position ) {
@@ -481,10 +479,7 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 			}
 		}
 	?>
-			</ul>
-		</div>
-	</div>
-
+	</ul>
 <?php
 	return ob_get_clean();
 }

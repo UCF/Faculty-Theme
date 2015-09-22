@@ -1,11 +1,7 @@
 <?php
 	$footer_description = get_theme_mod( 'footer_description', '' );
 ?>
-		<?php
-			if ( !is_front_page() ) {
-				echo do_shortcode( '[faculty_cluster-open-positions-list]' );
-			}
-		?>
+
 		<footer class="site-footer">
 			<div class="footer-stripe">
 				<div class="container">
