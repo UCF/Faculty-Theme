@@ -1,14 +1,52 @@
+.home {
+  #site-title {
+    margin-bottom: -35px;
+
+    @media (min-width: $screen-lg-min) {
+      margin-bottom: -40px;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: -22px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 0;
+    }
+  }
+
+  .site-title-primary {
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      font-size: 18px;
+    }
+  }
+
+  .site-title-secondary {
+    font-size: 130px;
+    letter-spacing: -.08em;
+
+    @media (min-width: $screen-lg-min) {
+      font-size: 150px;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 95px;
+      line-height: .9;
+      margin-top: 5px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      font-size: 55px;
+    }
+  }
+}
+
+
 #parallax-home-header {
-  margin-top: -55px; // #site-title margin-bottom + extra negative space to push up under it
-
-  @media (max-width: $screen-sm-max) {
-    margin-top: -40px;
-  }
-
-  @media (max-width: $screen-xs-max) {
-    margin-top: -15px;
-  }
-
   .highlighted {
     @include font-smoothing();
     font-size: 21px;
@@ -22,12 +60,38 @@
   }
 }
 
-#home-header-cta {
-  font-size: 30px;
-  margin-top: -90px; // push up into #parallax-home-header
 
-  @media (max-width: $screen-xs-max) {
-    font-size: 21px;
-    margin-top: -15px;
+#home-header-cta {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
+
+  // Ugly, but necessary to maintain the grid and position
+  // .btn-cta vertically
+  .container,
+  .row,
+  div[class^="col-"] {
+    height: 100%;
+  }
+
+  .btn-cta {
+    bottom: -30px;
+    font-size: 30px;
+    position: absolute;
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 0;
+      font-size: 21px;
+      left: 0;
+      margin: auto;
+      right: 0;
+    }
   }
 }

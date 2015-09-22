@@ -56,8 +56,8 @@
 								<span class="tel"><a href="tel:4078232000">407.823.2000</a></span>
 							</address>
 							<p>
-								<a href="<?php echo site_url(); ?>/feedback/">Comments and Feedback</a> | &copy;
-								<a href="<?php echo site_url(); ?>" class="fn org url">
+								<a href="http://www.ucf.edu/feedback/">Comments and Feedback</a> | &copy;
+								<a href="http://www.ucf.edu/" class="fn org url">
 									<span class="organization-name">University of Central Florida</span>
 								</a>
 							</p>
@@ -69,5 +69,5 @@
 
 		</div><!-- .container -->
 	</body>
-	<?="\n".footer_()."\n"?>
+	<?php echo footer_(); ?>
 </html>
