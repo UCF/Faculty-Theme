@@ -527,11 +527,53 @@ function sc_callout( $attr, $content ) {
 		$html .= '<div class="container">';
 	}
 
-
-
 	return $html;
 }
 add_shortcode( 'callout', 'sc_callout' );
+
+/**
+ * Create a research listing
+ **/
+function sc_research_listing_side( $attr, $content ) {
+	$content = do_shortcode( $content );
+
+	ob_start();
+	?>
+	<div class="page-side-content">
+		<strong>Research Specialty</strong>
+		<?php echo($content); ?>
+		<ul>
+			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
+			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
+			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
+		</ul>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'research-listing-side', 'sc_research_listing_side' );
+
+/**
+ * Create a content listing
+ **/
+function sc_orlando_side_content( $attr, $content ) {
+	$content = do_shortcode( $content );
+
+	ob_start();
+	?>
+	<div class="page-side-content">
+		<strong>Orlando Sidebar</strong>
+		<?php echo($content); ?>
+		<ul>
+			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
+			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
+			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
+		</ul>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'orlando-side-content', 'sc_orlando_side_content' );
 
 /**
  * Sidebar container for main pages

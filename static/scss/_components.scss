@@ -310,6 +310,37 @@
 
 }
 
+.page-side-content {
+  color: #333;
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+
+  ul {
+    @include list-unstyled;
+    text-transform: capitalize;
+
+      li {
+        font-family: $font-family-serif;
+        color: #999;
+        font-style: italic;
+        font-size: 16px;
+
+        strong {
+          font-style: normal;
+          color: #000;
+          font-weight: 900;
+          display: block;
+          font-family: $font-family-sans-serif;
+        }
+    }
+  }
+
+  strong {
+    font-weight: 900;
+  }
+
+}
+
 
 // Open Positions lists
 
