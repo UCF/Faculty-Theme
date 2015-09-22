@@ -19,6 +19,8 @@ function __init__() {
 
 	register_nav_menu( 'header-menu', __( 'Header Menu' ) );
 	register_nav_menu( 'footer-menu', __( 'Footer Menu' ) );
+	register_nav_menu( 'social-menu', __( 'Footer Social Icons Menu' ) );
+	register_nav_menu( 'ucf-colleges' , __( 'UCF Colleges' ));
 
 	register_sidebar( array(
 		'name'          => __( 'Sidebar' ),
@@ -201,6 +203,12 @@ function define_customizer_sections( $wp_customize ) {
 		THEME_CUSTOMIZER_PREFIX . 'webfonts',
 		array(
 			'title' => 'Web Fonts'
+		)
+	);
+	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'footer',
+		array(
+			'title' => 'Footer'
 		)
 	);
 
@@ -464,6 +472,19 @@ function define_customizer_fields( $wp_customize ) {
 			'label'       => 'Facebook URL',
 			'description' => 'URL to the Facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/UCF</em>',
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
+		)
+	);
+
+	// Footer
+	$wp_customize->add_setting(
+		'footer_description'
+	);
+	$wp_customize->add_control(
+		'footer_description',
+		array(
+			'type'        => 'textarea',
+			'label'       => 'Footer Description',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'footer'
 		)
 	);
 
