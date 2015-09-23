@@ -310,37 +310,36 @@
 
 }
 
-.page-side-content {
+.page-content .page-side-content {
   color: #333;
   font-family: $font-family-sans-serif;
-  text-transform: uppercase;
+
+  strong {
+    color: #7d7d7d;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 
   ul {
     @include list-unstyled;
-    text-transform: capitalize;
 
-      li {
-        font-family: $font-family-serif;
-        color: #999;
-        font-style: italic;
-        font-size: 16px;
+    li {
+      color: #999;
+      font-family: $font-family-serif;
+      font-size: 16px;
+      font-style: italic;
+      margin-top: 10px;
+    }
 
-        strong {
-          font-style: normal;
-          color: #000;
-          font-weight: 900;
-          display: block;
-          font-family: $font-family-sans-serif;
-        }
+    strong {
+      color: #000;
+      display: block;
+      font-family: $font-family-sans-serif;
+      font-style: normal;
+      text-transform: none;
     }
   }
-
-  strong {
-    font-weight: 900;
-  }
-
 }
-
 
 // Open Positions lists
 
