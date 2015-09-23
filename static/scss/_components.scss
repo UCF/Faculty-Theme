@@ -382,7 +382,7 @@
   font-family: $font-family-sans-serif;
   padding: 20px 0 0;
 
-  @media (max-width: $screen-sm-min) {
+  @media (max-width: $screen-sm-max) {
     padding-left: 15px;
   }
 
@@ -430,7 +430,7 @@
     font-size: 13px;
     font-weight: 800;
     margin: 0 0 20px;
-    @media (max-width: $screen-sm-min) {
+    @media (max-width: $screen-sm-max) {
       text-align: center;
     }
   }
@@ -439,9 +439,10 @@
     background: url('../img/arrow-right.png') 100% 50% no-repeat;
     display: block;
     text-decoration: none;
-    @media (max-width: $screen-sm-min) {
-      text-align: center;
+
+    @media (max-width: $screen-sm-max) {
       background: transparent;
+      text-align: center;
     }
   }
 
@@ -466,7 +467,7 @@
       display: block;
       padding-right: 20px; // space for arrow-right.png
 
-      @media (max-width: $screen-sm-min) {
+      @media (max-width: $screen-sm-max) {
         padding-right: 0;
       }
     }

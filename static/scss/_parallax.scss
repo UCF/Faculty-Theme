@@ -52,36 +52,3 @@
   width: 100%;
   z-index: 3;
 }
-
-#parallax-featured-header.parallax-container {
-  height: 500px;
-
-  @media (max-width: $screen-sm-min) {
-    height: 300px;
-  }
-
-  .parallax-container-inner {
-    height: 500px;
-
-    @media (max-width: $screen-sm-min) {
-      height: 300px;
-    }
-  }
-}
-
-#parallax-featured-header .parallax-content {
-  h1 {
-    color: #fff;
-    font-size: 79px;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    top: 190px;
-
-    @media (max-width: $screen-sm-min) {
-      top: 40px;
-      font-size: 40px;
-    }
-
-  }
-}

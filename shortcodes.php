@@ -413,8 +413,32 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<h3 class="cluster-pl-sidebar-title">Cluster Contact<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
-						<?php foreach ( $cluster_contacts as $contact ): ?>
-							<li><?php echo $contact->post_title; ?></li>
+						<?php
+						foreach ( $cluster_contacts as $contact ):
+							$name = Person::get_name( $contact );
+							$phones = Person::get_phones( $contact );
+							$email = get_post_meta( $contact->ID, 'person_email', true );
+						?>
+							<li>
+								<?php echo $name; ?>
+								<?php if ( $phones && $email ): ?>
+								<ul class="cluster-pl-contact-info">
+									<?php
+									if ( $phones ):
+										foreach ( $phones as $phone ) :
+									?>
+									<li><a href="tel:<?php echo preg_replace( '/[^0-9]/', '', $phone ); ?>"><?php echo $phone; ?></a></li>
+									<?php
+										endforeach;
+									endif;
+									?>
+
+									<?php if ( $email ): ?>
+									<li><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></li>
+									<?php endif; ?>
+								</ul>
+								<?php endif; ?>
+							</li>
 						<?php endforeach; ?>
 						</ul>
 						<?php endif; ?>
