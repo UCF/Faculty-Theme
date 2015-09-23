@@ -263,7 +263,11 @@ function sc_post_type_search( $params=array(), $content='' ) {
 add_shortcode( 'post-type-search', 'sc_post_type_search' );
 
 
-function sc_faculty_clusters_list($attr, $content=null) {
+/**
+ * Displays a grid of Faculty Clusters with short descriptions and
+ * links to more information and their positions.
+ **/
+function sc_faculty_clusters_list( $attr, $content=null ) {
 	$clusters = get_posts( array(
 		'post_type' => 'faculty_cluster',
 		'posts_per_page' => -1
@@ -274,7 +278,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 
 	</div> <!-- Close .container -->
 	<div class="container"> <!-- Re-open .container -->
-	<div class="row">
+		<div class="row">
 
 	<?php
 		if ( $clusters ):
@@ -284,30 +288,31 @@ function sc_faculty_clusters_list($attr, $content=null) {
 				$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
 				$positions_url = get_post_meta( $post->ID, 'faculty_cluster_positions_url', true );
 				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
-				if ($short_description === "") {
-					$short_description = strtok($post->post_content, "\r\n");
+				if ( !$short_description ) {
+					$short_description = apply_filters( 'the_excerpt', $post->post_content );
 				}
 		?>
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<div class="cluster-short">
 					<h3>
-						<a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a>
+						<a href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
 
 					<div class="cluster-short-desc">
-						<?php echo $short_description ?>
+						<?php echo $short_description; ?>
 					</div>
 
 					<?php if ( $cluster_leads ): ?>
 					<dl class="cluster-short-inline-list">
-						<dt>Cluster Lead<?php if (count($cluster_leads) > 1): ?>s<?php endif; ?>:</dt>
+						<dt>Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</dt>
 						<?php
 							$cluster_lead_count = 0;
 							foreach ( $cluster_leads as $term ):
 								$cluster_lead_count++;
 						?>
 							<dd>
-								<?php echo $term; ?><?php if ($cluster_lead_count !== count($cluster_leads)): ?>, <?php endif; ?></dd>
+								<?php echo $term; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
+							</dd>
 						<?php
 							endforeach;
 						?>
@@ -315,15 +320,14 @@ function sc_faculty_clusters_list($attr, $content=null) {
 					<?php endif; ?>
 
 					<div class="cluster-short-buttons-container">
-						<a href="<?php echo $post->guid; ?>" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
+						<a href="<?php echo get_permalink( $post ); ?>" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
 						<a href="<?php echo $positions_url; ?>" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
 					</div>
 
 				</div>
 			</div>
 	<?php
-
-		if ( $cluster_count % 3 == 0 && $cluster_count != count( $clusters )): ?>
+		if ( $cluster_count % 3 == 0 && $cluster_count != count( $clusters ) ): ?>
 			</div>
 			<div class="row">
 		<?php endif;
@@ -336,7 +340,7 @@ function sc_faculty_clusters_list($attr, $content=null) {
 	<?php
 	return ob_get_clean();
 }
-add_shortcode('faculty-clusters-list', 'sc_faculty_clusters_list');
+add_shortcode( 'faculty_cluster-grid-list', 'sc_faculty_clusters_list' );
 
 
 /**
@@ -435,8 +439,9 @@ function sc_cluster_parallax_list( $attr, $content='' ) {
 }
 add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
 
+
 /**
- * Displays a list of Faculty Clusters using large parallax images.
+ * Displays a list of open positions.
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
 	$positions = array(
@@ -531,6 +536,7 @@ function sc_callout( $attr, $content ) {
 }
 add_shortcode( 'callout', 'sc_callout' );
 
+
 /**
  * Create a research listing
  **/
@@ -552,6 +558,7 @@ function sc_research_listing_side( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'research-listing-side', 'sc_research_listing_side' );
+
 
 /**
  * Create a content listing
@@ -590,6 +597,7 @@ function sc_sidebar_content( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'sidebar-content', 'sc_sidebar_content' );
+
 
 /**
  * Wraps content in a Bootstrap .row.

@@ -115,12 +115,14 @@ define( 'CB_DOMAIN', get_theme_mod_or_default( 'cb_domain' ) );
 Config::$custom_post_types = array(
 	'Page',
 	'Post',
+	'Person',
 	'FAQ',
 	'FacultyCluster'
 );
 
 
 Config::$custom_taxonomies = array(
+	'OrganizationalGroups',
 	'ClusterLeads'
 );
 
