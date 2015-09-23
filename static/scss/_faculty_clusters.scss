@@ -6,6 +6,7 @@
   font-size: 34px;
   margin-bottom: 50px;
   margin-top: 30px;
+  text-transform: none;
 
   @media (min-width: $screen-lg-min) {
     font-size: 36px;
@@ -38,6 +39,11 @@
   z-index: 4;
 }
 
+.cluster-pl-sidebar-title,
+.cluster-pl-sidebar-list {
+  font-family: $font-family-sans-serif;
+}
+
 .cluster-pl-sidebar-title {
   color: #787878;
   font-size: 18px;
@@ -48,6 +54,7 @@
 .cluster-pl-sidebar-list {
   @include list-unstyled;
   font-weight: 500;
+  margin-bottom: 40px;
 
   li {
     margin-bottom: 10px;
@@ -55,7 +62,7 @@
 }
 
 .cluster-pl-desc,
-.cluster-pl-sidebar-list {
+.cluster-pl-sidebar-list:last-child {
   margin-bottom: 70px;
 }
 
@@ -63,31 +70,31 @@
 // Basic Faculty Cluster list
 
 .cluster-short h3 {
-  height: 70px;
-  line-height: 25px;
+  font-size: 25px;
+  line-height: 1.1;
   margin: 15px 0 10px;
 
   a {
     color: #000;
     font-family: $font-family-sans-serif;
-    font-size: 25px;
     font-weight: 600;
-    line-height: 28px;
   }
 }
 
-.cluster-short-desc {
-  font-family: $font-family-sans-serif-alt;
-  font-size: 13px;
-  font-weight: 400;
-  height: 190px;
-  line-height: 18px;
-}
-
+.cluster-short-desc,
 .cluster-short-inline-list {
   font-family: $font-family-sans-serif-alt;
   font-size: 13px;
-  line-height: 18px;
+}
+
+.cluster-short-desc {
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.cluster-short-inline-list {
+  line-height: 1.2;
   padding: 10px 0 0;
 
   dt,
@@ -161,30 +168,6 @@
     @media (max-width: $screen-xs-max) {
       margin: 20px 10px 0;
       text-align: center;
-    }
-  }
-}
-
-.callout.faculty-profile-callout {
-  blockquote {
-    border: 0;
-    font-family: $font-family-sans-serif;
-    font-size: 34px;
-    font-style: italic;
-    font-weight: 100;
-    line-height: 36px;
-    padding-left: 0;
-    padding-top: 0;
-    width: 45%;
-  }
-
-  cite {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 100;
-
-    strong {
-      font-weight: bold;
     }
   }
 }

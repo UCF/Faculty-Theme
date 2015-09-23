@@ -506,44 +506,67 @@ add_shortcode( 'faculty_cluster-open-positions-list', 'sc_cluster_open_positions
  * Create a full-width callout box.
  **/
 function sc_callout( $attr, $content ) {
-	$bgcolor = isset($attr['background']) ? $attr['background'] : '#f0f0f0';
-	$background_image = isset($attr['background-image']) ? $attr['background-image'] : '';
-	$min_height = isset($attr['min-height']) ? $attr['min-height'] : '';
-	$textcolor = isset($attr['text']) ? $attr['text'] : '#000';
-	$content_align = isset($attr['content_align']) ? 'text-' . $attr['content_align'] : '';
-	$content = do_shortcode( $content );
-	$extra_classes = isset($attr['class']) ? ' ' . $attr['class'] : '';
-	$parallax = isset($attr['parallax']) ? $attr['parallax'] : '';
+	$bgcolor          = isset( $attr['background'] ) ? $attr['background'] : '#f0f0f0';
+	$background_image = isset( $attr['background_image'] ) ? $attr['background_image'] : '';
+	$min_height       = isset( $attr['min_height'] ) ? $attr['min_height'] : '';
+	$textcolor        = isset( $attr['color'] ) ? $attr['color'] : '#000';
+	$content_align    = isset( $attr['content_align'] ) ? 'text-' . $attr['content_align'] : '';
+	$extra_classes    = isset( $attr['class'] ) ? ' ' . $attr['class'] : '';
+	$parallax         = isset( $attr['parallax'] ) ? filter_var( $attr['parallax'], FILTER_VALIDATE_BOOLEAN ) : false;
 
-	if ($parallax == 'yes' || $parallax == 'true') {
-		$html = '</div>';
-		$html .= display_parallax_image( $background_image, array(), $content, true );
-		$html .= '<div class="container">';
-	} else {
-		// Close out our existing .container
-		$html = '</div>';
-		$html .= '<div class="container-wide callout';
-		if ($background_image != '') {
-			$html .= ' background-image-callout ';
-		}
-		$html .= $extra_classes . '" style="background-color: ' . $bgcolor . ';';
+	// Generate 'style="..."' attribute for .callout element
+	$style_str = '';
 
-		if ($background_image != '') {
-			$html .= 'background-image:url(\'' . $background_image . '\');';
+	if ( !$parallax ) {
+		// Parallax-disabled specific inline styles
+		if ( $bgcolor ) {
+			$style_str .= 'background-color: ' . $bgcolor . '; ';
 		}
-		if ($min_height != '') {
-			$html .= 'min-height:' . $min_height . ';';
+		if ( $background_image ) {
+			$style_str .= 'background-image: url(\'' . $background_image . '\'); ';
+			$extra_classes .= ' callout-static-bg';
 		}
-		$html .= '">';
-		$html .= '<div class="container">';
-		$html .= '<div class="callout-inner" ' . $content_align . '" style="color: ' . $textcolor . '">';
-		$html .= $content;
-		$html .= '</div></div></div>';
-		// Reopen standard .container, .row and .span
-		$html .= '<div class="container">';
 	}
 
-	return $html;
+	if ( $min_height ) {
+		$style_str .= 'min-height: ' . $min_height . '; ';
+	}
+	if ( $textcolor ) {
+		$style_str .= 'color: ' . $textcolor . '; ';
+	}
+
+	// Append .text-left/center/right to $extra_classes
+	if ( $content_align ) {
+		$extra_classes .= ' ' . $content_align;
+	}
+
+	ob_start();
+
+	if ( $parallax ):
+		echo display_parallax_image(
+			$background_image,
+			array(
+				'class' => $extra_classes,
+				'style' => $style_str
+			),
+			$content,
+			true
+		);
+	else:
+	?>
+	</div> <!-- Close out existing .container -->
+	<div class="container-wide callout <?php echo $extra_classes; ?>" style="<?php echo $style_str; ?>">
+		<div class="container">
+			<div class="callout-inner">
+				<?php echo do_shortcode( $content ); ?>
+			</div>
+		</div>
+	</div>
+	<div class="container"> <!-- Re-open .container -->
+	<?php
+	endif;
+
+	return ob_get_clean();
 }
 add_shortcode( 'callout', 'sc_callout' );
 
