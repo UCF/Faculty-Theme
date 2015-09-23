@@ -109,12 +109,47 @@ function isTouchDevice() {
 }
 
 
+/**
+ * Detect if a browser supports 3d transforms.
+ * https://gist.github.com/lorenzopolidori/3794226
+ **/
+function supports3dTransforms() {
+  if (!window.getComputedStyle) {
+      return false;
+  }
+
+  var el = document.createElement('p'),
+      has3d,
+      transforms = {
+          'webkitTransform':'-webkit-transform',
+          'OTransform':'-o-transform',
+          'msTransform':'-ms-transform',
+          'MozTransform':'-moz-transform',
+          'transform':'transform'
+      };
+
+  // Add it to the body to get the computed style
+  document.body.insertBefore(el, null);
+
+  for (var t in transforms) {
+      if ( el.style[t] !== undefined ) {
+          el.style[t] = 'translate3d(1px,1px,1px)';
+          has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+      }
+  }
+
+  document.body.removeChild(el);
+
+  return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+}
+
+
 if (typeof jQuery !== 'undefined') {
   jQuery(document).ready(function($) {
 
     // Initialize parallax scrolling on non-mobile, non-touch devices for
     // optimal performance.
-    if (!isMobileSize() && !isTouchDevice()) {
+    if (!isMobileSize() && !isTouchDevice() && supports3dTransforms()) {
       parallax();
     }
 
