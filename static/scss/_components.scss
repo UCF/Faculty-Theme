@@ -249,12 +249,12 @@
 
 .faculty-profile-callout {
 
-  @media (max-width: $screen-md-min) {
+  @media (max-width: $screen-md-max) {
     background-position: 68% 0;
     height: 400px;
   }
 
-  @media (max-width: $screen-sm-min) {
+  @media (max-width: $screen-sm-max) {
     background-image: none !important; /* need !important to override inline style */
     height: auto;
     padding: 40px 0 30px;
@@ -272,7 +272,7 @@
     padding-top: 0;
     width: 45%;
 
-    @media (max-width: $screen-md-min) {
+    @media (max-width: $screen-md-max) {
       font-size: 23px;
       width: 50%;
     }
@@ -288,7 +288,7 @@
     font-weight: 100;
     margin-top: 40px;
 
-    @media (max-width: $screen-md-min) {
+    @media (max-width: $screen-md-max) {
       font-size: 17px;
       font-weight: 100;
       margin-top: 0;
