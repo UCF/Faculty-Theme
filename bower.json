@@ -17,6 +17,7 @@
   "dependencies": {
     "bootstrap-sass-official": "~3.3.5",
     "imagesloaded": "~3.1.8",
+    "matchHeight": "~0.6.0",
     "placeholders": "~4.0.1"
   }
 }

@@ -294,34 +294,36 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 		?>
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<div class="cluster-short">
-					<h3>
-						<a href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
-					</h3>
+					<div class="cluster-short-inner">
+						<h3>
+							<a href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
+						</h3>
 
-					<div class="cluster-short-desc">
-						<?php echo $short_description; ?>
+						<div class="cluster-short-desc">
+							<?php echo $short_description; ?>
+						</div>
+
+						<?php if ( $cluster_leads ): ?>
+						<dl class="cluster-short-inline-list">
+							<dt>Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</dt>
+							<?php
+								$cluster_lead_count = 0;
+								foreach ( $cluster_leads as $lead ):
+									$cluster_lead_count++;
+							?>
+								<dd>
+									<?php echo $lead->post_title; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
+								</dd>
+							<?php
+								endforeach;
+							?>
+						</dl>
+						<?php endif; ?>
 					</div>
 
-					<?php if ( $cluster_leads ): ?>
-					<dl class="cluster-short-inline-list">
-						<dt>Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</dt>
-						<?php
-							$cluster_lead_count = 0;
-							foreach ( $cluster_leads as $lead ):
-								$cluster_lead_count++;
-						?>
-							<dd>
-								<?php echo $lead->post_title; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
-							</dd>
-						<?php
-							endforeach;
-						?>
-					</dl>
-					<?php endif; ?>
-
 					<div class="cluster-short-buttons-container">
-						<a href="<?php echo get_permalink( $post ); ?>" class="btn btn-primary btn-block cluster-short-btn">Learn More</a>
-						<a href="<?php echo $positions_url; ?>" class="btn btn-primary btn-block cluster-short-btn">See Positions</a>
+						<a href="<?php echo get_permalink( $post ); ?>" class="btn btn-primary cluster-short-btn">Learn More</a>
+						<a href="<?php echo $positions_url; ?>" class="btn btn-primary cluster-short-btn">See Positions</a>
 					</div>
 
 				</div>
