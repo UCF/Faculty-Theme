@@ -280,7 +280,7 @@ class MultiselectField extends ChoicesField{
 ?>
 		<select multiple name="<?php echo htmlentities( $this->id ); ?>[]" id="<?php echo htmlentities( $this->id ); ?>">
 			<?php foreach ( $this->choices as $key=>$value ): ?>
-			<option<?php if ( in_array( $value, $this->value ) ) : ?> selected="selected"<?php endif; ?> value="<?php echo htmlentities( $value ); ?>"><?php echo htmlentities( $key ); ?></option>
+			<option<?php if ( is_array( $this->value ) && in_array( $value, $this->value ) || $value == $this->value ) : ?> selected="selected"<?php endif; ?> value="<?php echo htmlentities( $value ); ?>"><?php echo htmlentities( $key ); ?></option>
 			<?php endforeach;?>
 		</select>
 		<?php
