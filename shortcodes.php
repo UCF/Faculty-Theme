@@ -361,9 +361,11 @@ function sc_cluster_parallax( $attr, $content='' ) {
 		$post = get_posts( array(
 			'post_type' => 'faculty_cluster',
 			'posts_per_page' => 1,
-			'post_slug' => $attr['slug']
+			'name' => $attr['slug']
 		) );
-		$post = $post[0];
+		if ( !empty( $post ) && is_array( $post ) ) {
+			$post = $post[0];
+		}
 	}
 
 	ob_start();
@@ -372,6 +374,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 		$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
 		$img = wp_get_attachment_url( $img_id );
 		$cluster_leads = FacultyCluster::get_leads( $post );
+		$cluster_contacts = FacultyCluster::get_contacts( $post );
 	?>
 			</div> <!-- Close .container -->
 	<?php
@@ -397,7 +400,6 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<?php echo display_cluster_cta_btn( $post->ID, 'cluster-pl-cta' ); ?>
 
 						<?php if ( $cluster_leads ): ?>
-
 						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
@@ -405,7 +407,16 @@ function sc_cluster_parallax( $attr, $content='' ) {
 							<li><?php echo $lead->post_title; ?></li>
 						<?php endforeach; ?>
 						</ul>
+						<?php endif; ?>
 
+						<?php if ( $cluster_contacts ): ?>
+						<h3 class="cluster-pl-sidebar-title">Cluster Contact<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
+
+						<ul class="cluster-pl-sidebar-list">
+						<?php foreach ( $cluster_contacts as $contact ): ?>
+							<li><?php echo $contact->post_title; ?></li>
+						<?php endforeach; ?>
+						</ul>
 						<?php endif; ?>
 					</div>
 				</div>
