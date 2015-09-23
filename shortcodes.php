@@ -439,8 +439,9 @@ function sc_cluster_parallax_list( $attr, $content='' ) {
 }
 add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
 
+
 /**
- * Displays a list of Faculty Clusters using large parallax images.
+ * Displays a list of open positions.
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
 	$positions = array(
@@ -535,6 +536,7 @@ function sc_callout( $attr, $content ) {
 }
 add_shortcode( 'callout', 'sc_callout' );
 
+
 /**
  * Create a research listing
  **/
@@ -556,6 +558,7 @@ function sc_research_listing_side( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'research-listing-side', 'sc_research_listing_side' );
+
 
 /**
  * Create a content listing
