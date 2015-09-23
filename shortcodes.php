@@ -541,7 +541,9 @@ function sc_callout( $attr, $content ) {
 	}
 
 	ob_start();
-
+?>
+	</div> <!-- Close out existing .container -->
+<?php
 	if ( $parallax ):
 		echo display_parallax_image(
 			$background_image,
@@ -554,7 +556,6 @@ function sc_callout( $attr, $content ) {
 		);
 	else:
 	?>
-	</div> <!-- Close out existing .container -->
 	<div class="container-wide callout <?php echo $extra_classes; ?>" style="<?php echo $style_str; ?>">
 		<div class="container">
 			<div class="callout-inner">
@@ -562,10 +563,11 @@ function sc_callout( $attr, $content ) {
 			</div>
 		</div>
 	</div>
-	<div class="container"> <!-- Re-open .container -->
-	<?php
+<?php
 	endif;
-
+?>
+	<div class="container"> <!-- Re-open .container -->
+<?php
 	return ob_get_clean();
 }
 add_shortcode( 'callout', 'sc_callout' );
