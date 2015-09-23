@@ -51,3 +51,28 @@
   padding: 0;
   text-transform: uppercase;
 }
+
+
+// Template-specific overrides
+
+.page-template-page-featured-title {
+  .parallax-contaner,
+  .parallax-container-inner {
+    height: 500px;
+  }
+
+  .parallax-content {
+    h1 {
+      color: #fff;
+      font-size: 79px; // TODO: responsive overrides
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+      top: 190px;
+    }
+  }
+
+  .open-positions-container {
+    margin-top: 0;
+  }
+}
