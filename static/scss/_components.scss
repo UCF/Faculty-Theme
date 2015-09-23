@@ -248,6 +248,19 @@
 }
 
 .faculty-profile-callout {
+
+  @media (max-width: $screen-md-min) {
+    background-position: 68% 0;
+    height: 400px;
+  }
+
+  @media (max-width: $screen-sm-min) {
+    background-image: none !important; /* need !important to override inline style */
+    height: auto;
+    padding: 40px 0 30px;
+  }
+
+
   blockquote {
     border: 0;
     font-family: $font-family-sans-serif;
@@ -257,7 +270,15 @@
     line-height: 1.25;
     padding-left: 0;
     padding-top: 0;
-    width: 45%; // TODO: responsive overrides
+    width: 45%;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 23px;
+      width: 50%;
+    }
+    @media (max-width: $screen-sm-min) {
+      width: 100%;
+    }
   }
 
   cite {
@@ -266,6 +287,12 @@
     font-style: normal;
     font-weight: 100;
     margin-top: 40px;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 17px;
+      font-weight: 100;
+      margin-top: 0;
+    }
 
     strong {
       font-weight: bold;
