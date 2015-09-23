@@ -313,6 +313,7 @@
 .page-content .page-side-content {
   color: #333;
   font-family: $font-family-sans-serif;
+  padding: 20px 0 0;
 
   strong {
     color: #7d7d7d;
@@ -345,6 +346,11 @@
 
 .open-positions-container {
   background: #f9f9f9;
+  margin-top: 30px;
+}
+
+.home .open-positions-container {
+  margin-top: 0;
 }
 
 .open-positions {
