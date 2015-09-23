@@ -52,3 +52,22 @@
   width: 100%;
   z-index: 3;
 }
+
+#parallax-featured-header.parallax-container {
+  height: 500px;
+
+  .parallax-container-inner {
+    height: 500px;
+  }
+}
+
+#parallax-featured-header .parallax-content {
+  h1 {
+    color: #fff;
+    font-size: 79px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 190px;
+  }
+}
