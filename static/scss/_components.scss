@@ -276,7 +276,7 @@
       font-size: 23px;
       width: 50%;
     }
-    @media (max-width: $screen-sm-min) {
+    @media (max-width: $screen-sm-max) {
       width: 100%;
     }
   }
@@ -345,7 +345,7 @@
 
 // Sidebars
 
-.sidebar-container {
+.widget {
   background: #000;
   color: #fff;
   font-family: $font-family-sans-serif-alt;
@@ -355,8 +355,9 @@
   // Allow sidebars to be positioned over .parallax-container's
   position: relative;
   z-index: 4;
+  margin-bottom: 30px;
 
-  .sidebar-header {
+  .widget-title {
     background: url('../img/gold-dots-horizontal.png') 0% 100% repeat-x;
     border: 0;
     display: block;

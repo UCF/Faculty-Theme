@@ -23,15 +23,10 @@ if ( $featured_image ) {
 					<h1 class="page-header"><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				</div>
-				<div class="col-sm-9 col-md-3 col-lg-3">
-					<aside class="sidebar-container faculty-cluster-sidebar-container">
-						<span class="sidebar-header">Faculty Cluster Initiative</span>
-						<p>Six faculty clusters have been selected in this program’s inaugural year, including cyber security,
-						renewable energy, coastal systems, genomics and bioinformatics, prosthetics, and energy conversion and
-						propulsion. Click a link below to learn more:</p>
-						<?php echo do_shortcode( '[faculty_cluster-list]' ); ?>
-						<p><a class="underlined" href="#">Learn More &amp; Apply</a></p>
-					</aside>
+				<div class="col-sm-12 col-md-3 col-lg-3">
+					<div class="sidebar-container faculty-cluster-sidebar-container">
+						<?php get_sidebar(); ?>
+					</div>
 				</div>
 			</div>
 		</div>

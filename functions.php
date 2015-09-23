@@ -150,4 +150,9 @@ function display_site_title() {
 	return ob_get_clean();
 }
 
+/**
+ * Enable shortcodes to be used inside of widgets.
+ **/
+add_filter( 'widget_text', 'do_shortcode' );
+
 ?>
