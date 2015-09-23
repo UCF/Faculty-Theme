@@ -59,6 +59,10 @@
   .parallax-container,
   .parallax-container-inner {
     height: 500px;
+
+    @media (max-width: $screen-sm-max) {
+      height: 300px;
+    }
   }
 
   .parallax-content {
@@ -69,6 +73,11 @@
       position: relative;
       text-align: center;
       top: 190px;
+
+      @media (max-width: $screen-sm-max) {
+        font-size: 40px;
+        top: 40px;
+      }
     }
   }
 
