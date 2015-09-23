@@ -61,6 +61,25 @@
   }
 }
 
+.cluster-pl-contact-info {
+  @include list-unstyled;
+  font-size: .9em;
+  font-weight: 300;
+  margin-top: 2px;
+
+  li {
+    margin-bottom: 0;
+  }
+
+  a {
+    &,
+    &:hover,
+    &:focus {
+      color: #000;
+    }
+  }
+}
+
 .cluster-pl-desc,
 .cluster-pl-sidebar-list:last-child {
   margin-bottom: 70px;
