@@ -285,7 +285,7 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 			$cluster_count = 0;
 			foreach ( $clusters as $post ):
 				$cluster_count++;
-				$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+				$cluster_leads = FacultyCluster::get_leads( $post );
 				$positions_url = get_post_meta( $post->ID, 'faculty_cluster_positions_url', true );
 				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
 				if ( !$short_description ) {
@@ -307,11 +307,11 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 						<dt>Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</dt>
 						<?php
 							$cluster_lead_count = 0;
-							foreach ( $cluster_leads as $term ):
+							foreach ( $cluster_leads as $lead ):
 								$cluster_lead_count++;
 						?>
 							<dd>
-								<?php echo $term; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
+								<?php echo $lead->post_title; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
 							</dd>
 						<?php
 							endforeach;
@@ -371,7 +371,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 	if ( $post ):
 		$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
 		$img = wp_get_attachment_url( $img_id );
-		$cluster_leads = wp_get_post_terms( $post->ID, 'cluster_leads', array( 'fields' => 'names' ) );
+		$cluster_leads = FacultyCluster::get_leads( $post );
 	?>
 			</div> <!-- Close .container -->
 	<?php
@@ -401,8 +401,8 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
-						<?php foreach ( $cluster_leads as $term ): ?>
-							<li><?php echo $term; ?></li>
+						<?php foreach ( $cluster_leads as $lead ): ?>
+							<li><?php echo $lead->post_title; ?></li>
 						<?php endforeach; ?>
 						</ul>
 
@@ -581,6 +581,7 @@ function sc_orlando_side_content( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'orlando-side-content', 'sc_orlando_side_content' );
+
 
 /**
  * Sidebar container for main pages

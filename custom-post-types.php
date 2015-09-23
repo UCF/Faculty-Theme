@@ -363,8 +363,37 @@ class FacultyCluster extends CustomPostType {
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
-		$taxonomies     = array( 'cluster_leads' ),
+		$taxonomies     = array( 'post_tag' ),
 		$use_shortcode  = True;
+
+	public function get_people_as_options() {
+		// Note: $person->get_objects_as_options() will NOT return
+		// People that do not have a Order By Name set!
+		$person = new Person;
+		return $person->get_objects_as_options();
+	}
+
+	public static function get_leads( $cluster ) {
+		$lead_posts = array();
+		$leads = get_post_meta( $cluster->ID, 'faculty_cluster_leads' );
+		if ( $leads ) {
+			foreach ( $leads[0] as $post_id ) {
+				$lead_posts[] = get_post( intval( $post_id ) );
+			}
+		}
+		return $lead_posts;
+	}
+
+	public static function get_contacts( $cluster ) {
+		$contact_posts = array();
+		$contacts = get_post_meta( $cluster->ID, 'faculty_cluster_contacts' );
+		if ( $contacts ) {
+			foreach ( $contacts[0] as $post_id ) {
+				$contact_posts[] = get_post( intval( $post_id ) );
+			}
+		}
+		return $contact_posts;
+	}
 
 	public function fields() {
 		$prefix = $this->options( 'name' ) . '_';
@@ -386,6 +415,20 @@ class FacultyCluster extends CustomPostType {
 				'desc' => 'Short description to show when displaying this Faculty Cluster in a list.',
 				'id' => $prefix . 'short_description',
 				'type' => 'textarea',
+			),
+			array(
+				'name' => 'Cluster Leads',
+				'desc' => 'One or more people that serve as the lead(s) of this cluster.',
+				'id' => $prefix . 'leads',
+				'type' => 'multiselect',
+				'options' => $this->get_people_as_options()
+			),
+			array(
+				'name' => 'Cluster Contacts',
+				'desc' => 'One or more people that serve as the contacts for this cluster.',
+				'id' => $prefix . 'contacts',
+				'type' => 'multiselect',
+				'options' => $this->get_people_as_options()
 			),
 			array(
 				'name' => 'List of Positions URL',
