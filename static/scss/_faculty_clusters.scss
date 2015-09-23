@@ -109,12 +109,12 @@
 .cluster-short-desc {
   font-weight: 400;
   line-height: 1.4;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .cluster-short-inline-list {
   line-height: 1.2;
-  padding: 10px 0 0;
+  padding: 10px 0 20px;
 
   dt,
   dd {
@@ -126,35 +126,45 @@
   }
 }
 
-.cluster-short-buttons-container {
-  background: url('../img/gold-dots-horizontal.png') left top repeat-x;
-  display: block;
-  margin-bottom: 50px;
+.faculty-cluster-sidebar-container .widget {
+  font-family: $font-family-sans-serif-alt;
+  margin-top: -20px;
+  padding: 28px;
 
-  @media (max-width: $screen-xs-max) {
-    text-align: center;
+  a {
+    color: #fff;
+    text-decoration: underline;
   }
 
-  .cluster-short-btn {
-    border: 0;
-    display: inline-block;
+  ul {
+    @include list-unstyled;
     font-family: $font-family-sans-serif;
     font-size: 14px;
-    font-weight: 500px;
-    margin: 20px 10px 0 0;
-    padding: 10px 14px;
-    text-align: left;
-    text-transform: capitalize;
-    width: 140px;
+    font-weight: 600;
+    line-height: 16px; // TODO: unitless value
 
-    @media (max-width: $screen-xs-max) {
-      margin: 20px 10px 0;
-      text-align: center;
+    @media (max-width: $screen-sm-max) {
+      font-size: 16px;
+      line-height: 24px; // TODO: unitless value
     }
+  }
+
+  li {
+    margin-bottom: 7px;
+
+    a {
+      color: $ucf-gold;
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    margin: 0;
   }
 }
 
-.faculty-cluster-sidebar-container .widget {
+
+.faculty-cluster-sidebar-container {
   font-family: $font-family-sans-serif-alt;
   margin-top: -20px;
   padding: 28px;
