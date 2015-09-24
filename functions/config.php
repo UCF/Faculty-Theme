@@ -151,6 +151,12 @@ function define_customizer_panels( $wp_customize ) {
 			'active_callback' => function() { return is_home() || is_front_page(); }
 		)
 	);
+	$wp_customize->add_panel(
+		THEME_CUSTOMIZER_PREFIX . 'open_positions_test',
+		array(
+			'title'           => 'Open Positions'
+		)
+	);
 }
 add_action( 'customize_register', 'define_customizer_panels' );
 
@@ -182,6 +188,15 @@ function define_customizer_sections( $wp_customize ) {
 			'description' => 'Settings for event lists used throughout the site.'
 		)
 	);
+	for ($i = 1; $i <= 6; $i++) {
+		$wp_customize->add_section(
+			THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
+			array(
+				'title' => 'Position ' . $i,
+				'panel' => THEME_CUSTOMIZER_PREFIX . 'open_positions_test'
+			)
+		);
+	}
 	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'news',
 		array(
@@ -442,6 +457,52 @@ function define_customizer_fields( $wp_customize ) {
 			)
 		)
 	);
+
+	// Open Positions
+	for ($i = 1; $i <= 6; $i++) {
+		$wp_customize->add_setting(
+			'positions_listing_name_' . $i
+		);
+		$wp_customize->add_control(
+			'positions_listing_name_' . $i,
+			array(
+				'type'        => 'select',
+				'label'       => 'Position Name',
+				'description' => 'Title of position or position category.',
+				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
+				'type'        => 'text'
+			)
+		);
+		$wp_customize->add_setting(
+			'positions_listing_college_' . $i
+		);
+		$wp_customize->add_control(
+			'positions_listing_college_' . $i,
+			array(
+				'type'        => 'select',
+				'label'       => 'College',
+				'description' => 'Name of college listed underneath the position name.',
+				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
+				'type'        => 'text'
+			)
+		);
+		$wp_customize->add_setting(
+			'positions_listing_link_' . $i,
+			array(
+				'default' => 'http://jobswithucf.com'
+			)
+		);
+		$wp_customize->add_control(
+			'positions_listing_link_' . $i,
+			array(
+				'type'        => 'select',
+				'label'       => 'Position URL',
+				'description'       => 'Link location for when position is clicked on.',
+				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
+				'type'        => 'text'
+			)
+		);
+	}
 
 	$wp_customize->add_setting(
 		'news_url',

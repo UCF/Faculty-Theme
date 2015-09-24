@@ -483,32 +483,17 @@ add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
  * Displays a list of open positions.
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
-	$positions = array(
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			),
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			),
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			),
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			),
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			),
-			array(
-				'field' => 'Prosthetic Interfaces',
-				'college' => 'College of Medicine',
-			)
-	);
+	$positions = [];
+	for ($i = 1; $i <= 6; $i++) {
+		$position = array(
+				'field'   => get_theme_mod( 'positions_listing_name_' . $i, ''),
+				'college' => get_theme_mod( 'positions_listing_college_' . $i, ''),
+				'link'    => get_theme_mod( 'positions_listing_link_' . $i, '')
+		);
+		if ($position->name !== '') {
+			array_push($positions, $position);
+		}
+	}
 
 	ob_start();
 	?>
