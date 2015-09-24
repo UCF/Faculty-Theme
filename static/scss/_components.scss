@@ -431,7 +431,8 @@
     font-size: 13px;
     font-weight: 800;
     margin: 0 0 20px;
-    @media (max-width: $screen-sm-max) {
+
+    @media (max-width: $screen-xs-max) {
       text-align: center;
     }
   }
@@ -441,7 +442,7 @@
     display: block;
     text-decoration: none;
 
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-xs-max) {
       background: transparent;
       text-align: center;
     }
@@ -468,7 +469,7 @@
       display: block;
       padding-right: 20px; // space for arrow-right.png
 
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: $screen-xs-max) {
         padding-right: 0;
       }
     }
