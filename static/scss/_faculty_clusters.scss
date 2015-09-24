@@ -1,7 +1,7 @@
 // Faculty Cluster Parallax Lists ("pl")
 
 .cluster-pl-title {
-  background: url('../img/gold-dots-horizontal.png') center center repeat-x;
+  @include background-2x('../img/gold-dots-horizontal.png', '../img/gold-dots-horizontal@2x.png', center center, repeat-x, 12px, 5px);
   display: block;
   font-size: 34px;
   margin-bottom: 50px;
@@ -128,7 +128,7 @@
 }
 
 .cluster-short-buttons-container {
-  background: url('../img/gold-dots-horizontal.png') left top repeat-x;
+  @include background-2x('../img/gold-dots-horizontal.png', '../img/gold-dots-horizontal@2x.png', '', repeat-x, 12px, 5px);
   display: block;
   margin-bottom: 50px;
   padding-top: 20px;
