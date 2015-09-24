@@ -19,11 +19,11 @@ if ( $featured_image ) {
 	<article class="page-content">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-9 col-md-9 col-lg-9">
+				<div class="col-sm-12 col-md-8 col-lg-8">
 					<h1 class="page-header"><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				</div>
-				<div class="col-sm-12 col-md-3 col-lg-3">
+				<div class="col-sm-12 col-md-4 col-lg-4">
 					<div class="sidebar-container faculty-cluster-sidebar-container">
 						<?php get_sidebar(); ?>
 					</div>
