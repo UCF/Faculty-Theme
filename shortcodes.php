@@ -405,8 +405,10 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
-						<?php foreach ( $cluster_leads as $lead ): ?>
-							<li><?php echo $lead->post_title; ?></li>
+						<?php foreach ( $cluster_leads as $lead ):
+										$name = Person::get_name( $lead );
+									?>
+							<li><?php echo $name; ?></li>
 						<?php endforeach; ?>
 						</ul>
 						<?php endif; ?>
