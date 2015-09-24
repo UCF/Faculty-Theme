@@ -68,15 +68,29 @@
   .parallax-content {
     h1 {
       color: #fff;
-      font-size: 79px; // TODO: responsive overrides
+      font-size: 6vw;
+      left: 50%;
+      letter-spacing: -.02em;
       margin: 0 auto;
-      position: relative;
+      padding: 0 $grid-gutter-width / 2;
+      position: absolute;
       text-align: center;
-      top: 190px;
+      top: 40%;
+      transform: translate(-50%, -60%);
+      vertical-align: middle;
+      width: 100%;
+
+      @media (min-width: $screen-lg-min) {
+        font-size: 5.75vw;
+      }
 
       @media (max-width: $screen-sm-max) {
-        font-size: 40px;
-        top: 40px;
+        font-size: 6.5vw;
+      }
+
+      @media (max-width: $screen-xs-max) {
+        top: 30%;
+        transform: translate(-50%, -70%);
       }
     }
   }
