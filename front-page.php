@@ -39,16 +39,8 @@ endif;
 	?>
 
 	<article class="page-content">
-		<div class="container-wide open-positions-container">
-			<div class="container">
-				<section class="open-positions">
-				<?php
-					echo do_shortcode( '[faculty_cluster-open-positions-list]' );
-				?>
-				</section>
-			</div>
-		</div>
 		<div class="container">
+			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
 			<?php the_content(); ?>
 		</div>
 	</article>

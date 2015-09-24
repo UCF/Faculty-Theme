@@ -29,13 +29,7 @@ if ( $featured_image ) {
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="container-wide open-positions-container">
-			<section class="open-positions container">
-			<?php
-				echo do_shortcode( '[faculty_cluster-open-positions-list]' );
-			?>
-			</section>
+			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
 		</div>
 	</article>
 

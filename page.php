@@ -17,15 +17,9 @@ if ( $featured_image ) {
 		<div class="container">
 			<h1 class="page-header"><?php the_title(); ?></h1>
 			<?php the_content(); ?>
+			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
 		</div>
 	</article>
-	<div class="container-wide open-positions-container">
-		<section class="open-positions container">
-		<?php
-			echo do_shortcode( '[faculty_cluster-open-positions-list]' );
-		?>
-		</section>
-	</div>
 </main>
 
 <?php get_footer(); ?>

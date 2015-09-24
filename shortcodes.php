@@ -513,17 +513,25 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 	ob_start();
 	?>
 
-	<h2>Open Positions In</h2>
-	<ul>
-	<?php
-		if ( $positions ) {
-			foreach ( $positions as $position ) {
-				echo '<li class="open-position"><a href="#"><span class="field">' . $position['field'] . '</span> ';
-				echo '<span class="college">' . $position['college'] . '</span></a></li>';
-			}
-		}
-	?>
-	</ul>
+	</div> <!-- Close .container -->
+	<div class="container-wide open-positions-container">
+		<div class="container">
+			<section class="open-positions">
+				<h2>Open Positions In</h2>
+				<ul>
+				<?php
+					if ( $positions ) {
+						foreach ( $positions as $position ) {
+							echo '<li class="open-position"><a href="#"><span class="field">' . $position['field'] . '</span> ';
+							echo '<span class="college">' . $position['college'] . '</span></a></li>';
+						}
+					}
+				?>
+				</ul>
+			</section>
+		</div>
+	</div>
+	<div class="container"> <!-- Re-open .container -->
 <?php
 	return ob_get_clean();
 }
