@@ -16,7 +16,7 @@ if ( $cta_url && $cta_text ):
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-5 col-lg-offset-7 col-md-6 col-md-offset-6 col-sm-7 col-sm-offset-5">
-				<a class="btn btn-primary btn-cta" href="<?php echo $cta_url; ?>">
+				<a class="ga-event-link btn btn-primary btn-cta" href="<?php echo $cta_url; ?>">
 					<?php echo $cta_text; ?>
 				</a>
 			</div>

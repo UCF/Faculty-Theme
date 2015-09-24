@@ -78,12 +78,12 @@ function display_parallax_image( $image_url, $attrs=array(), $content='' ) {
 /**
 * Adds a first and last class to respective menu items
 **/
-function add_first_and_last_class_to_menu($items) {
+function add_first_and_last_class_to_menu( $items ) {
     $items[1]->classes[] = 'first';
     $items[count($items)]->classes[] = 'last';
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'add_first_and_last_class_to_menu');
+add_filter( 'wp_nav_menu_objects', 'add_first_and_last_class_to_menu' );
 
 
 /**
@@ -92,7 +92,7 @@ add_filter('wp_nav_menu_objects', 'add_first_and_last_class_to_menu');
  * generated <a> tag.
  **/
 function display_cta_btn( $url, $text, $classes='', $id='' ) {
-	$classes = 'btn btn-primary btn-cta ' . $classes;
+	$classes = 'ga-event-link btn btn-primary btn-cta ' . $classes;
 	ob_start();
 ?>
 	<a href="<?php echo $url; ?>" class="<?php echo $classes; ?>" <?php if ( $id ) { ?>id="<?php echo $id; ?>"<?php } ?>>
