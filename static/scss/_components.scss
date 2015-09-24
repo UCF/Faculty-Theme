@@ -111,6 +111,10 @@
   margin: 0;
   padding: 60px 0 45px;
 
+  &.sans-serif-alt {
+    font-family: $font-family-sans-serif-alt;
+  }
+
   h2 {
     font-family: $font-family-sans-serif;
     font-size: 26px;
@@ -255,7 +259,7 @@
   }
 
   @media (max-width: $screen-sm-max) {
-    background-image: none !important; /* need !important to override inline style */
+    background-image: none !important; // need !important to override inline style
     height: auto;
     padding: 40px 0 30px;
   }
@@ -549,5 +553,28 @@
   &:active,
   &:focus {
     background-position: -284px -31px;
+  }
+}
+
+
+// Featured links
+.featured-link {
+  color: #999;
+  font-family: $font-family-serif;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 15px;
+
+  a {
+    color: #000;
+    font-family: $font-family-sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  + br {
+    // Attempt to fix WP autoformatting
+    display: none;
   }
 }

@@ -140,7 +140,9 @@ function supports3dTransforms() {
 
   document.body.removeChild(el);
 
-  return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+  // Webkit browsers cause has3d to return false for some reason, so use
+  // an alternate check for them
+  return (('WebKitCSSMatrix' in window) || (has3d !== undefined && has3d.length > 0 && has3d !== 'none'));
 }
 
 

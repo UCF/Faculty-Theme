@@ -65,6 +65,7 @@ gulp.task('js', function() {
         config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js',
         config.bowerDir + '/placeholders/dist/placeholders.jquery.js',
         config.bowerDir + '/imagesloaded/imagesloaded.pkgd.js',
+        config.bowerDir + '/matchHeight/jquery.matchHeight.js',
         config.jsPath + '/generic-base.js',
         config.jsPath + '/script.js'
       ];

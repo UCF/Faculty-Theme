@@ -155,4 +155,5 @@ function display_site_title() {
  **/
 add_filter( 'widget_text', 'do_shortcode' );
 
+
 ?>

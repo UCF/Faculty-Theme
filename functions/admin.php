@@ -114,25 +114,109 @@ add_filter( 'mce_css', 'editor_styles' );
 
 
 /**
- * Edits second row of buttons in tinyMCE editor. Removing/adding actions
+ * Add/remove TinyMCE button sets in 1st row of buttons.
+ **/
+function editor_format_options( $buttons ) {
+	// Remove 'More'
+	$found = array_search( 'wp_more', $buttons );
+	if ( False !== $found ) {
+		unset( $buttons[$found] );
+	}
+
+	return $buttons;
+}
+add_filter( 'mce_buttons', 'editor_format_options' );
+
+
+/**
+ * Add/remove TinyMCE button sets in 2nd row of buttons.
  *
  * @return array
  * @author Jared Lang
  * */
-function editor_format_options( $row ) {
-	$found = array_search( 'underline', $row );
+function editor_format_options_2( $buttons ) {
+	// Remove 'underline'
+	$found = array_search( 'underline', $buttons );
 	if ( False !== $found ) {
-		unset( $row[$found] );
+		unset( $buttons[$found] );
 	}
-	return $row;
+
+	// Remove 'indent'/'outdent'
+	$found = array_search( 'indent', $buttons );
+	if ( False !== $found ) {
+		unset( $buttons[$found] );
+	}
+	$found = array_search( 'outdent', $buttons );
+	if ( False !== $found ) {
+		unset( $buttons[$found] );
+	}
+
+	// Add font size dropdown
+	array_unshift( $buttons, 'fontsizeselect' );
+
+	// Add 'Formats' dropdown
+	array_unshift( $buttons, 'styleselect' );
+
+	return $buttons;
 }
-add_filter( 'mce_buttons_2', 'editor_format_options' );
+add_filter( 'mce_buttons_2', 'editor_format_options_2' );
+
+
+/**
+ * Force the WYSIWYG editor's kitchen sink to always be open.
+ **/
+function unhide_kitchensink( $args ) {
+	$args['wordpress_adv_hidden'] = false;
+	return $args;
+}
+add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
+
+
+/**
+ * Add custom formats to the TinyMCE editor.
+ **/
+function add_formats_to_tinymce( $settings ) {
+	// Text, list formatting options
+	$style_formats = array(
+		array(
+			'title' => 'Text Formatting',
+			'items' => array(
+				array(
+					'title' => 'UPPERCASE',
+					'inline' => 'span',
+					'classes' => 'text-uppercase'
+				),
+				array(
+					'title' => 'lowercase',
+					'inline' => 'span',
+					'classes' => 'text-lowercase'
+				),
+			),
+		),
+	);
+
+	$settings['style_formats'] = json_encode( $style_formats );
+	$settings['theme_advanced_buttons2_add_before'] = 'styleselect'; // Add 'Format' button at beginning of 2nd row of btns
+	$settings['fontsize_formats'] = '10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 32px 36px 42px 48px 52px 58px 62px';
+
+	return $settings;
+}
+add_filter( 'tiny_mce_before_init', 'add_formats_to_tinymce' );
 
 
 /**
  * Remove paragraph tag from excerpts
  * */
 remove_filter( 'the_excerpt', 'wpautop' );
+
+
+/**
+ * Enqueue custom stylesheet for TinyMCE
+ **/
+function add_custom_tinymce_stylesheet() {
+	add_editor_style( THEME_CSS_URL . '/tinymce.css' );
+}
+add_action( 'admin_init', 'add_custom_tinymce_stylesheet' );
 
 
 /**

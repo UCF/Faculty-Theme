@@ -586,9 +586,7 @@ function sc_callout( $attr, $content ) {
 	?>
 	<div class="container-wide callout <?php echo $extra_classes; ?>" style="<?php echo $style_str; ?>">
 		<div class="container">
-			<div class="callout-inner">
-				<?php echo do_shortcode( $content ); ?>
-			</div>
+			<?php echo do_shortcode( $content ); ?>
 		</div>
 	</div>
 <?php
@@ -602,49 +600,12 @@ add_shortcode( 'callout', 'sc_callout' );
 
 
 /**
- * Create a research listing
+ *
  **/
-function sc_research_listing_side( $attr, $content ) {
-	$content = do_shortcode( $content );
-
-	ob_start();
-	?>
-	<div class="page-side-content">
-		<strong>Research Specialty</strong>
-		<?php echo($content); ?>
-		<ul>
-			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
-			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
-			<li><strong>Research Listing One</strong> Why it's interesting or related to UCF</li>
-		</ul>
-	</div>
-	<?php
-	return ob_get_clean();
+function sc_featured_link( $attr, $content='' ) {
+	return '<div class="featured-link">' . do_shortcode( $content ) . '</div>'; // use divs to work around WP autoformatting
 }
-add_shortcode( 'research-listing-side', 'sc_research_listing_side' );
-
-
-/**
- * Create a content listing
- **/
-function sc_orlando_side_content( $attr, $content ) {
-	$content = do_shortcode( $content );
-
-	ob_start();
-	?>
-	<div class="page-side-content">
-		<strong>Orlando Sidebar</strong>
-		<?php echo($content); ?>
-		<ul>
-			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
-			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
-			<li><strong>Orlando Listing One</strong> Why it's interesting or related to UCF</li>
-		</ul>
-	</div>
-	<?php
-	return ob_get_clean();
-}
-add_shortcode( 'orlando-side-content', 'sc_orlando_side_content' );
+add_shortcode( 'featured-link', 'sc_featured_link' );
 
 
 /**
@@ -656,7 +617,7 @@ function sc_sidebar_content( $attr, $content ) {
 	ob_start();
 	?>
 	<div class="page-sidebar-content">
-	<?php echo($content); ?>
+		<?php echo( $content ); ?>
 	</div>
 	<?php
 	return ob_get_clean();
