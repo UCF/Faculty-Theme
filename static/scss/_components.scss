@@ -121,6 +121,14 @@
     font-weight: 500;
     margin: 0 0 25px;
     text-transform: uppercase;
+
+    ~ h2 {
+      margin-top: 25px; // h2's after the first h2 should have top margins
+    }
+  }
+
+  a {
+    font-weight: 600;
   }
 
   // .col styles
