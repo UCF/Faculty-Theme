@@ -126,49 +126,46 @@
   }
 }
 
-.faculty-cluster-sidebar-container .widget {
-  font-family: $font-family-sans-serif-alt;
-  margin-top: -20px;
-  padding: 28px;
+.cluster-short-buttons-container {
+  background: url('../img/gold-dots-horizontal.png') left top repeat-x;
+  display: block;
+  margin-bottom: 50px;
 
-  a {
-    color: #fff;
-    text-decoration: underline;
+  @media (max-width: $screen-xs-max) {
+    text-align: center;
   }
 
-  ul {
-    @include list-unstyled;
+  .cluster-short-btn {
+    border: 0;
+    display: inline-block;
     font-family: $font-family-sans-serif;
     font-size: 14px;
-    font-weight: 600;
-    line-height: 16px; // TODO: unitless value
+    font-weight: 500px;
+    margin: 20px 10px 0 0;
+    padding: 10px 14px;
+    text-align: left;
+    text-transform: capitalize;
+    width: 140px;
 
-    @media (max-width: $screen-sm-max) {
-      font-size: 16px;
-      line-height: 24px; // TODO: unitless value
+    @media (max-width: $screen-xs-max) {
+      margin: 20px 10px 0;
+      text-align: center;
     }
-  }
-
-  li {
-    margin-bottom: 7px;
-
-    a {
-      color: $ucf-gold;
-      text-decoration: underline;
-    }
-  }
-
-  @media (max-width: $screen-sm-max) {
-    margin: 0;
   }
 }
 
+
+// Sidebar widget for displaying Faculty Clusters
 
 .faculty-cluster-sidebar-container {
   font-family: $font-family-sans-serif-alt;
   margin-top: -20px;
   padding: 28px;
 
+  @media (max-width: $screen-sm-max) {
+    margin: 0;
+  }
+
   a {
     color: #fff;
     text-decoration: underline;
@@ -196,7 +193,40 @@
     }
   }
 
-  @media (max-width: $screen-sm-max) {
-    margin: 0;
+  .widget {
+    font-family: $font-family-sans-serif-alt;
+    margin-top: -20px;
+    padding: 28px;
+
+    @media (max-width: $screen-sm-max) {
+      margin: 0;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    ul {
+      @include list-unstyled;
+      font-family: $font-family-sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px; // TODO: unitless value
+
+      @media (max-width: $screen-sm-max) {
+        font-size: 16px;
+        line-height: 24px; // TODO: unitless value
+      }
+    }
+
+    li {
+      margin-bottom: 7px;
+
+      a {
+        color: $ucf-gold;
+        text-decoration: underline;
+      }
+    }
   }
 }
