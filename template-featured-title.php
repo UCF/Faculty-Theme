@@ -7,10 +7,11 @@ disallow_direct_load( 'page-featured-title.php' ); ?>
 
 <?php
 get_header(); the_post();
-$post_ID = $post->ID;
 
-$featured_image = wp_get_attachment_url( get_post_thumbnail_id( $post_ID ) );
-$header_content = '<h1>' . get_the_title( $post_ID ) . '</h1>';
+$featured_image = wp_get_attachment_url( get_post_thumbnail_id() );
+
+// get_the_title instead of the_title so we can store it in a var
+$header_content = '<h1>' . get_the_title() . '</h1>';
 $cta_url = get_theme_mod_or_default( 'home_header_cta_url' );
 $cta_text = get_theme_mod_or_default( 'home_header_cta_text' );
 

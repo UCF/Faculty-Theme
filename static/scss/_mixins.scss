@@ -41,3 +41,16 @@
     background-size: $width $height;
   }
 }
+
+// Adds necessary CSS for a background image when
+// a higher-res version is needed for higher pixel density screens
+@mixin background-2x($url: "transparent", $url-r: "transparent", $position: "0 0", $repeat: no-repeat, $width: 5px, $height: 5px) {
+  background-image: url($url);
+  background-repeat: $repeat;
+  background-position: $position;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url($url-r);
+    background-size: $width $height;
+  }
+}

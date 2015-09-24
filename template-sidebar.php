@@ -5,7 +5,7 @@
 
 get_header(); the_post();
 
-$featured_image = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
+$featured_image = wp_get_attachment_url( get_post_thumbnail_id() );
 ?>
 
 <main id="<?php echo $post->post_name; ?>">
