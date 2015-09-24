@@ -386,9 +386,9 @@ function sc_cluster_parallax( $attr, $content='' ) {
 				<div class="row">
 					<div class="col-md-8 col-sm-7">
 						<h2 class="cluster-pl-title">
-							<span>
+							<a href="<?php echo get_permalink( $post->ID ); ?>">
 								<?php echo $post->post_title; ?>
-							</span>
+							</a>
 						</h2>
 						<div class="row">
 							<div class="col-md-11 col-sm-11">
