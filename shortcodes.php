@@ -489,7 +489,7 @@ add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
 	$positions = array();
-	for ( $i = 1; $i <= 6; $i++ ) {
+	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
 		$position = array(
 				'name'    => get_theme_mod( 'positions_listing_name_' . $i, '' ),
 				'college' => get_theme_mod( 'positions_listing_college_' . $i, '' ),

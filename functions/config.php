@@ -105,6 +105,8 @@ define( 'GA_ACCOUNT', get_theme_mod_or_default( 'ga_account' ) );
 define( 'CB_UID', get_theme_mod_or_default( 'cb_uid' ) );
 define( 'CB_DOMAIN', get_theme_mod_or_default( 'cb_domain' ) );
 
+define( 'OPEN_POSITIONS_LIMIT', 6 );
+
 
 /**
  * Set config values including meta tags, registered custom post types, styles,
@@ -181,7 +183,7 @@ function define_customizer_sections( $wp_customize ) {
 			'panel' => THEME_CUSTOMIZER_PREFIX . 'home'
 		)
 	);
-	for ( $i = 1; $i <= 6; $i++ ) {
+	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
 		$wp_customize->add_section(
 			THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
 			array(
@@ -270,7 +272,7 @@ Config::$setting_defaults = array(
 	'search_per_page' => 10,
 	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // Main site css key
 );
-for ( $i = 1; $i <= 6; $i++ ) {
+for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
 	Config::$setting_defaults['positions_listing_link_' . $i] = 'http://jobswithucf.com';
 }
 
@@ -390,7 +392,7 @@ function define_customizer_fields( $wp_customize ) {
 
 
 	// Open Positions
-	for ( $i = 1; $i <= 6; $i++ ) {
+	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
 		$wp_customize->add_setting(
 			'positions_listing_name_' . $i
 		);
