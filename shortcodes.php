@@ -296,7 +296,7 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 				<div class="cluster-short">
 					<div class="cluster-short-inner">
 						<h3>
-							<a href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
+							<a class="ga-event-link" href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
 						</h3>
 
 						<div class="cluster-short-desc">
@@ -322,8 +322,12 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 					</div>
 
 					<div class="cluster-short-buttons-container">
-						<a href="<?php echo get_permalink( $post ); ?>" class="btn btn-primary cluster-short-btn">Learn More</a>
-						<a href="<?php echo $positions_url; ?>" class="btn btn-primary cluster-short-btn">See Positions</a>
+						<a href="<?php echo get_permalink( $post ); ?>" class="ga-event-link btn btn-primary cluster-short-btn">
+							Learn More <span class="sr-only">about the <?php echo $post->post_title; ?> faculty cluster</span>
+						</a>
+						<a href="<?php echo $positions_url; ?>" class="ga-event-link btn btn-primary cluster-short-btn">
+							See Positions <span class="sr-only">for the <?php echo $post->post_title; ?> faculty cluster</span>
+						</a>
 					</div>
 
 				</div>
@@ -386,7 +390,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 				<div class="row">
 					<div class="col-md-8 col-sm-7">
 						<h2 class="cluster-pl-title">
-							<a href="<?php echo get_permalink( $post->ID ); ?>">
+							<a class="ga-event-link" href="<?php echo get_permalink( $post->ID ); ?>">
 								<?php echo $post->post_title; ?>
 							</a>
 						</h2>
@@ -405,9 +409,10 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<h3 class="cluster-pl-sidebar-title">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
-						<?php foreach ( $cluster_leads as $lead ):
-										$name = Person::get_name( $lead );
-									?>
+						<?php
+						foreach ( $cluster_leads as $lead ):
+							$name = Person::get_name( $lead );
+						?>
 							<li><?php echo $name; ?></li>
 						<?php endforeach; ?>
 						</ul>
@@ -499,26 +504,34 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 
 	if ( $positions ):
 ?>
-		<h2>Open Positions In</h2>
-		<ul>
-		<?php
-		if ( $positions ):
-			foreach ( $positions as $position ):
-		?>
-			<li class="open-position">
-				<a href="<?php echo $position['link']; ?>">
-					<span class="open-position-name"><?php echo $position['name']; ?></span>
+	</div> <!-- Close .container -->
+	<div class="container-wide open-positions-container">
+		<div class="container">
+			<section class="open-positions">
+				<h2>Open Positions In</h2>
+				<ul>
+				<?php
+				if ( $positions ):
+					foreach ( $positions as $position ):
+				?>
+					<li class="open-position">
+						<a href="<?php echo $position['link']; ?>">
+							<span class="open-position-name"><?php echo $position['name']; ?></span>
 
-					<?php if ( $position['college'] ): ?>
-					<span class="open-position-college"><?php echo $position['college']; ?></span>
-					<?php endif; ?>
-				</a>
-			</li>
-		<?php
-			endforeach;
-		endif;
-		?>
-		</ul>
+							<?php if ( $position['college'] ): ?>
+							<span class="open-position-college"><?php echo $position['college']; ?></span>
+							<?php endif; ?>
+						</a>
+					</li>
+				<?php
+					endforeach;
+				endif;
+				?>
+				</ul>
+			</section>
+		</div>
+	</div>
+	<div class="container"> <!-- Re-open .container -->
 <?php
 	endif;
 

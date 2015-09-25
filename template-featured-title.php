@@ -23,7 +23,7 @@ if ( $cta_url && $cta_text ):
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-5 col-lg-offset-7 col-md-6 col-md-offset-6 col-sm-7 col-sm-offset-5">
-				<a class="btn btn-primary btn-cta" href="<?php echo $cta_url; ?>">
+				<a class="ga-event-link btn btn-primary btn-cta" href="<?php echo $cta_url; ?>">
 					<?php echo $cta_text; ?>
 				</a>
 			</div>
@@ -46,16 +46,8 @@ endif;
 	?>
 
 	<article class="page-content">
-		<div class="container-wide open-positions-container">
-			<div class="container">
-				<section class="open-positions">
-				<?php
-					echo do_shortcode( '[faculty_cluster-open-positions-list]' );
-				?>
-				</section>
-			</div>
-		</div>
 		<div class="container">
+			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
 			<?php the_content(); ?>
 		</div>
 	</article>

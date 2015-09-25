@@ -432,10 +432,10 @@ function define_customizer_fields( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'gw_account'
+		'ga_account'
 	);
 	$wp_customize->add_control(
-		'gw_account',
+		'ga_account',
 		array(
 			'type'        => 'text',
 			'label'       => 'Google Analytics Account',
