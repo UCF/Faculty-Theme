@@ -30,6 +30,7 @@
 }
 
 .site-title-primary {
+  @include no-font-smoothing();
   color: $text-color;
   font-size: 30px;
   font-weight: 300;

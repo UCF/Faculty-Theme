@@ -65,6 +65,7 @@ h5,
 .h5,
 h6,
 .h6 {
+  @include font-smoothing();
   font-family: $font-family-sans-serif;
 }
 
