@@ -1,0 +1,18 @@
+.faq {
+  padding: 14px 24px;
+}
+
+.faq-q {
+  font-size: 20px;
+  text-transform: none;
+}
+
+.faq-a {
+  font-size: 16px;
+
+  .ucf-gold {
+    font-family: $font-family-sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
