@@ -441,6 +441,23 @@
     }
   }
 
+  ul {
+    @include list-unstyled;
+    @include make-row;
+    margin-bottom: 0;
+  }
+}
+
+.open-position {
+  @extend .col-lg-2;
+  @extend .col-md-3;
+  @extend .col-sm-4;
+  @extend .col-xs-12;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 15px;
+
   a {
     background: url('../img/arrow-right.png') 100% 50% no-repeat;
     display: block;
@@ -451,45 +468,28 @@
       text-align: center;
     }
   }
+}
 
-  ul {
-    @include list-unstyled;
-    @include make-row;
-    margin-bottom: 0;
+.open-position-name,
+.open-position-college {
+  display: block;
+  padding-right: 20px; // space for arrow-right.png
 
-    li {
-      @extend .col-lg-2;
-      @extend .col-md-3;
-      @extend .col-sm-4;
-      @extend .col-xs-12;
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.2;
-      margin-bottom: 15px;
-    }
-
-    .field,
-    .college {
-      display: block;
-      padding-right: 20px; // space for arrow-right.png
-
-      @media (max-width: $screen-xs-max) {
-        padding-right: 0;
-      }
-    }
-
-    .field {
-      color: #383838;
-    }
-
-    .college {
-      color: $dark-gold;
-      font-size: 11px;
-      font-weight: 600;
-      margin-top: 2px;
-      text-transform: uppercase;
-    }
+  @media (max-width: $screen-xs-max) {
+    padding-right: 0;
   }
+}
+
+.open-position-name {
+  color: #383838;
+}
+
+.open-position-college {
+  color: $dark-gold;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 2px;
+  text-transform: uppercase;
 }
 
 

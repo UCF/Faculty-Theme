@@ -484,32 +484,44 @@ add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
 	$positions = [];
-	for ($i = 1; $i <= 6; $i++) {
+	for ( $i = 1; $i <= 6; $i++ ) {
 		$position = array(
-				'field'   => get_theme_mod( 'positions_listing_name_' . $i, ''),
-				'college' => get_theme_mod( 'positions_listing_college_' . $i, ''),
-				'link'    => get_theme_mod( 'positions_listing_link_' . $i, '')
+				'name'    => get_theme_mod( 'positions_listing_name_' . $i, '' ),
+				'college' => get_theme_mod( 'positions_listing_college_' . $i, '' ),
+				'link'    => get_theme_mod_or_default( 'positions_listing_link_' . $i, '' )
 		);
-		if ($position->name !== '') {
-			array_push($positions, $position);
+		if ( $position['name'] && $position['link'] ) {
+			array_push( $positions, $position );
 		}
 	}
 
 	ob_start();
-	?>
 
-	<h2>Open Positions In</h2>
-	<ul>
-	<?php
-		if ( $positions ) {
-			foreach ( $positions as $position ) {
-				echo '<li class="open-position"><a href="#"><span class="field">' . $position['field'] . '</span> ';
-				echo '<span class="college">' . $position['college'] . '</span></a></li>';
-			}
-		}
-	?>
-	</ul>
+	if ( $positions ):
+?>
+		<h2>Open Positions In</h2>
+		<ul>
+		<?php
+		if ( $positions ):
+			foreach ( $positions as $position ):
+		?>
+			<li class="open-position">
+				<a href="<?php echo $position['link']; ?>">
+					<span class="open-position-name"><?php echo $position['name']; ?></span>
+
+					<?php if ( $position['college'] ): ?>
+					<span class="open-position-college"><?php echo $position['college']; ?></span>
+					<?php endif; ?>
+				</a>
+			</li>
+		<?php
+			endforeach;
+		endif;
+		?>
+		</ul>
 <?php
+	endif;
+
 	return ob_get_clean();
 }
 add_shortcode( 'faculty_cluster-open-positions-list', 'sc_cluster_open_positions_list' );
