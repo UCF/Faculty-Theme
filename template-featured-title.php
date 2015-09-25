@@ -47,7 +47,7 @@ endif;
 
 	<article class="page-content">
 		<div class="container">
-			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
+			<?php echo do_shortcode( '[cluster-open-positions-list]' ); ?>
 			<?php the_content(); ?>
 		</div>
 	</article>

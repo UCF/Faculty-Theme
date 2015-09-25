@@ -29,7 +29,7 @@ if ( $featured_image ) {
 					</div>
 				</div>
 			</div>
-			<?php echo do_shortcode( '[faculty_cluster-open-positions-list]' ); ?>
+			<?php echo do_shortcode( '[cluster-open-positions-list]' ); ?>
 		</div>
 	</article>
 

@@ -107,8 +107,8 @@ function display_cta_btn( $url, $text, $classes='', $id='' ) {
  * Display's a Faculty Cluster's call-to-action button.
  **/
 function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
-	$text = get_post_meta( $post_id, 'faculty_cluster_cta_text', true );
-	$url = get_post_meta( $post_id, 'faculty_cluster_cta_url', true );
+	$text = get_post_meta( $post_id, 'cluster_cta_text', true );
+	$url = get_post_meta( $post_id, 'cluster_cta_url', true );
 
 	if ( !$text ) {
 		$text = 'Apply Now for Open Cluster Positions';

@@ -349,9 +349,9 @@ class FAQ extends CustomPostType {
 }
 
 
-class FacultyCluster extends CustomPostType {
+class Cluster extends CustomPostType {
 	public
-		$name           = 'faculty_cluster',
+		$name           = 'cluster',
 		$plural_name    = 'Faculty Clusters',
 		$singular_name  = 'Faculty Cluster',
 		$add_new_item   = 'Add New Faculty Cluster',
@@ -375,7 +375,7 @@ class FacultyCluster extends CustomPostType {
 
 	public static function get_leads( $cluster ) {
 		$lead_posts = array();
-		$leads = get_post_meta( $cluster->ID, 'faculty_cluster_leads' );
+		$leads = get_post_meta( $cluster->ID, 'cluster_leads' );
 		if ( $leads ) {
 			foreach ( $leads[0] as $post_id ) {
 				$lead_posts[] = get_post( intval( $post_id ) );
@@ -386,7 +386,7 @@ class FacultyCluster extends CustomPostType {
 
 	public static function get_contacts( $cluster ) {
 		$contact_posts = array();
-		$contacts = get_post_meta( $cluster->ID, 'faculty_cluster_contacts' );
+		$contacts = get_post_meta( $cluster->ID, 'cluster_contacts' );
 		if ( $contacts ) {
 			foreach ( $contacts[0] as $post_id ) {
 				$contact_posts[] = get_post( intval( $post_id ) );

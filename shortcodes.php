@@ -267,9 +267,9 @@ add_shortcode( 'post-type-search', 'sc_post_type_search' );
  * Displays a grid of Faculty Clusters with short descriptions and
  * links to more information and their positions.
  **/
-function sc_faculty_clusters_list( $attr, $content=null ) {
+function sc_clusters_list( $attr, $content=null ) {
 	$clusters = get_posts( array(
-		'post_type' => 'faculty_cluster',
+		'post_type' => 'cluster',
 		'posts_per_page' => -1
 	) );
 
@@ -285,9 +285,9 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 			$cluster_count = 0;
 			foreach ( $clusters as $post ):
 				$cluster_count++;
-				$cluster_leads = FacultyCluster::get_leads( $post );
-				$positions_url = get_post_meta( $post->ID, 'faculty_cluster_positions_url', true );
-				$short_description = get_post_meta( $post->ID, 'faculty_cluster_short_description', true );
+				$cluster_leads = Cluster::get_leads( $post );
+				$positions_url = get_post_meta( $post->ID, 'cluster_positions_url', true );
+				$short_description = get_post_meta( $post->ID, 'cluster_short_description', true );
 				if ( !$short_description ) {
 					$short_description = apply_filters( 'the_excerpt', $post->post_content );
 				}
@@ -346,7 +346,7 @@ function sc_faculty_clusters_list( $attr, $content=null ) {
 	<?php
 	return ob_get_clean();
 }
-add_shortcode( 'faculty_cluster-grid-list', 'sc_faculty_clusters_list' );
+add_shortcode( 'cluster-grid-list', 'sc_clusters_list' );
 
 
 /**
@@ -358,14 +358,14 @@ function sc_cluster_parallax( $attr, $content='' ) {
 	$attr = shortcode_atts( array(
 		'id' => null,
 		'slug' => null
-	), $attr, 'faculty_cluster-parallax' );
+	), $attr, 'cluster-parallax' );
 
 	if ( $attr['id'] ) {
 		$post = get_post( $attr['id'] );
 	}
 	else if ( $attr['slug'] ) {
 		$post = get_posts( array(
-			'post_type' => 'faculty_cluster',
+			'post_type' => 'cluster',
 			'posts_per_page' => 1,
 			'name' => $attr['slug']
 		) );
@@ -377,10 +377,10 @@ function sc_cluster_parallax( $attr, $content='' ) {
 	ob_start();
 
 	if ( $post ):
-		$img_id = get_post_meta( $post->ID, 'faculty_cluster_header_image', true );
+		$img_id = get_post_meta( $post->ID, 'cluster_header_image', true );
 		$img = wp_get_attachment_url( $img_id );
-		$cluster_leads = FacultyCluster::get_leads( $post );
-		$cluster_contacts = FacultyCluster::get_contacts( $post );
+		$cluster_leads = Cluster::get_leads( $post );
+		$cluster_contacts = Cluster::get_contacts( $post );
 	?>
 			</div> <!-- Close .container -->
 	<?php
@@ -397,7 +397,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<div class="row">
 							<div class="col-md-11 col-sm-11">
 								<div class="cluster-pl-desc">
-									<?php echo apply_filters( 'the_content', get_post_meta( $post->ID, 'faculty_cluster_short_description', true ) ); ?>
+									<?php echo apply_filters( 'the_content', get_post_meta( $post->ID, 'cluster_short_description', true ) ); ?>
 								</div>
 							</div>
 						</div>
@@ -457,7 +457,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 
 	return ob_get_clean();
 }
-add_shortcode( 'faculty_cluster-parallax', 'sc_cluster_parallax' );
+add_shortcode( 'cluster-parallax', 'sc_cluster_parallax' );
 
 
 /**
@@ -465,7 +465,7 @@ add_shortcode( 'faculty_cluster-parallax', 'sc_cluster_parallax' );
  **/
 function sc_cluster_parallax_list( $attr, $content='' ) {
 	$clusters = get_posts( array(
-		'post_type' => 'faculty_cluster',
+		'post_type' => 'cluster',
 		'posts_per_page' => -1
 	) );
 
@@ -481,7 +481,7 @@ function sc_cluster_parallax_list( $attr, $content='' ) {
 <?php
 	return ob_get_clean();
 }
-add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
+add_shortcode( 'cluster-parallax-list', 'sc_cluster_parallax_list' );
 
 
 /**
@@ -537,7 +537,7 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 
 	return ob_get_clean();
 }
-add_shortcode( 'faculty_cluster-open-positions-list', 'sc_cluster_open_positions_list' );
+add_shortcode( 'cluster-open-positions-list', 'sc_cluster_open_positions_list' );
 
 
 /**
