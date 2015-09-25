@@ -113,6 +113,10 @@
   }
 }
 
+.cluster-short-inner {
+  margin-top: 20px;
+}
+
 .cluster-short-desc,
 .cluster-short-inline-list {
   font-family: $font-family-sans-serif-alt;
@@ -142,7 +146,7 @@
 .cluster-short-buttons-container {
   @include background-2x('../img/gold-dots-horizontal.png', '../img/gold-dots-horizontal@2x.png', '', repeat-x, 12px, 5px);
   display: block;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   padding-top: 20px;
   white-space: nowrap;
 

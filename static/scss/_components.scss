@@ -117,8 +117,18 @@
     color: #7d7d7d;
     display: block;
     margin: 0 0 15px;
-    padding: 0 0 15px;
+    padding: 0 0 10px;
     text-transform: uppercase;
+  }
+
+  a:not(.btn) {
+    color: #7d7d7d;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #666;
+    }
   }
 }
 
@@ -129,7 +139,7 @@
   font-family: $font-family-sans-serif;
   font-weight: 300;
   margin: 0;
-  padding: 60px 0 45px;
+  padding: 45px 0;
 
   &.sans-serif-alt {
     font-family: $font-family-sans-serif-alt;
@@ -281,7 +291,6 @@
 }
 
 .faculty-profile-callout {
-
   @media (max-width: $screen-md-max) {
     background-position: 68% 0;
     height: 400px;
@@ -292,7 +301,6 @@
     height: auto;
     padding: 40px 0 30px;
   }
-
 
   blockquote {
     border: 0;
@@ -383,11 +391,11 @@
   font-family: $font-family-sans-serif-alt;
   font-size: 13px;
   line-height: 15px;
+  margin-bottom: 30px;
   padding: 28px;
   // Allow sidebars to be positioned over .parallax-container's
   position: relative;
   z-index: 4;
-  margin-bottom: 30px;
 
   .widget-title {
     @include background-2x('../img/gold-dots-horizontal.png', '../img/gold-dots-horizontal@2x.png', 0% 100%, repeat-x, 12px, 5px);
@@ -444,6 +452,7 @@
     }
   }
 }
+
 
 // Open Positions lists
 
@@ -521,6 +530,7 @@
 
 
 // Social Buttons
+
 .share-twitter,
 .share-facebook,
 .share-googleplus,
@@ -598,6 +608,47 @@
     font-size: 18px;
     font-style: normal;
     font-weight: bold;
+  }
+
+  + br {
+    // Attempt to fix WP autoformatting
+    display: none;
+  }
+}
+
+
+// Chevron links
+.chevron-link {
+  font-family: $font-family-sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  position: relative;
+
+  a {
+    color: inherit;
+    display: block;
+    padding: 0 0 0 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .glyphicon {
+    background-color: $ucf-gold;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 14px;
+    padding: 3px;
+    position: absolute;
+    top: -.1em;
+    z-index: 1;
+  }
+
+  &:hover,
+  &:focus {
+    .glyphicon {
+      background-color: $dark-gold;
+    }
   }
 
   + br {

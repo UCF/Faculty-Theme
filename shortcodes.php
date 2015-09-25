@@ -610,12 +610,23 @@ add_shortcode( 'callout', 'sc_callout' );
 
 
 /**
- *
+ * Wraps content inside of .featured-link div.  Used when displaying
+ * link + italicized description combinations, typically in right-hand col's.
  **/
 function sc_featured_link( $attr, $content='' ) {
 	return '<div class="featured-link">' . do_shortcode( $content ) . '</div>'; // use divs to work around WP autoformatting
 }
 add_shortcode( 'featured-link', 'sc_featured_link' );
+
+
+/**
+ * Wraps content inside of .chevron-link div.  Used when displaying links
+ * with arrow icons.
+ **/
+function sc_chevron_link( $attr, $content='' ) {
+	return '<div class="chevron-link"><span class="glyphicon glyphicon-chevron-right"></span>' . do_shortcode( $content ) . '</div>'; // use divs to work around WP autoformatting
+}
+add_shortcode( 'chevron-link', 'sc_chevron_link' );
 
 
 /**
@@ -728,6 +739,6 @@ add_shortcode( 'cta-btn', 'sc_cta_btn' );
  * Displays a Bootstrap .well.
  **/
 function sc_well( $attr, $content='' ) {
-	return '<div class="well">' . $content . '</div>';
+	return '<div class="well">' . do_shortcode( $content ) . '</div>';
 }
 add_shortcode( 'well', 'sc_well' );

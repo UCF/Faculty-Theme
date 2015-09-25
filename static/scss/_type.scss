@@ -6,11 +6,6 @@ body {
 
 
 // Try to make WP's auto-formatting behave
-
-p:empty {
-  display: none;
-}
-
 div > br:first-child,
 section > br:first-child,
 article > br:first-child,
