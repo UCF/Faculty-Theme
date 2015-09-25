@@ -169,6 +169,12 @@ function define_customizer_sections( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_section(
+		THEME_CUSTOMIZER_PREFIX . 'footer',
+		array(
+			'title' => 'Footer'
+		)
+	);
+	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'home_header',
 		array(
 			'title' => 'Home Page Header',
@@ -228,12 +234,6 @@ function define_customizer_sections( $wp_customize ) {
 			'title' => 'Web Fonts'
 		)
 	);
-	$wp_customize->add_section(
-		THEME_CUSTOMIZER_PREFIX . 'footer',
-		array(
-			'title' => 'Footer'
-		)
-	);
 
 	// Move 'Static Front Page' section to new 'Home Page' panel
 	$wp_customize->get_section( 'static_front_page' )->panel = THEME_CUSTOMIZER_PREFIX . 'home';
@@ -264,7 +264,7 @@ Config::$setting_defaults = array(
 	'news_url' => 'http://today.ucf.edu/feed/',
 	'enable_google' => 1,
 	'search_per_page' => 10,
-	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // TODO: update to use PROD css key
+	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // Main site css key
 );
 for ( $i = 1; $i <= 6; $i++ ) {
 	Config::$setting_defaults['positions_listing_link_' . $i] = 'http://jobswithucf.com';
@@ -314,6 +314,20 @@ function define_customizer_fields( $wp_customize ) {
 			'label'       => 'Secondary Header Text',
 			'description' => 'Larger text displayed within the site\'s primary title.',
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
+		)
+	);
+
+
+	// Footer
+	$wp_customize->add_setting(
+		'footer_description'
+	);
+	$wp_customize->add_control(
+		'footer_description',
+		array(
+			'type'        => 'textarea',
+			'label'       => 'Footer Description',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'footer'
 		)
 	);
 
@@ -606,19 +620,6 @@ function define_customizer_fields( $wp_customize ) {
 			'label'       => 'Facebook URL',
 			'description' => 'URL to the Facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/UCF</em>',
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'social'
-		)
-	);
-
-	// Footer
-	$wp_customize->add_setting(
-		'footer_description'
-	);
-	$wp_customize->add_control(
-		'footer_description',
-		array(
-			'type'        => 'textarea',
-			'label'       => 'Footer Description',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'footer'
 		)
 	);
 
