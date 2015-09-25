@@ -249,6 +249,10 @@ add_action( 'customize_register', 'define_customizer_sections' );
 Config::$setting_defaults = array(
 	'header_text_primary' => 'Faculty Jobs',
 	'header_text_secondary' => 'We\'re Hiring.',
+	'footer_description' => '<h3>About UCF</h3>
+<p>The University of Central Florida and its 12 colleges provide opportunities to 60,000 students from all 50 states and 140 countries. Located in Orlando, Florida, UCF is the nation’s second-largest university with 210 degree programs to choose from. UCF is ranked as one of the “Most Innovative” universities by U.S. News & World Report, a best-value university by The Princeton Review and Kiplinger’s, and one of the nation’s most affordable colleges by Forbes.</p>
+
+<p><a href="http://www.ucf.edu/about-ucf">Learn More About UCF…</a><br><br></p>',
 	'home_header_content' => '<div class="container">
 <div class="row">
 <div class="col-md-8 col-sm-8">
@@ -320,7 +324,10 @@ function define_customizer_fields( $wp_customize ) {
 
 	// Footer
 	$wp_customize->add_setting(
-		'footer_description'
+		'footer_description',
+		array(
+			'default'     => get_setting_default( 'footer_description' ),
+		)
 	);
 	$wp_customize->add_control(
 		'footer_description',
