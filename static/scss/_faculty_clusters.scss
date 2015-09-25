@@ -178,78 +178,15 @@
 }
 
 
-// Sidebar widget for displaying Faculty Clusters
+// Sidebar wrapper
 
-.faculty-cluster-sidebar-container {
+.sidebar-container {
   font-family: $font-family-sans-serif-alt;
-  margin-top: -20px;
-  padding: 28px;
+  margin-top: -40px;
+  padding-left: 30px;
 
   @media (max-width: $screen-sm-max) {
-    margin: 0;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  ul {
-    @include list-unstyled;
-    font-family: $font-family-sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px; // TODO: unitless value
-
-    @media (max-width: $screen-sm-max) {
-      font-size: 16px;
-      line-height: 24px; // TODO: unitless value
-    }
-  }
-
-  li {
-    margin-bottom: 7px;
-
-    a {
-      color: $ucf-gold;
-      text-decoration: underline;
-    }
-  }
-
-  .widget {
-    font-family: $font-family-sans-serif-alt;
-    margin-top: -20px;
-    padding: 28px;
-
-    @media (max-width: $screen-sm-max) {
-      margin: 0;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    ul {
-      @include list-unstyled;
-      font-family: $font-family-sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 16px; // TODO: unitless value
-
-      @media (max-width: $screen-sm-max) {
-        font-size: 16px;
-        line-height: 24px; // TODO: unitless value
-      }
-    }
-
-    li {
-      margin-bottom: 7px;
-
-      a {
-        color: $ucf-gold;
-        text-decoration: underline;
-      }
-    }
+    margin-top: 40px;
+    padding-left: 0;
   }
 }
