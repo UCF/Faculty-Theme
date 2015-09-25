@@ -722,3 +722,12 @@ function sc_cta_btn( $attr, $content='' ) {
 	return display_cta_btn( $attr['href'], $content, $attr['class'], $attr['id'] );
 }
 add_shortcode( 'cta-btn', 'sc_cta_btn' );
+
+
+/**
+ * Displays a Bootstrap .well.
+ **/
+function sc_well( $attr, $content='' ) {
+	return '<div class="well">' . $content . '</div>';
+}
+add_shortcode( 'well', 'sc_well' );

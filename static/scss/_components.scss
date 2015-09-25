@@ -103,6 +103,26 @@
 }
 
 
+// Well overrides
+.well {
+  @include box-shadow(inset 0 0 0 transparent);
+  border: 0 solid transparent;
+
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    @include background-2x('../img/gold-dots-horizontal.png', '../img/gold-dots-horizontal@2x.png', 0% 100%, repeat-x, 12px, 5px);
+    color: #7d7d7d;
+    display: block;
+    margin: 0 0 15px;
+    padding: 0 0 15px;
+    text-transform: uppercase;
+  }
+}
+
+
 // Custom callout classes
 
 .callout { //.cluster-overview

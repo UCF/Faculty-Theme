@@ -16,10 +16,6 @@ section > br:first-child,
 article > br:first-child,
 aside > br:first-child {
   display: none;
-
-  ~ br {
-    display: inline;
-  }
 }
 
 
