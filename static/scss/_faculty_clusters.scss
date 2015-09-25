@@ -50,6 +50,10 @@
   margin-top: -40px;
   position: relative;
   z-index: 4;
+
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0;
+  }
 }
 
 .cluster-pl-sidebar-title,
@@ -96,6 +100,10 @@
 .cluster-pl-desc,
 .cluster-pl-sidebar-list:last-child {
   margin-bottom: 70px;
+
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 30px;
+  }
 }
 
 
