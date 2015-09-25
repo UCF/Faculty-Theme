@@ -488,7 +488,7 @@ add_shortcode( 'faculty_cluster-parallax-list', 'sc_cluster_parallax_list' );
  * Displays a list of open positions.
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
-	$positions = [];
+	$positions = array();
 	for ( $i = 1; $i <= 6; $i++ ) {
 		$position = array(
 				'name'    => get_theme_mod( 'positions_listing_name_' . $i, '' ),
