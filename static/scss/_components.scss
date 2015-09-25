@@ -340,6 +340,23 @@
 }
 
 
+// Add vertical space between collapsed columns generated with
+// [column] shortcode.  Not perfect but should cover most cases
+
+.col + div:not([class*="col-sm-"]) {
+  @media (max-width: $screen-sm-max) {
+    margin-top: 40px;
+  }
+}
+
+.col + div:not([class*="col-xs-"]) {
+  @media (max-width: $screen-xs-max) {
+    margin-top: 30px;
+  }
+}
+
+
+
 // Add animations to dropdowns
 // Adapted from https://gist.github.com/orizens/4994397
 @include body-prefix(':not(.ie8)') {
