@@ -419,7 +419,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<?php endif; ?>
 
 						<?php if ( $cluster_contacts ): ?>
-						<h3 class="cluster-pl-sidebar-title">Cluster Contact<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h3>
+						<h3 class="cluster-pl-sidebar-title">Cluster Contact<?php if ( count( $cluster_contacts ) > 1 ): ?>s<?php endif; ?>:</h3>
 
 						<ul class="cluster-pl-sidebar-list">
 						<?php
