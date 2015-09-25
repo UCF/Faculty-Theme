@@ -68,14 +68,13 @@
     h1 {
       color: #fff;
       font-size: 6vw;
-      left: 50%;
       letter-spacing: -.02em;
       margin: 0 auto;
       padding: 0 $grid-gutter-width / 2;
       position: absolute;
       text-align: center;
       top: 40%;
-      transform: translate(-50%, -60%);
+      transform: translate(0, -60%);
       vertical-align: middle;
       width: 100%;
 
@@ -89,12 +88,19 @@
 
       @media (max-width: $screen-xs-max) {
         top: 30%;
-        transform: translate(-50%, -70%);
+        transform: translate(0, -70%);
       }
     }
   }
 
   .open-positions-container {
     margin-top: 0;
+  }
+
+  &.ie8 {
+    .parallax-content h1 {
+      font-size: 75px;
+      top: 30%;
+    }
   }
 }

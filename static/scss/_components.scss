@@ -327,11 +327,10 @@
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
-    margin-top: 0;
+    margin-top: 40px;
 
     @media (min-width: $screen-lg-min) {
       font-size: 22px;
-      margin-top: 40px;
     }
 
     strong {
