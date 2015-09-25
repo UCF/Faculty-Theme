@@ -86,6 +86,10 @@
     font-size: 30px;
     position: absolute;
 
+    @include body-prefix('.ie8') {
+      bottom: 0;
+    }
+
     @media (max-width: $screen-sm-max) {
       font-size: 26px;
     }

@@ -7,6 +7,12 @@
   position: relative;
 }
 
+.parallax-container {
+  @include body-prefix('.ie8') {
+    overflow: hidden;
+  }
+}
+
 .parallax-container-inner {
   bottom: 0;
   left: 0;
@@ -15,6 +21,14 @@
   right: 0;
   top: 0;
   z-index: 1;
+
+  @include body-prefix('.ie8') {
+    display: table;
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+  }
 }
 
 .parallax {
@@ -27,6 +41,11 @@
   right: 0;
   top: 0;
   z-index: -1;
+
+  @include body-prefix('.ie8') {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
   img {
     bottom: 0;
@@ -43,6 +62,15 @@
 
     &.visible {
       display: block;
+    }
+
+    @include body-prefix('.ie8') {
+      bottom: auto;
+      display: block;
+      left: auto;
+      margin: 0 auto;
+      max-width: none;
+      position: relative;
     }
   }
 }
