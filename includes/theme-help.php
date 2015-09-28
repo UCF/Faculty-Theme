@@ -459,8 +459,6 @@
 
 				<li class="section" id="shortcodes">
 					<h2>Shortcodes</h2>
-
-          <h2>Shortcodes</h2>
           <p>
             <strong>Shortcodes</strong>, in a nutshell, are <em>shortcuts</em> for displaying or doing various things.  They look like small snippets of code,
             wrapped in square brackets [], but using them requires no knowledge of HTML, CSS, or other code languages.
