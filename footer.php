@@ -1,6 +1,4 @@
-<?php
-	$footer_description = get_theme_mod( 'footer_description', '' );
-?>
+<?php $footer_description = get_theme_mod_or_default( 'footer_description' ); ?>
 
 		<footer class="site-footer">
 			<div class="footer-stripe">
@@ -13,10 +11,10 @@
 						</div>
 						<div class="col-md-6 col-md-offset-1">
 							<h3>Colleges</h3>
-							<?=wp_nav_menu(array(
+							<?php echo wp_nav_menu( array(
 								'theme_location' => 'ucf-colleges',
 								'container' => 'false'
-								));
+							) );
 							?>
 						</div>
 					</div>
