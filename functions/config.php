@@ -23,6 +23,16 @@ function __init__() {
 	register_nav_menu( 'ucf-colleges' , __( 'UCF Colleges' ));
 
 	register_sidebar( array(
+		'name'          => __( 'Open Positions' ),
+		'id'            => 'open_positions',
+		'description'   => 'Area on home page that displays open positions.',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
+
+	register_sidebar( array(
 		'name'          => __( 'Sidebar' ),
 		'id'            => 'sidebar',
 		'description'   => 'Sidebar found on two column page templates and search pages.',
