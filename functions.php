@@ -203,7 +203,7 @@ class OpenPosition_Widget extends WP_Widget {
 	 **/
 	public function form( $instance ) {
 		$position_name = ( $instance['name'] ) ? $instance['name'] : __( 'Position Name' );
-		$position_url  = ( $instance['url'] ) ? $instance['url'] : __( 'Position Url' );
+		$position_url  = ( $instance['url'] ) ? $instance['url'] : __( 'https://www.jobswithucf.com/' );
 		$college       = ( $instance['college'] ) ? $instance['college'] : __( 'College Name' );
 		?>
 		<p>
@@ -230,7 +230,7 @@ class OpenPosition_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['name'] = ( ! empty( $new_instance['name'] ) ) ? strip_tags( $new_instance['name'] ) : '';
-		$instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
+		$instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : 'https://www.jobswithucf.com/';
 		$instance['college'] = ( ! empty( $new_instance['college'] ) ) ? strip_tags( $new_instance['college'] ) : '';
 
 		return $instance;
