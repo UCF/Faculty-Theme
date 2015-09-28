@@ -1,24 +1,278 @@
 <?php global $shortcode_tags; ?>
 <div id="theme-help" class="i-am-a-fancy-admin">
 	<div class="container">
-		<h2>Help</h2>
+		<h1>Help</h1>
 
 		<div class="sections">
 			<ul>
-				<li class="section"><a href="#posting">Posting</a></li>
+				<li class="section"><a href="#intro">Intro</a></li>
+				<li class="section"><a href="#people">People</a></li>
+				<li class="section"><a href="#faqs">FAQs</a></li>
+				<li class="section"><a href="#clusters">Faculty Clusters</a></li>
 				<li class="section"><a href="#shortcodes">Shortcodes</a></li>
 			</ul>
 		</div>
 		<div class="fields">
 			<ul>
 
-				<li class="section" id="posting">
-					<h3>Posting</h3>
-					<p>Posting is fun, do it.</p>
+				<li class="section" id="intro">
+					<h2>Intro</h2>
+					<p>
+						The goal of the help section is to familiarize yourself with the Faculty website and the
+						different types of content that can be created.
+					</p>
+					<br>
+
+					<h3>Before getting started:</h3>
+					<p>
+						Keep in mind that this help section assumes a basic working knowledge of the WordPress admin interface.
+						If you are unfamiliar with WordPress, please
+						<a href="http://code.tutsplus.com/series/wp101-basix-training--wp-20968" target="_blank">check out a few tutorials</a>
+						before getting started.
+					</p>
+
+					<h3>Content Types</h3>
+					<p>In addition to WordPress's built in Post and Page post types, the following custom post types are available:</p>
+					<dl>
+						<dt><a href="#people">People</a></dt>
+						<dd>Describes individual people</dd>
+						<dd>Can be associated with Faculty Clusters (as a cluster's Lead or Contact person)</dd>
+						<dt><a href="#faqs">FAQs</a></dt>
+						<dd>A simple Question + Answer post type</dd>
+						<dd>Generally should only be displayed via shortcode on Pages</dd>
+						<dt><a href="#clusters">Faculty Clusters</a></dt>
+						<dd>Describes an individual cluster</dd>
+					</dl>
+					<p>Custom post types differ from Posts and Pages by allowing us to define custom values relevant to those post types.</p>
+				</li>
+
+				<li class="section" id="people">
+					<h2>People</h2>
+					<p>
+						The Person post type is used to describe individual people.  When adding any data to the site directly related to
+						a person, a new Person post should be created to avoid adding and needing to maintain duplicate content,
+					</p>
+					<p>
+						See the chart below for information about how a Person's post contents and custom fields are used.
+					</p>
+					<table>
+						<tr>
+							<th scope="col">Field Name</th>
+							<th scope="col">Notes</th>
+							<th scope="col">Examples</th>
+						</tr>
+						<tr>
+							<td>Post Title</td>
+							<td>
+								The actual title of the Person post.  The title is combined with the Title Prefix and Suffix when the
+								Person's name is displayed on the site frontend, so prefixes and suffixes should not be included in
+								this field.
+							</td>
+							<td>John Doe</td>
+						</tr>
+						<tr>
+							<td>Post Content</td>
+							<td>Displayed when viewing a full Person on the frontend.  Is not displayed when displaying lists of people.</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Title Prefix</td>
+							<td>
+								A prefix to the Person's name.  Added to the beginning of the Person's post title when the Person's
+								name is displayed on the site frontend.
+							</td>
+							<td>Dr., Mr., etc</td>
+						</tr>
+						<tr>
+							<td>Title Suffix</td>
+							<td>
+								A suffix to the Person's name.  Appended to the end of the Person's post title when the Person's name
+								is displayed on the site frontend.
+							</td>
+							<td>, Ph.D.</td>
+						</tr>
+						<tr>
+							<td>Job Title</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Phone</td>
+							<td>
+								One or more phone numbers for contacting the Person.  Phone numbers are listed next to a Person's name
+								when displayed on the frontend as clickable links for visitors with the ability to make calls from their
+								browser.
+							</td>
+							<td>(555) 555-5555,(555) 555-5555</td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td>
+								An email address for contacting the Person.  Is listed next to a Person's name when displayed on the
+								frontend as a clickable link, which opens the visitor's email client and starts a new message.
+							</td>
+							<td>john.doe@ucf.edu</td>
+						</tr>
+						<tr>
+							<td>Order By Name</td>
+							<td>
+								This value is used when displaying lists of People on the site frontend to determine sort order.
+								<br>
+								<strong>This value is required</strong>; People will not be available as Cluster Lead or Cluster
+								Contact options for the	Faculty Cluster post type if this value is blank!
+							</td>
+							<td>Doe</td>
+						</tr>
+					</table>
+
+				</li>
+
+				<li class="section" id="faqs">
+					<h2>FAQs</h2>
+					<p>
+						The FAQ post type is used to define any question and answer combination.  It exists as a post type to
+						allow content editors to use FAQs in multiple pages without needing to add/maintain duplicate content.
+					</p>
+					<p>
+						See the chart below for information about how an FAQ's post contents are used.
+					</p>
+					<table>
+						<tr>
+							<th scope="col">Field Name</th>
+							<th scope="col">Notes</th>
+							<th scope="col">Examples</th>
+						</tr>
+						<tr>
+							<td>Post Title</td>
+							<td>The FAQ's question.</td>
+							<td>Where are the bathrooms?</td>
+						</tr>
+						<tr>
+							<td>Post Content</td>
+							<td>
+								The FAQ's answer.
+								<br>
+								<strong>FAQ post content should not contain callout or grid-related
+								shortcodes.</strong>
+							</th>
+							<td>The bathrooms are located down the hall.</td>
+						</tr>
+					</table>
+				</li>
+
+				<li class="section" id="clusters">
+					<h2>Faculty Clusters</h2>
+					<p>
+						The Cluster post type is used to describe individual faculty clusters.
+					</p>
+					<p>
+						See the chart below for information about how a Cluster's post contents and custom fields are used.
+					</p>
+					<table>
+						<tr>
+							<th scope="col">Field Name</th>
+							<th scope="col">Notes</th>
+							<th scope="col">Examples</th>
+						</tr>
+						<tr>
+							<td>Post Title</td>
+							<td>The name of the cluster.</td>
+							<td>Sustainable Energy Systems</td>
+						</tr>
+						<tr>
+							<td>Post Content</td>
+							<td>
+								Displayed when viewing a full Cluster on the frontend.
+								<br>
+								If post content is available but the Short Description field is empty, an abbreviated version
+								of the post content value will be used where the Short Description is displayed.
+							</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Stylesheet</td>
+							<td>
+								A CSS file for per-cluster style modifications.  Only loaded when viewing a full Cluster on the
+								frontend.
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Header Image</td>
+							<td>
+								Displayed when this Cluster is called via the [cluster-parallax] or [cluster-parallax-list] shortcodes.
+								<br><br>
+								Make sure to test these images after uploading them--the focal point of the image should be arranged so
+								that important features (such as faces) should not be cropped out by the parallax effect.
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Short Description</td>
+							<td>
+								Displayed when called by shortcodes that display small Cluster snippets, such as [cluster-parallax] and
+								[cluster-grid-list].
+								<br>
+								If this value is not set, an abbreviated version of the post content is used instead.
+								<br><br>
+								<strong>Short Descriptions should not contain callout or grid-related shortcodes.</strong>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Cluster Leads</td>
+							<td>
+								One or more People that serve as the lead(s) of the Cluster.
+								<br>
+								When these People are selected, their names will be displayed where Clusters are listed on the site
+								frontend.
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Cluster Contacts</td>
+							<td>
+								One or more People that serve as the contacts(s) of the Cluster.
+								<br>
+								When these People are selected, their names and contact information will be displayed where the
+								[cluster-parallax] and [cluster-parallax-list] shortcodes are called.
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>List of Positions URL</td>
+							<td>
+								Shortcodes that display Clusters will display a button that links to this URL.
+							</td>
+							<td>https://www.jobswithucf.com/</td>
+						</tr>
+						<tr>
+							<td>CTA Text</td>
+							<td>
+								Text/HTML content displayed inside the large gold button displayed next to a Cluster's name where
+								the [cluster-parallax] and [cluster-parallax-list] shortcodes are called.
+								<br><br>
+								To split the button's contents with a vertical divider, use the .btn-cta-left and .btn-cta-right
+								classes on &lt;span&gt; tags wrapped around the button's text.
+							</td>
+							<td><code>&lt;span class="btn-cta-left"&gt;Apply Now&lt;/span&gt;
+&lt;span class="sr-only"&gt; for &lt;/span&gt;
+&lt;span class="btn-cta-right"&gt;Open Cluster Positions&lt;/span&gt;</code></td>
+						</tr>
+						<tr>
+							<td>CTA URL</td>
+							<td>
+								The URL used when linking to the Cluster's call-to-action button (the large gold button displayed
+								next to the Cluster's name where the [cluster-parallax] and [cluster-parallax-list] shortcodes
+								are called.)
+							</td>
+							<td></td>
+						</tr>
+					</table>
 				</li>
 
 				<li class="section" id="shortcodes">
-					<h3>Shortcodes</h3>
+					<h2>Shortcodes</h2>
 
 					<?php if (isset($shortcode_tags['slideshow'])) { ?>
 
