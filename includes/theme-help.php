@@ -9,6 +9,7 @@
 				<li class="section"><a href="#people">People</a></li>
 				<li class="section"><a href="#faqs">FAQs</a></li>
 				<li class="section"><a href="#clusters">Faculty Clusters</a></li>
+				<li class="section"><a href="#editing">Editing Content and Settings</a></li>
 				<li class="section"><a href="#shortcodes">Shortcodes</a></li>
 			</ul>
 		</div>
@@ -21,6 +22,7 @@
 						The goal of the help section is to familiarize yourself with the Faculty website and the
 						different types of content that can be created.
 					</p>
+
 					<br>
 
 					<h3>Before getting started:</h3>
@@ -30,6 +32,8 @@
 						<a href="http://code.tutsplus.com/series/wp101-basix-training--wp-20968" target="_blank">check out a few tutorials</a>
 						before getting started.
 					</p>
+
+					<br>
 
 					<h3>Content Types</h3>
 					<p>In addition to WordPress's built in Post and Page post types, the following custom post types are available:</p>
@@ -269,6 +273,188 @@
 							<td></td>
 						</tr>
 					</table>
+				</li>
+
+				<li class="section" id="editing">
+					<h2>Editing Content and Settings</h2>
+					<p>
+						In this theme, site content can be modified by modifying Pages, modifying other custom post types, or by
+						editing options in the WordPress Customizer.
+					</p>
+
+					<br>
+
+					<h3>About Content in Pages</h3>
+					<p>
+						Most site content will be edited via Pages.  The home page and subpages are all Pages in Wordpress.  These
+						pages can reference other content types via <a href="#shortcodes">shortcodes</a>, or small snippets that
+						do some function or add some predefined content where they're placed in the visual editor.  See the Help
+						section on shortcodes for available shortcodes and how to use them.
+					</p>
+					<p>
+						As an example, you might create a new Frequently Asked Questions page whose content uses the [faq-list]
+						shortcode to display a list of all the published FAQ posts.
+					</p>
+
+					<br>
+
+					<h3>About Customizer Options</h3>
+					<p>
+						Some parts of the site can only be edited via options in the Customizer, a built-in WordPress tool that
+						displays a live preview of your site with editing options.
+					</p>
+					<p>
+						To access the Customizer, when logged in to the WordPress admin, hover over "Appearance" in the left-hand menu
+						and click "Customize".  Alternatively, if you are logged in and viewing the site frontend, you can click the
+						"Customize" link in the top admin toolbar.
+					</p>
+					<p>
+						Options in the Customizer are separated in labeled groups and should be fairly straightforward.
+					</p>
+
+					<br>
+
+					<h3>Editing the Header and Footer</h3>
+					<p>
+						This theme uses Customizer options and menus to display the site's header (primary navigation and site title)
+						and footer (About UCF/Colleges List, primary nav, social nav and contact information).
+					</p>
+
+					<h4>Header - Navigation</h4>
+					<p>
+						The top navigation (from ucf.edu) is a menu, which can be edited from the Customizer (Menus > [menu currently
+						set to 'header-menu']).
+					</p>
+					<p>
+						A different menu can be used here by modifying the menu assigned to the Header Menu menu location (Menu >
+						Menu Locations > Header Menu).
+					</p>
+
+					<h4>Header - Site Title</h4>
+					<p>
+						The large site title ("Faculty Jobs | We're Hiring.") can be edited in the Customizer (Header > Primary
+						Header Text and Secondary Header Text).
+					</p>
+					<p>
+						Keep in mind that the site title is displayed larger on the front page than on other pages.
+					</p>
+
+					<h4>Footer - About UCF</h4>
+					<p>
+						The "About UCF" section in the footer can be modified from the Customizer (Footer > Footer Description).
+					</p>
+
+					<h4>Footer - Colleges</h4>
+					<p>
+						The Colleges section in the footer is a menu, which can be edited from the Customizer (Menus > [menu currently
+						set to 'ucf-colleges']).
+					</p>
+					<p>
+						A different menu can be used here by modifying the menu assigned to the UCF Colleges menu location (Menu >
+						Menu Locations > UCF Colleges).
+					</p>
+
+					<h4>Footer - Navigation</h4>
+					<p>
+						The bottom navigation in the footer (from ucf.edu) is a menu, which can be edited from the Customizer
+						(Menus > [menu currently set to 'footer-menu']).
+					</p>
+					<p>
+						A different menu can be used here by modifying the menu assigned to the Footer Menu menu location (Menu >
+						Menu Locations > Footer Menu).
+					</p>
+
+					<h4>Footer - Social Icons</h4>
+					<p>
+						The social icon list (from ucf.edu) is a menu, which can be edited from the Customizer
+						(Menus > [menu currently set to 'social-menu']).
+					</p>
+					<p>
+						A different menu can be used here by modifying the menu assigned to the Social Icons Menu menu location
+						(Menu > Menu Locations > Social Icons Menu).
+					</p>
+
+					<h4>Footer - Contact Information</h4>
+					<p>
+						The contact information at the bottom of the footer is not editable.
+					</p>
+
+
+					<br>
+
+					<h3>Editing the Home Page</h3>
+					<p>
+						This theme uses a combination of Page content and Customizer options to display the home page.
+					</p>
+
+					<h4>Header Image</h4>
+					<p>
+						The header image on the home page is the Featured Image of the Page that is set as the Front Page.
+						You can change the current Front Page from the Customizer (Home Page > Static Front Page > Front Page;
+						make sure "Front Page Displays" is set to "A static page".)
+					</p>
+					<p>
+						Note: the Front Page requires a Featured Image to be set to display a header image.  If a Featured Image
+						is not set on the Front Page, the home page header (including the Home Page Header Content and Home Page
+						Header CTA button) <strong>will not display.</strong>
+					</p>
+
+					<h4>Header Image Contents</h4>
+					<p>
+						The content and large gold button inside the header image area can be edited from the Customizer
+						(Home Page > Home Page Header).
+					</p>
+
+					<h4>Everything Else</h4>
+					<p>
+						All other contents on the home page are pulled from the post content of the page set as the Front Page.
+					</p>
+					<p>
+						Stylized sections on the home page can be created using combinations of callout boxes, rows/columns, and wells.
+					</p>
+					<p>
+						See the <a href="#shortcodes">Shortcodes</a> section of Theme Help for more information about using
+						these components.
+					</p>
+
+					<br>
+
+					<h3>Editing Sidebars</h3>
+					<p>
+						Sidebars are reuseable sections that consist of widgets, or customizable drag-and-drop components.  In
+						this theme, there are two sidebars:  "Open Position" and "Sidebar".  Despite the naming convention, only
+						"Sidebar" is displayed on the frontend as an actual floating sidebar.
+					</p>
+
+					<h4>Open Positions</h4>
+					<p>
+						The Open Positions list will always display immediately below the Front Page header image, and above
+						the footer on subpages.  Its contents can be edited from the Widget editor in the Customizer
+						(Widgets > Open Positions).
+					</p>
+					<p>
+						The Open Positions widget section is designed to display Open Position widgets.  Technically, other
+						widgets can be added, but are not supported.
+					</p>
+					<p>
+						Open Positions can be re-ordered by dragging and dropping Open Position widgets within the editor.
+					</p>
+					<p>
+						The theme is designed to display up to 6 open position widgets.
+					</p>
+					<p>
+						Keep in mind that Open Position lists can be included in other post content arbitrarily using the
+						[cluster-open-positions-list] shortcode.
+					</p>
+
+					<h4>Sidebar</h4>
+					<p>
+						The sidebar named "Sidebar" is displayed only on Pages that use the "With Faculty Cluster Sidebar" template.
+					</p>
+					<p>
+						It is intended to display a brief description and list of faculty clusters (using the Text widget),
+						but can support some other widgets.
+					</p>
 				</li>
 
 				<li class="section" id="shortcodes">
