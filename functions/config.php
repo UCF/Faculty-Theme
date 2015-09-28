@@ -212,12 +212,6 @@ function define_customizer_sections( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_section(
-		THEME_CUSTOMIZER_PREFIX . 'contact_info',
-		array(
-			'title' => 'Contact Information'
-		)
-	);
-	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'social',
 		array(
 			'title' => 'Social Media'
@@ -416,7 +410,7 @@ function define_customizer_fields( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-		'news_max_items',
+		'events_max_items',
 		array(
 			'type'        => 'select',
 			'label'       => 'Events Max Items',
@@ -439,7 +433,7 @@ function define_customizer_fields( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-		'news_url',
+		'events_url',
 		array(
 			'type'        => 'text',
 			'label'       => 'Events Calendar URL',
@@ -539,21 +533,6 @@ function define_customizer_fields( $wp_customize ) {
 				'max'  => 50,
 				'step' => 1
 			)
-		)
-	);
-
-
-	// Contact Info
-	$wp_customize->add_setting(
-		'site_contact'
-	);
-	$wp_customize->add_control(
-		'site_contact',
-		array(
-			'type'        => 'email',
-			'label'       => 'Contact Email',
-			'description' => 'Contact email address that visitors to your site can use to contact you.',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'contact_info'
 		)
 	);
 
