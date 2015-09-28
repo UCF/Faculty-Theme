@@ -20,54 +20,499 @@
 				<li class="section" id="shortcodes">
 					<h3>Shortcodes</h3>
 
-					<?php if (isset($shortcode_tags['slideshow'])) { ?>
+          <h2>Shortcodes</h2>
+          <p>
+            <strong>Shortcodes</strong>, in a nutshell, are <em>shortcuts</em> for displaying or doing various things.  They look like small snippets of code,
+            wrapped in square brackets [], but using them requires no knowledge of HTML, CSS, or other code languages.
+          </p>
 
-					<h4>slideshow</h4>
-					<p>Create a javascript slideshow of each top level element in the shortcode.  All attributes are optional, but may default to less than ideal values.  Available attributes:</p>
-					<table>
-						<tr>
-							<th scope="col">Name</th>
-							<th scope="col">Description</th>
-							<th scope="col">Default Value</th>
-						</tr>
-						<tr>
-							<td>height</td>
-							<td>CSS height of the outputted slideshow</td>
-							<td>100px</td>
-						</tr>
-						<tr>
-							<td>width</td>
-							<td>CSS width of the outputted slideshow</th>
-							<td>100%</td>
-						</tr>
-						<tr>
-							<td>transition</td>
-							<td>Length of transition in milliseconds</td>
-							<td>1000</td>
-						</tr>
-						<tr>
-							<td>cycle</td>
-							<td>Length of each cycle in milliseconds</td>
-							<td>5000</td>
-						</tr>
-						<tr>
-							<td>animation</td>
-							<td>The animation type, one of: 'slide' or 'fade'</td>
-							<td>slide</td>
-						</tr>
-					</table>
-					<p>Example:
-<pre><code>[slideshow height="500px" transition="500" cycle="2000"]
-&lt;img src="http://some.image.com" .../&gt;
-&lt;div class="robots"&gt;Robots are coming!&lt;/div&gt;
-&lt;p&gt;I'm a slide!&lt;/p&gt;
-[/slideshow]</code></pre>
+          <p><strong>Navigation:</strong></p>
+          <ul class="section-nav">
+            <li>
+              <a href="#shortcodes-basics">Shortcode Basics</a>
+            </li>
+            <li>
+              <a href="#shortcodes-blockquote">Blockquote</a>
+            </li>
+            <li>
+              <a href="#shortcodes-callout">Callout</a>
+            </li>
+            <li>
+              <a href="#shortcodes-clearfix">Clearfix</a>
+            </li>
+            <li>
+              <a href="#shortcodes-chevron-link">Chevron Link</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cluster-grid-list">Cluster Grid List</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cluster-list">Cluster List</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cluster-open-positions-list">Cluster Open Positions List</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cluster-parallax">Cluster Parallax</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cluster-parallax-list">Cluster Parallax List</a>
+            </li>
+            <li>
+              <a href="#shortcodes-column">Column</a>
+            </li>
+            <li>
+              <a href="#shortcodes-cta-button">CTA Button</a>
+            </li>
+            <li>
+              <a href="#shortcodes-faq-list">FAQ List</a>
+            </li>
+            <li>
+              <a href="#shortcodes-featured-link">Featured Link</a>
+            </li>
+            <li>
+              <a href="#shortcodes-well">Well</a>
+            </li>
+            <li>
+              <a href="#shortcodes-post-type-list">(post type)-list</a>
+            </li>
+          </ul>
 
-					<?php } ?>
+          <hr/>
+          <br/>
 
+          <h3 id="shortcodes-basics">Shortcode Basics</h3>
 
+          <p>
+            When a shortcode is added to post content, it will be displayed in the editor as a code snippet, but when you view the post as a preview or live post,
+            you will see the output of what the shortcode is programmed to do, with the <strong>content</strong> and <strong>attributes</strong> you provide.
+          </p>
+          <p>
+            The shortcodes listed below have a <strong>starting tag</strong> ([my-shortcode]) and an <strong>ending tag</strong> ([/my-shortcode]).  Depending on
+            the shortcode used, such as the [lead] and [blockquote] shortcodes, <strong>content</strong> between the starting and ending tags is used.  Other
+            shortcodes, like the [slideshow] shortcode, do not use any content between the starting and ending tags.
+          </p>
+          <p>
+            Some shortcodes use <strong>attributes</strong> to define extra options for whatever the given shortcode does.  For example, the [callout] and [sidebar]
+            shortcodes have a "background" attribute, which lets you set a custom background color for the callout box or sidebar.
+          </p>
 
-					<h4>(post type)-list</h4>
+          <p>
+            The custom available shortcodes for this site, as well as their available attributes and examples, are listed below.  For information about adding
+            shortcodes to post content, please visit the Adding Content via Shortcodes section of the <a href="#stories">Story documentation</a>.
+          </p>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-blockquote">Blockquote</h3>
+          <p>
+            Creates a stylized blockquote.  Text in the blockquote is large Georgia italic.
+          </p>
+          <p>
+            If a <strong>source</strong> attribute is provided, the blockquote will be styled with oversized starting and ending quotation marks.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>requires content</strong> between its starting and ending tags.<br/>
+            Only a <strong>single line of text</strong> (no line breaks or new paragraphs) is permitted between the shortcode tags.<br/>
+            When used in a story, the Default Template Header Font Color is used for the color of the main quote, unless a Text Color attribute
+            is specified.
+          </p>
+
+          <h4>Attributes</h4>
+          <table>
+            <tr>
+              <th scope="col">Name</th>
+              <th scrop="col">Attribute</th>
+              <th scope="col">Description</th>
+              <th scope="col">Default Value</th>
+            </tr>
+            <tr>
+              <td>Source</td>
+              <td>source</td>
+              <td>Who said the quote. (optional)</td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td>Cite</td>
+              <td>cite</td>
+              <td>Citing of where the quote came from. (optional)</td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td>Text Color</td>
+              <td>color</td>
+              <td>The color of the blockquote text, source and cite. (optional)</td>
+              <td>#000 (source/cite: #444)</td>
+            </tr>
+          </table>
+
+          <h4>Examples</h4>
+          <pre><code>[blockquote]Powerful quote of the day.[/blockquote]</code></pre>
+          <pre><code>[blockquote source="Jane Doe" cite="Some Cool Book"]Powerful quote of the day.[/blockquote]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-callout">Callout</h3>
+          <p>
+            Creates a full-width box that breaks out of the primary content column to help text or other content stand out.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>requires content</strong> between its starting and ending tags.<br/>
+            <strong>Any text, media or other shortcodes</strong> are permitted between the shortcode tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <table>
+            <tr>
+              <th scope="col">Name</th>
+              <th scrop="col">Attribute</th>
+              <th scope="col">Description</th>
+              <th scope="col">Default Value</th>
+            </tr>
+            <tr>
+              <td>Background Color</td>
+              <td>background</td>
+              <td>The color to be used for the background of the callout box.</td>
+              <td>#f0f0f0</td>
+            </tr>
+            <tr>
+              <td>Content Alignment</td>
+              <td>content_align</td>
+              <td>Content text can be aligned left, right or center.</td>
+              <td>center</td>
+            </tr>
+          </table>
+
+          <h4>Examples</h4>
+          <pre><code>[callout background="#e1e1e1"][blockquote]Very very powerful quote![/blockquote][/callout]</code></pre>
+          <pre><code>[callout content_align="right"]&lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;[/callout]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-clearfix">Clearfix</h3>
+          <p>
+            Inserts a hidden element which clears floats above and below where the shortcode is inserted.
+          </p>
+          <p>
+            Use this shortcode to force a chunk of story contents to fall underneath an aligned photo or
+            sidebar (instead of being aligned to the left/right of the photo or sidebar).
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[sidebar position="right"]Long sidebar contents here...[/sidebar]
+
+Contents that are shorter than the sidebar here.  This text is aligned next to the sidebar.
+
+[clearfix][/clearfix]
+
+The contents under this shortcode will now span the full width of the story's available space,
+and fall *under* the sidebar, instead of next to it.
+</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-chevron-link">Chevron Link</h3>
+          <p>
+            Inserts an arrow icon to the left of link text.
+          </p>
+          <p>
+            Use this shortcode to add an arrow icon to the left of a link.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>requires content</strong> between its starting and ending tags.<br/>
+            Only a <strong>single line of text</strong> (no line breaks or new paragraphs) is permitted between the shortcode tags.<br/>
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[chevron-link]&lt;a href="http://wordpress.org"&gt;some link text here...&lt;/a&gt;[/chevron-link]
+
+[chevron-link]<a href="http://wordpress.org">some link text here...</a>[/chevron-link]</code></pre>
+
+          <hr/>
+
+          <h3 id="shortcodes-cluster-grid-list">Cluster Grid List</h3>
+          <p>
+            Displays short description for all Faculty Clusters in a 3-column-per-row grid layout.
+          </p>
+          <p>
+            Use this shortcode to display a preview of all Faculty Clusters. If the short description field for the Faculty Cluster is not filled out, the excerpt (the first 55 words of the post) will be used.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[cluster-grid-list]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-cluster-list">Cluster List</h3>
+          <p>
+           Displays a list of links to each of the Faculty Clusters.
+          </p>
+          <p>
+            Use this shortcode to display a list of links for all Faculty Clusters.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[cluster-list]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-cluster-open-positions-list">Cluster Open Positions List</h3>
+          <p>
+           Displays a list of links to each of the Open Positions in horizontal layout.
+          </p>
+          <p>
+            Use this shortcode to display a list of Open Positions (job listings). Open Positions are defined in the Open Positions widget.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[cluster-open-positions-list]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-cluster-parallax">Cluster Parallax</h3>
+          <p>
+           Displays all Faculty Clusters with parallax header images and short descriptions.
+          </p>
+          <p>
+            Use this shortcode to display a large preview of an individual Faculty Cluster. The preview utilizes the full width of the page and lists the Cluster lead(s) and Cluster point(s) of contact. Cluster can be <a href="#shortcodes-cluster-parallax_attributes">specified by ID or by slug</a>
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4 id="shortcodes-cluster-parallax_attributes">Attributes</h4>
+          <table>
+            <tr>
+              <th scope="col">Name</th>
+              <th scrop="col">Attribute</th>
+              <th scope="col">Description</th>
+              <th scope="col">Default Value</th>
+            </tr>
+            <tr>
+              <td>Faculty Cluster Name</td>
+              <td>slug</td>
+              <td>The slug of the Faculty Cluster to be displayed.</td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td>Faculty Cluster ID</td>
+              <td>id</td>
+              <td>The id of the Faculty Cluster to be displayed.</td>
+              <td>n/a</td>
+            </tr>
+          </table>
+
+          <h4>Examples</h4>
+          <pre><code>[cluster-parallax]</code></pre>
+
+          <hr/>
+
+          <h3 id="shortcodes-cluster-parallax-list">Cluster Parallax List</h3>
+          <p>
+           Displays all Faculty Clusters with parallax header images and short descriptions.
+          </p>
+          <p>
+            Use this shortcode to display a list of large previews of Faculty Clusters. The previews utilize the full width of the page and lists the Cluster lead(s) and Cluster point(s) of contact. To list a single Faculty Cluster, use <a href="">[cluster-parallax]</a>.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[cluster-parallax-list]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-cta-button">CTA Button</h3>
+          <p>
+           Creates a link in the form of a button with a customizable call to action label.
+          </p>
+          <p>
+            Use this shortcode to display a custom call to action button, with a custom click-through link and/or a custom label.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>accepts optional content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <table>
+            <tr>
+              <th scope="col">Name</th>
+              <th scrop="col">Attribute</th>
+              <th scope="col">Description</th>
+              <th scope="col">Default Value</th>
+            </tr>
+            <tr>
+              <td>Link URL</td>
+              <td>href</td>
+              <td>The URL to be used as the link's href value.</td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td>CSS Classes</td>
+              <td>class</td>
+              <td>Additonal class values to be added to the button markup.</td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>id</td>
+              <td>ID value to be added to the button markup.</td>
+              <td>n/a</td>
+            </tr>
+          </table>
+
+          <h4>Examples</h4>
+          <pre><code>[cta-btn href="http://jobswithucf.com"]Join Us![/cta-btn]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-faq-list">Frequently Asked Questions List</h3>
+          <p>
+           Displays all Faculty Clusters with parallax header images and short descriptions.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>uses no content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[faq-list]</code></pre>
+
+          <h4>(post type)-list</h4>
+          <p>
+            For more details, see <a href="#shortcodes-post-type-list">(post type)-list</a>
+          </p>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-featured-link">Featured Link</h3>
+          <p>
+           Wraps content inside of a div with the 'featured-link' class applied to it
+          </p>
+          <p>
+          	Use this shortcode when displaying link with italicised description combinations, typically in right hand columns or sidebars.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>accepts content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[featured-link]<a href="http://wordpress.org">some link text here...</a>[/featured-link]</code></pre>
+
+          <hr/>
+          <br/>
+
+          <h3 id="shortcodes-well">Well</h3>
+          <p>
+           Wraps content inside of a rounded-corner, gray div.
+          </p>
+          <p>
+          	Use this shortcode when emphasizing a block of text.
+          </p>
+
+          <h4>Content</h4>
+          <p>
+            This shortcode <strong>accepts content</strong> between its starting and ending tags.
+          </p>
+
+          <h4>Attributes</h4>
+          <p>
+            This shortcode has no available attributes.
+          </p>
+
+          <h4>Examples</h4>
+          <pre><code>[well]some link text here...[/well]</code></pre>
+
+          <hr/>
+          <br/>
+
+ 					<h3 id="shortcodes-post-type-list">(post type)-list</h4>
 					<p>Outputs a list of a given post type filtered by arbitrary taxonomies, for
 					example a tag or category.  A default output can be added for when no objects
 					matching the criteria are found.  Available attributes:</p>
@@ -140,143 +585,6 @@
 
 # Outputs all People found categorized as 'staff' and in the org_group 'small'.
 [person-list limit=5 join="and" categories="staff" org_groups="small"]</code></pre>
-
-
-				<?php
-				if (isset($shortcode_tags['person-picture-list'])) { ?>
-
-				<h4>person-picture-list</h4>
-				<p>Outputs a list of People with thumbnails, person names, and job titles.  If a person's description is available, a link to the person's profile will be outputted.  If a thumbnail for the person does not exist, a default 'No Photo Available' thumbnail will display.  An optional <strong>row_size</strong> parameter is available to customize the number of rows that will display, in addition to the other filter parameters available to the <strong>person-list</strong> shortcode.</p>
-
-				<p>Example:</p>
-<pre><code># Output all People (default to 5 columns.)
-[person-picture-list]
-
-# Output all People in 4 columns.
-[person-picture-list row_size=4]
-
-# Output People in org_group 'staff' in 6 columns.
-[person-picture-list org_groups="staff" row_size=6]
-</code></pre>
-
-				<?php } ?>
-
-
-				<?php if (isset($shortcode_tags['post-type-search'])) { ?>
-				<h4>post-type-search</h4>
-				<p>Returns a list of posts of a given post type that are searchable through a generated search field.  Posts are searchable by post title and any associated tags.  Available attributes:</p>
-
-					<table>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Default Value</th>
-							<th>Available Values</th>
-						</tr>
-						<tr>
-							<td>post_type_name</td>
-							<td>The post type to retrieve posts for</td>
-							<td>post</td>
-							<td>
-								<ul>
-								<?php
-									foreach ($custom_post_types as $custom_post_type) {
-										print '<li style="list-style: disc; margin-left: 15px;">'.$custom_post_type->name.'</li>';
-									}
-								?>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<td>taxonomy</td>
-							<td>A taxonomy by which posts can be organized</td>
-							<td>category</td>
-							<td>Depends on the post type chosen and its available taxonomies</td>
-						</tr>
-						<tr>
-							<td>show_empty_sections</td>
-							<td>Determines whether or not empty taxonomy terms will be displayed within the results.</td>
-							<td>false</td>
-							<td>true, false</td>
-						</tr>
-						<tr>
-							<td>non_alpha_section_name</td>
-							<td>Changes the name of the section in which non-alphabetical post results are stored in the alphabetical sort (posts that start with 0-9, etc.)</td>
-							<td>Other</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>column_width</td>
-							<td>Determines the width of the columns of results.  Intended for use with Bootstrap scaffolding (<a href="http://twitter.github.com/bootstrap/scaffolding.html">see here</a>), but will accept any CSS class name.</td>
-							<td>span4</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>column_count</td>
-							<td>The number of columns that will be created with the set column_width.</td>
-							<td>3</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>order_by</td>
-							<td>How to order results by term.  Note that this does not affect alphabetical results.  See <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters">WP Query Orderby params</a> in the Wordpress Codex for more information.</td>
-							<td>post_title</td>
-							<td>
-								<ul>
-									<li style="list-style: disc; margin-left: 15px;">none</li>
-									<li style="list-style: disc; margin-left: 15px;">ID</li>
-									<li style="list-style: disc; margin-left: 15px;">author</li>
-									<li style="list-style: disc; margin-left: 15px;">title</li>
-									<li style="list-style: disc; margin-left: 15px;">name</li>
-									<li style="list-style: disc; margin-left: 15px;">date</li>
-									<li style="list-style: disc; margin-left: 15px;">modified</li>
-									<li style="list-style: disc; margin-left: 15px;">parent</li>
-									<li style="list-style: disc; margin-left: 15px;">rand</li>
-									<li style="list-style: disc; margin-left: 15px;">menu_order</li>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<td>order</td>
-							<td>Determine if posts are ordered from ascending to descending, or vice-versa.</td>
-							<td>ASC</td>
-							<td>ASC (ascending), DESC (descending)</td>
-						</tr>
-							<td>show_sorting</td>
-							<td>Whether or not to display the toggle buttons that sort posts by taxonomy and alphabetically.</td>
-							<td>true</td>
-							<td>true, false</td>
-						<tr>
-						</tr>
-						<tr>
-							<td>default_sorting</td>
-							<td>How posts will be sorted by default.  Choose between by taxonomy term or alphabetically.</td>
-							<td>term</td>
-							<td>
-								<ul>
-									<li style="list-style: disc; margin-left: 15px;">term</li>
-									<li style="list-style: disc; margin-left: 15px;">alpha</li>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<td>default_search_text</td>
-							<td>Sets the post search field placeholder text.  Note that placeholders are not supported by older browsers (IE 8 and below.)</td>
-							<td>Find a (post type name)</td>
-							<td></td>
-						</tr>
-					</table>
-
-					<p>Examples:</p>
-<pre style="white-space: pre-line;"><code># Generate a Post search, organized by category, with empty sections visible.  Generates one column of results with CSS class .span3.
-[post-type-search column_width="span3" column_count="1" show_empty_sections=true default_search_text="Find Something"]
-
-# Generate a Person search, organized by Organizational Groups (that have People assigned to them.)
-[post-type-search post_type_name="person" taxonomy="org_groups"]
-</code></pre>
-				<?php } ?>
-
-				</li>
 
 			</ul>
 		</div>
