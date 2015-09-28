@@ -184,10 +184,10 @@ function supports3dTransforms() {
 
 
 /**
- * Force equal height titles and descriptions for faculty cluster grids.
+ * Force equal height divs.
  **/
-function facultyClusterGridHeights() {
-  $('.cluster-short-inner').matchHeight();
+function equalHeightDivs() {
+  $('.cluster-short-inner, .faculty-statistics .col').matchHeight();
 }
 
 
@@ -201,7 +201,7 @@ if (typeof jQuery !== 'undefined') {
     }
 
     gaEventTracking();
-    facultyClusterGridHeights();
+    equalHeightDivs();
 
   });
 }

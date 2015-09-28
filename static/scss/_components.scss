@@ -222,15 +222,45 @@
 }
 
 .faculty-statistics {
+  &:hover {
+    .col.highlighted {
+      background-color: transparent;
+      color: #fff;
+    }
+  }
+
   .col {
     border: 1px solid $ucf-gold;
     font-size: 23px;
-    height: 235px;
-    padding-top: 45px;
+    line-height: 1.1;
+    min-height: 235px; // note: 'height' val overridden via js
+    padding-bottom: 50px;
+    padding-top: 50px;
     text-align: center;
     text-transform: uppercase;
+    transition: all .15s ease-in-out;
+    vertical-align: middle;
 
-    &.highlighted {
+    @media (max-width: $screen-sm-max) {
+      font-size: 18px;
+      min-height: 175px;
+      padding-bottom: 35px;
+      padding-top: 35px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      border: 0;
+      border-bottom: 1px solid $ucf-gold;
+      border-top: 1px solid $ucf-gold;
+      margin-top: -1px !important; // have to override :not(col-xs) vertical margin declaration
+      min-height: 0;
+      padding-bottom: 20px;
+      padding-top: 20px;
+    }
+
+    &.highlighted,
+    &.highlighted:hover,
+    &:hover {
       background: $ucf-gold;
       color: #000;
     }
@@ -243,15 +273,22 @@
     &.full {
       height: auto;
       margin-top: -1px;
-      padding-bottom: 20px;
-      padding-top: 20px;
     }
 
     > strong {
       display: block;
-      font-size: 100px;
+      font-size: 80px;
       font-weight: 600;
-      line-height: 105px;
+      line-height: 1;
+      margin-bottom: 4px;
+
+      @media (min-width: $screen-lg-min) {
+        font-size: 100px;
+      }
+
+      @media (max-width: $screen-sm-max) {
+        font-size: 60px;
+      }
     }
   }
 }
