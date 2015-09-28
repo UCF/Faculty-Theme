@@ -23,6 +23,16 @@ function __init__() {
 	register_nav_menu( 'ucf-colleges' , __( 'UCF Colleges' ));
 
 	register_sidebar( array(
+		'name'          => __( 'Open Positions' ),
+		'id'            => 'open_positions',
+		'description'   => 'Area on home page that displays open positions.',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
+
+	register_sidebar( array(
 		'name'          => __( 'Sidebar' ),
 		'id'            => 'sidebar',
 		'description'   => 'Sidebar found on two column page templates and search pages.',
@@ -105,8 +115,6 @@ define( 'GA_ACCOUNT', get_theme_mod_or_default( 'ga_account' ) );
 define( 'CB_UID', get_theme_mod_or_default( 'cb_uid' ) );
 define( 'CB_DOMAIN', get_theme_mod_or_default( 'cb_domain' ) );
 
-define( 'OPEN_POSITIONS_LIMIT', 6 );
-
 
 /**
  * Set config values including meta tags, registered custom post types, styles,
@@ -153,12 +161,6 @@ function define_customizer_panels( $wp_customize ) {
 			'active_callback' => function() { return is_home() || is_front_page(); }
 		)
 	);
-	$wp_customize->add_panel(
-		THEME_CUSTOMIZER_PREFIX . 'open_positions',
-		array(
-			'title'           => 'Open Positions'
-		)
-	);
 }
 add_action( 'customize_register', 'define_customizer_panels' );
 
@@ -183,15 +185,6 @@ function define_customizer_sections( $wp_customize ) {
 			'panel' => THEME_CUSTOMIZER_PREFIX . 'home'
 		)
 	);
-	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
-		$wp_customize->add_section(
-			THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
-			array(
-				'title' => 'Position ' . $i,
-				'panel' => THEME_CUSTOMIZER_PREFIX . 'open_positions'
-			)
-		);
-	}
 	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'analytics',
 		array(
@@ -272,9 +265,6 @@ Config::$setting_defaults = array(
 	'search_per_page' => 10,
 	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // Main site css key
 );
-for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
-	Config::$setting_defaults['positions_listing_link_' . $i] = 'http://jobswithucf.com';
-}
 
 function get_setting_default( $setting, $fallback=null ) {
 	return isset( Config::$setting_defaults[$setting] ) ? Config::$setting_defaults[$setting] : $fallback;
@@ -389,56 +379,6 @@ function define_customizer_fields( $wp_customize ) {
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
 		)
 	);
-
-
-	// Open Positions
-	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
-		$wp_customize->add_setting(
-			'positions_listing_name_' . $i
-		);
-		$wp_customize->add_control(
-			'positions_listing_name_' . $i,
-			array(
-				'type'        => 'select',
-				'label'       => 'Position Name',
-				'description' => 'Title of position or position category.',
-				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
-				'type'        => 'text'
-			)
-		);
-
-		$wp_customize->add_setting(
-			'positions_listing_college_' . $i
-		);
-		$wp_customize->add_control(
-			'positions_listing_college_' . $i,
-			array(
-				'type'        => 'select',
-				'label'       => 'College',
-				'description' => 'Name of college listed underneath the position name.',
-				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
-				'type'        => 'text'
-			)
-		);
-
-		$wp_customize->add_setting(
-			'positions_listing_link_' . $i,
-			array(
-				'default' => get_setting_default( 'positions_listing_link_' . $i )
-			)
-		);
-		$wp_customize->add_control(
-			'positions_listing_link_' . $i,
-			array(
-				'type'        => 'select',
-				'label'       => 'Position URL',
-				'description' => 'Link location for when position is clicked on.',
-				'section'     => THEME_CUSTOMIZER_PREFIX . 'position_' . $i,
-				'type'        => 'text'
-			)
-		);
-	}
-
 
 	// Analytics
 	$wp_customize->add_setting(

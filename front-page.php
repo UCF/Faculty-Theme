@@ -40,7 +40,15 @@ endif;
 
 	<article class="page-content">
 		<div class="container">
-			<?php echo do_shortcode( '[cluster-open-positions-list]' ); ?>
+			<ul class="open-positions">
+			<?php if ( is_active_sidebar( 'open_positions' ) ) : ?>
+				<section class="open-positions">
+					<h2>Open Positions</h2>
+					<ul>
+						<?php dynamic_sidebar( 'open_positions' ); ?>
+					</ul>
+				</section>
+			<?php endif; ?>
 			<?php the_content(); ?>
 		</div>
 	</article>

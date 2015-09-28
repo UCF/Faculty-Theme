@@ -155,5 +155,91 @@ function display_site_title() {
  **/
 add_filter( 'widget_text', 'do_shortcode' );
 
+class OpenPosition_Widget extends WP_Widget {
+
+	/**
+	 * Constructor
+	 **/ 
+	public function __construct() {
+		parent::__construct(
+			'openposition_widget',
+			__( 'Open Position' ),
+			array( 'description' => __( 'Use to display an open faculty position on the home page.' ), )
+		);
+	}
+
+	/**
+	 * Display Logic
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 **/
+	public function widget( $args, $instance ) {
+		$position_name = ( $instance['name'] ) ? $instance['name'] : '';
+		$position_url  = ( $instance['url'] ) ? $instance['url'] : '';
+		$college       = ( $instance['college'] ) ? $instance['college'] : '';
+
+		ob_start();
+
+		?>
+		<li class="open-position">
+			<a href="<?php echo $position_url; ?>">
+				<span class="open-position-name"><?php echo $position_name; ?></span>
+
+				<?php if ( $college ): ?>
+				<span class="open-position-college"><?php echo $college ?></span>
+				<?php endif; ?>
+			</a>
+		</li>
+		<?php
+
+		echo ob_get_clean();
+	}
+
+	/**
+	 * Definition of admin form
+	 *
+	 * @param array $instance The widget options
+	 **/
+	public function form( $instance ) {
+		$position_name = ( $instance['name'] ) ? $instance['name'] : __( 'Position Name' );
+		$position_url  = ( $instance['url'] ) ? $instance['url'] : __( 'https://www.jobswithucf.com/' );
+		$college       = ( $instance['college'] ) ? $instance['college'] : __( 'College Name' );
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php echo __( 'Position Name:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" type="text" value="<?php echo esc_attr( $position_name ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php echo __( 'Position URL:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" type="text" value="<?php echo esc_attr( $position_url ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'college' ); ?>"><?php echo __( 'College Name:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'college' ); ?>" name="<?php echo $this->get_field_name( 'college' ); ?>" type="text" value="<?php echo esc_attr( $college ); ?>">
+		</p>
+		<?php
+	}
+
+	/**
+	 * Defines update logic
+	 *
+	 * @param array $new_instance The new options
+	 * @param array $old_instance The previous options 
+	 **/
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['name'] = ( ! empty( $new_instance['name'] ) ) ? strip_tags( $new_instance['name'] ) : '';
+		$instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : 'https://www.jobswithucf.com/';
+		$instance['college'] = ( ! empty( $new_instance['college'] ) ) ? strip_tags( $new_instance['college'] ) : '';
+
+		return $instance;
+	}
+}
+
+add_action( 'widgets_init', function() {
+	register_widget( 'OpenPosition_Widget' );
+} );
+
 
 ?>
