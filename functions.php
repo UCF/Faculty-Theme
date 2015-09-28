@@ -150,21 +150,26 @@ function display_site_title() {
 	return ob_get_clean();
 }
 
+
 /**
  * Enable shortcodes to be used inside of widgets.
  **/
 add_filter( 'widget_text', 'do_shortcode' );
 
+
+/**
+ * Open Position widget
+ **/
 class OpenPosition_Widget extends WP_Widget {
 
 	/**
 	 * Constructor
-	 **/ 
+	 **/
 	public function __construct() {
 		parent::__construct(
 			'openposition_widget',
 			__( 'Open Position' ),
-			array( 'description' => __( 'Use to display an open faculty position on the home page.' ), )
+			array( 'description' => __( 'Use to display an open faculty position on the home page, subpages, and wherever the [cluster-open-positions-list] shortcode is used.' ), )
 		);
 	}
 
@@ -187,7 +192,7 @@ class OpenPosition_Widget extends WP_Widget {
 				<span class="open-position-name"><?php echo $position_name; ?></span>
 
 				<?php if ( $college ): ?>
-				<span class="open-position-college"><?php echo $college ?></span>
+				<span class="open-position-college"><?php echo $college; ?></span>
 				<?php endif; ?>
 			</a>
 		</li>
@@ -202,9 +207,9 @@ class OpenPosition_Widget extends WP_Widget {
 	 * @param array $instance The widget options
 	 **/
 	public function form( $instance ) {
-		$position_name = ( $instance['name'] ) ? $instance['name'] : __( 'Position Name' );
-		$position_url  = ( $instance['url'] ) ? $instance['url'] : __( 'https://www.jobswithucf.com/' );
-		$college       = ( $instance['college'] ) ? $instance['college'] : __( 'College Name' );
+		$position_name = ( isset( $instance['name'] ) ) ? $instance['name'] : __( 'Position Name' );
+		$position_url  = ( isset( $instance['url'] ) ) ? $instance['url'] : __( 'https://www.jobswithucf.com/' );
+		$college       = ( isset( $instance['college'] ) ) ? $instance['college'] : __( 'College Name' );
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php echo __( 'Position Name:' ); ?></label>
@@ -225,7 +230,7 @@ class OpenPosition_Widget extends WP_Widget {
 	 * Defines update logic
 	 *
 	 * @param array $new_instance The new options
-	 * @param array $old_instance The previous options 
+	 * @param array $old_instance The previous options
 	 **/
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();

@@ -488,49 +488,23 @@ add_shortcode( 'cluster-parallax-list', 'sc_cluster_parallax_list' );
  * Displays a list of open positions.
  **/
 function sc_cluster_open_positions_list( $attr, $content='' ) {
-	$positions = array();
-	for ( $i = 1; $i <= OPEN_POSITIONS_LIMIT; $i++ ) {
-		$position = array(
-				'name'    => get_theme_mod( 'positions_listing_name_' . $i, '' ),
-				'college' => get_theme_mod( 'positions_listing_college_' . $i, '' ),
-				'link'    => get_theme_mod_or_default( 'positions_listing_link_' . $i, '' )
-		);
-		if ( $position['name'] && $position['link'] ) {
-			array_push( $positions, $position );
-		}
-	}
-
 	ob_start();
 
-	if ( $positions ):
+	if ( is_active_sidebar( 'open_positions' ) ) :
 ?>
 	</div> <!-- Close .container -->
+
 	<div class="container-wide open-positions-container">
 		<div class="container">
 			<section class="open-positions">
-				<h2>Open Positions In</h2>
+				<h2>Open Positions</h2>
 				<ul>
-				<?php
-				if ( $positions ):
-					foreach ( $positions as $position ):
-				?>
-					<li class="open-position">
-						<a href="<?php echo $position['link']; ?>">
-							<span class="open-position-name"><?php echo $position['name']; ?></span>
-
-							<?php if ( $position['college'] ): ?>
-							<span class="open-position-college"><?php echo $position['college']; ?></span>
-							<?php endif; ?>
-						</a>
-					</li>
-				<?php
-					endforeach;
-				endif;
-				?>
+					<?php dynamic_sidebar( 'open_positions' ); ?>
 				</ul>
 			</section>
 		</div>
 	</div>
+
 	<div class="container"> <!-- Re-open .container -->
 <?php
 	endif;

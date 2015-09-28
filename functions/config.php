@@ -25,7 +25,7 @@ function __init__() {
 	register_sidebar( array(
 		'name'          => __( 'Open Positions' ),
 		'id'            => 'open_positions',
-		'description'   => 'Area on home page that displays open positions.',
+		'description'   => 'Section that lists open positions; can be displayed using the [cluster-open-positions-list] shortcode.',
 		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '',
