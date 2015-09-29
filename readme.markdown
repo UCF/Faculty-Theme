@@ -68,25 +68,16 @@ name of the directory for Cloud.Typography webfonts in this repository!**
 
 
 ## Custom Post Types
-n/a
+- Person
+- FAQ
+- Faculty Cluster
 
 
 ## Custom Taxonomies
-n/a
+- Organizational Group
 
 
 ## Shortcodes
 
-### [posttype-list]
-* Custom post types that have defined $use_shortcode as True can automatically
-utilize this shortcode for displaying a list of posts created under the given
-post type; e.g., [document-list] will output a list of all published Documents.
-Additional parameters can be used to further narrow down the shortcode's results;
-see the Theme Help section on shortcodes for an available list of filters.
-
-### [search_form]
-* Outputs the site search form.  The search form output can be modified via
-searchform.php
-
-### [post-type-search]
-* Generates a searchable list of posts. Post lists are generated in alphabetical order and, by default, by category and post title. Posts can be searched by post title and any tags assigned to the post. See the Theme Help section on shortcodes for more information.
+Download and activate the theme, then view the Theme Help section in the WordPress admin for a list of available shortcodes
+and their attributes.
