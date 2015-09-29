@@ -29,7 +29,7 @@
 					<p>
 						Keep in mind that this help section assumes a basic working knowledge of the WordPress admin interface.
 						If you are unfamiliar with WordPress, please
-						<a href="http://code.tutsplus.com/series/wp101-basix-training--wp-20968" target="_blank">check out a few tutorials</a>
+						<a href="http://www.lynda.com/WordPress-tutorials/WordPress-Essential-Training/372542-2.html" target="_blank">check out a few tutorials</a>
 						before getting started.
 					</p>
 
