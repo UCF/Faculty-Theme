@@ -716,3 +716,12 @@ function sc_well( $attr, $content='' ) {
 	return '<div class="well">' . do_shortcode( $content ) . '</div>';
 }
 add_shortcode( 'well', 'sc_well' );
+
+
+/**
+ * Inserts an empty clearfix div.
+ **/
+function sc_clearfix( $attr ) {
+	return '<div class="clearfix"></div>';
+}
+add_shortcode( 'clearfix', 'sc_clearfix' );
