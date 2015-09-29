@@ -523,17 +523,16 @@
 					</p>
 					<p>
 						The shortcodes listed below have a <strong>starting tag</strong> ([my-shortcode]) and an <strong>ending tag</strong> ([/my-shortcode]).  Depending on
-						the shortcode used, such as the [lead] and [blockquote] shortcodes, <strong>content</strong> between the starting and ending tags is used.  Other
-						shortcodes, like the [slideshow] shortcode, do not use any content between the starting and ending tags.
+						the shortcode used, such as the [callout] and [well] shortcodes, <strong>content</strong> between the starting and ending tags is used.  Other
+						shortcodes, like the [clearfix] shortcode, do not use any content between the starting and ending tags.
 					</p>
 					<p>
-						Some shortcodes use <strong>attributes</strong> to define extra options for whatever the given shortcode does.  For example, the [callout] and [sidebar]
-						shortcodes have a "background" attribute, which lets you set a custom background color for the callout box or sidebar.
+						Some shortcodes use <strong>attributes</strong> to define extra options for whatever the given shortcode does.  For example, the [callout]
+						shortcode has a "background" attribute, which lets you set a custom background color for the callout box.
 					</p>
 
 					<p>
-						The custom available shortcodes for this site, as well as their available attributes and examples, are listed below.  For information about adding
-						shortcodes to post content, please visit the Adding Content via Shortcodes section of the <a href="#stories">Story documentation</a>.
+						The custom available shortcodes for this site, as well as their available attributes and examples, are listed below.
 					</p>
 
 					<hr>
@@ -603,14 +602,8 @@
 <pre><code># Output a list of all FAQs:
 [faq-list]
 
-# Output all People categorized as 'foo'
-[person-list categories="foo"]
-
 # Output all People matching the terms in the custom taxonomy named 'org_groups'
-[person-list org_groups="term list example"]
-
-# Outputs all People found categorized as 'staff' and in the org_group 'small'.
-[person-list limit=5 join="and" categories="staff" org_groups="small"]</code></pre>
+[person-list org_groups="term list example"]</code></pre>
 
 					<hr>
 					<br>
