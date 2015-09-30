@@ -15,6 +15,17 @@
   @include body-prefix('.ie8') {
     overflow: hidden;
   }
+
+  &.parallax-featured-header {
+    &,
+    .parallax-container-inner {
+      height: 500px;
+
+      @media (max-width: $screen-sm-max) {
+        height: 300px;
+      }
+    }
+  }
 }
 
 .parallax-container-inner {
