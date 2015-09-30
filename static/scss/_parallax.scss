@@ -5,6 +5,10 @@
 .parallax-container-inner {
   height: 360px;
   position: relative;
+
+  @media (max-width: $screen-sm-max) {
+    height: 300px;
+  }
 }
 
 .parallax-container {

@@ -55,18 +55,9 @@
 // Template-specific overrides
 
 .page-template-template-featured-title {
-  .parallax-container,
-  .parallax-container-inner {
-    height: 360px;
-
-    @media (max-width: $screen-sm-max) {
-      height: 300px;
-    }
-  }
-
   // *only* the header parallax image in this template should be taller
   #parallax-featured-header {
-    &.parallax-container,
+    &,
     .parallax-container-inner {
       height: 500px;
     }
