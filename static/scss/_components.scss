@@ -592,9 +592,13 @@
   }
 
   a {
-    background: url('../img/arrow-right.png') 100% 50% no-repeat;
+    background: url('../img/arrow-right.png') 100% 10px no-repeat;
     display: block;
     text-decoration: none;
+
+    @media (max-width: $screen-xs-max) {
+      background-position: 100% 50%;
+    }
   }
 }
 
