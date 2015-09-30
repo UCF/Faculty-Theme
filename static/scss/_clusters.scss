@@ -50,17 +50,26 @@
 }
 
 .cluster-single-contacts {
-  @extend .row;
   margin-bottom: 0;
 
   > li {
-    @extend .col-lg-3;
-    @extend .col-md-4;
-    @extend .col-sm-6;
-    margin-bottom: 20px;
+    display: inline-block;
+    margin: 0 30px 20px 0;
+    max-width: 30%;
+    vertical-align: top;
+
+    @media (min-width: $screen-lg-min) {
+      max-width: 20%;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      max-width: 40%;
+    }
 
     @media (max-width: $screen-xs-max) {
-      margin-bottom: 15px;
+      margin: 0 0 15px;
+      max-width: 100%;
+      width: 100%;
     }
   }
 }
