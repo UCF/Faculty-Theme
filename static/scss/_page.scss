@@ -56,12 +56,14 @@
 
 .page-template-template-featured-title {
   // *only* the header parallax image in this template should be taller
-  #parallax-featured-header,
-  .parallax-container-inner {
-    height: 500px;
+  #parallax-featured-header {
+    &,
+    .parallax-container-inner {
+      height: 500px;
 
-    @media (max-width: $screen-sm-max) {
-      height: 300px;
+      @media (max-width: $screen-sm-max) {
+        height: 300px;
+      }
     }
   }
 
