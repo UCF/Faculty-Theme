@@ -64,6 +64,14 @@
     }
   }
 
+  // *only* the header parallax image in this template should be taller
+  #parallax-featured-header {
+    &.parallax-container,
+    .parallax-container-inner {
+      height: 500px;
+    }
+  }
+
   .parallax-content {
     h1 {
       color: #fff;
