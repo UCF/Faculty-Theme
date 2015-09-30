@@ -677,6 +677,137 @@
 						</tr>
 					</table>
 
+					<h4 id="shortcodes-callout-classes">Custom Classes for Callouts</h4>
+					<p>
+						In this theme, several predefined CSS classes have been added to give callout boxes particular styles.  These classes
+						can be added to a callout box using the "class" attribute on the shortcode (see "Attributes" table above).
+					</p>
+					<table>
+						<tr>
+							<th scrop="col">Class</th>
+							<th scope="col">Description</th>
+							<th scope="col">Column Classes</th>
+						</tr>
+						<tr>
+							<td>
+								n/a
+								<br>
+								(default)
+							</td>
+							<td>
+								By default, callouts use a light gray background color and black text.  These can be overridden
+								using the attributes listed in the "Attributes" table above, or overridden inline using the visual
+								editor when editing a page.
+							</td>
+							<td>
+								The classes below can be applied to columns within any callout, regardless of extra classes applied
+								to the callout.  Keep in mind that some column classes may not work well with certain callouts.
+								<br>
+								<table>
+									<tr>
+										<th scrop="col">Class</th>
+										<th scope="col">Description</th>
+									</tr>
+									<tr>
+										<td>bordered</td>
+										<td>
+											Applies a gold border to the entire column.
+										</td>
+									</tr>
+									<tr>
+										<td>bordered-dots</td>
+										<td>
+											Applies a left-hand dotted border to a column.
+										</td>
+									</tr>
+									<tr>
+										<td>smaller</td>
+										<td>
+											Reduces the font size within the column and applies an alternate font face to the column's
+											contents (Helvetica) for readability.
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>faculty-statistics</td>
+							<td>
+								Will not add any additional styles on its own, but when a column with this class is wrapped around
+								a set of rows/columns, will apply borders and equal heights to each column, as well as a hover
+								effect over each column.
+								<br><br>
+								Intended to be used to display stylized numbers and percentages.  Featured numbers should be wrapped
+								within a &lt;strong&gt; tag.
+							</td>
+							<td>
+								<table>
+									<tr>
+										<th scrop="col">Class</th>
+										<th scope="col">Description</th>
+									</tr>
+									<tr>
+										<td>highlighted</td>
+										<td>
+											Will apply a background color and text color change to the affected column.  Intended
+											to be used on a single column within the callout.
+										</td>
+									</tr>
+									<tr>
+										<td>middle</td>
+										<td>
+											When creating a row of more than 2 columns, apply this class to a middle column to
+											remove left- and right-hand borders (to avoid a double-bordered effect.)
+										</td>
+									</tr>
+									<tr>
+										<td>full</td>
+										<td>
+											Apply this class to a full-width column (.col-[xx]-12) within the callout.  When added
+											to a column that sits below other columns, it is pushed up to avoid a double-bordered
+											effect.
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>callout-cta</td>
+							<td>
+								Styles a callout intended to be used as a short call-to-action statement with a button.
+								<br><br>
+								When applied, an h2 element within the callout is enlarged and given an alternate color.
+								Any call-to-action button ([cta-btn]) used within the callout is given white text.
+							</td>
+							<td>
+								n/a
+							</td>
+						</tr>
+						<tr>
+							<td>faculty-profile-callout</td>
+							<td>
+								Intended to be used specifically for callouts that feature a faculty member as the background
+								image and include a blockquote within the callout's contents.
+								<br><br>
+								When this class is applied, blockquote elements and their cite elements are given alternate
+								styles.  The height and padding of the callout will also be modified slightly from the default.
+							</td>
+							<td>
+								n/a
+							</td>
+						</tr>
+						<tr>
+							<td>sans-serif-alt</td>
+							<td>
+								Applies an alternate font family (Helvetica) on the callout and its child elements.
+							</td>
+							<td>
+								n/a
+							</td>
+						</tr>
+					</table>
+
+
 					<h4>Examples</h4>
 <pre><code>[callout background="#fff"]
 [row]
@@ -1062,6 +1193,13 @@ and fall *under* the image, instead of next to it.
 							<td>n/a</td>
 						</tr>
 					</table>
+
+					<h4>Extra Classes</h4>
+					<p>
+						When a column is used within a callout, some predefined CSS classes may be available to add additional predefined
+						styles.
+						<a href="#shortcodes-callout-classes">See the section on column classes under the callout section</a> for more information.
+					</p>
 
 					<h4>Examples</h4>
 					<pre><code>[row][column md="8"]Left-hand content[/column][column md="4"]Right-hand content[/column][/row]</code></pre>
