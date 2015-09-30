@@ -60,10 +60,10 @@
     &,
     .parallax-container-inner {
       height: 500px;
-    }
 
-    @media (max-width: $screen-sm-max) {
-      height: 300px;
+      @media (max-width: $screen-sm-max) {
+        height: 300px;
+      }
     }
   }
 
