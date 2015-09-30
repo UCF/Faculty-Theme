@@ -332,6 +332,11 @@
 }
 
 .faculty-profile-callout {
+  @media (min-width: $screen-lg-min) {
+    background-position: top;
+    background-size: cover;
+  }
+
   @media (max-width: $screen-md-max) {
     background-position: 68% 0;
     height: 400px;
