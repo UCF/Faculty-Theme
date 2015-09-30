@@ -1,3 +1,71 @@
+// Single Cluster
+
+.cluster-single-people {
+  background-color: #f9f9f9;
+  font-family: $font-family-sans-serif;
+  padding-bottom: 20px;
+  padding-top: 50px;
+
+  @media (max-width: $screen-xs-max) {
+    padding-top: 20px;
+  }
+}
+
+.cluster-single-people-heading {
+  color: #7c7c7c;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  margin: 0 0 20px;
+  text-transform: none;
+
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 8px;
+  }
+}
+
+.cluster-single-people-list {
+  @include list-unstyled();
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.cluster-single-leads {
+  > li {
+    display: inline-block;
+  }
+}
+
+.cluster-single-contact-info {
+  @include list-unstyled();
+  margin-top: 8px;
+
+  a {
+    color: #000;
+    font-size: .9em;
+    font-weight: 300;
+  }
+}
+
+.cluster-single-contacts {
+  @extend .row;
+  margin-bottom: 0;
+
+  > li {
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+
 // Basic Faculty Cluster lists (generated from [cluster-list])
 
 .cluster-list {

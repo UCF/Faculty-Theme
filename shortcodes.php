@@ -312,7 +312,7 @@ function sc_clusters_list( $attr, $content=null ) {
 									$cluster_lead_count++;
 							?>
 								<dd>
-									<?php echo $lead->post_title; ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
+									<?php echo Person::get_name( $lead ); ?><?php if ( $cluster_lead_count !== count( $cluster_leads ) ): ?>, <?php endif; ?>
 								</dd>
 							<?php
 								endforeach;
