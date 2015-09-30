@@ -553,6 +553,17 @@
   }
 }
 
+.sidebar-container {
+  font-family: $font-family-sans-serif-alt;
+  margin-top: -40px;
+  padding-left: 30px;
+
+  @media (max-width: $screen-sm-max) {
+    margin-top: 40px;
+    padding-left: 0;
+  }
+}
+
 
 // Open Positions lists
 
@@ -595,9 +606,13 @@
   }
 
   a {
-    background: url('../img/arrow-right.png') 100% 50% no-repeat;
+    background: url('../img/arrow-right.png') 100% 10px no-repeat;
     display: block;
     text-decoration: none;
+
+    @media (max-width: $screen-xs-max) {
+      background-position: 100% 50%;
+    }
   }
 }
 

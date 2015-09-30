@@ -41,7 +41,7 @@ endif;
 
 	<?php
 	if ( $featured_image ) {
-		echo display_parallax_image( $featured_image, array( 'id' => 'parallax-featured-header' ), $header_content );
+		echo display_parallax_image( $featured_image, array( 'class' => 'parallax-featured-header' ), $header_content );
 	}
 	?>
 
