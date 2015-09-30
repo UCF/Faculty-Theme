@@ -51,6 +51,14 @@
 
 
 #parallax-home-header {
+
+  &.parallax-container {
+    height: 500px;
+  }
+  .parallax-container-inner {
+    height: 500px;
+  }
+
   .highlighted {
     @include font-smoothing();
     font-size: 21px;
