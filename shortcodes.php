@@ -699,10 +699,14 @@ add_shortcode( 'column', 'sc_column' );
  **/
 function sc_cta_btn( $attr, $content='' ) {
 	$attr = shortcode_atts( array(
-		'href' => '',
+		'href' => get_theme_mod_or_default( 'home_header_cta_url' ),
 		'class' => '',
 		'id' => ''
 	), $attr, 'cta-btn' );
+
+	if ( !$content ) {
+		$content = get_theme_mod_or_default( 'home_header_cta_text' );
+	}
 
 	return display_cta_btn( $attr['href'], $content, $attr['class'], $attr['id'] );
 }
