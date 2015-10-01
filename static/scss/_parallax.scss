@@ -99,27 +99,25 @@
   .parallax-featured-header & {
     h1 {
       color: #fff;
-      font-size: 6vw;
+      font-size: 55px;
       letter-spacing: -.02em;
       margin: 0 auto;
       padding: 0 $grid-gutter-width / 2;
       position: absolute;
       text-align: center;
-      top: 40%;
+      text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+      text-transform: uppercase;
+      top: 46%;
       transform: translate(0, -60%);
       vertical-align: middle;
       width: 100%;
 
-      @media (min-width: $screen-lg-min) {
-        font-size: 5.75vw;
-      }
-
-      @media (max-width: $screen-sm-max) {
-        font-size: 6.5vw;
+      @media (max-width: $screen-md-max) {
+        font-size: 5vw;
       }
 
       @media (max-width: $screen-xs-max) {
-        top: 30%;
+        top: 34%;
         transform: translate(0, -70%);
       }
 
