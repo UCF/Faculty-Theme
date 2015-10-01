@@ -33,6 +33,23 @@ aside > br:first-child {
 }
 
 
+ol,
+ul {
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+li {
+  line-height: 1.25;
+  margin-bottom: 10px;
+
+  > ol,
+  > ul {
+    margin-top: 10px;
+  }
+}
+
+
 hr {
   margin-bottom: 30px;
   margin-top: 30px;
