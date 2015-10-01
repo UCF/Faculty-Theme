@@ -75,6 +75,12 @@ h6,
 .h6 {
   @include font-smoothing();
   font-family: $font-family-sans-serif;
+
+  > span {
+    // allow line-height to reset properly
+    display: block;
+    letter-spacing: initial;
+  }
 }
 
 h2,
