@@ -87,6 +87,7 @@ endif;
 						<?php
 						foreach ( $cluster_contacts as $contact ):
 							$name = Person::get_name( $contact );
+							$title = get_post_meta( $contact->ID, 'person_jobtitle', true );
 							$phones = Person::get_phones( $contact );
 							$email = get_post_meta( $contact->ID, 'person_email', true );
 						?>
@@ -94,6 +95,10 @@ endif;
 								<?php echo $name; ?>
 								<?php if ( $phones && $email ): ?>
 								<ul class="cluster-single-contact-info">
+									<?php if ( $title ): ?>
+									<li><?php echo $title; ?></li>
+									<?php endif; ?>
+
 									<?php
 									if ( $phones ):
 										foreach ( $phones as $phone ) :
