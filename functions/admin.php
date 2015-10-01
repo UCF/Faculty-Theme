@@ -191,6 +191,11 @@ function add_formats_to_tinymce( $settings ) {
 					'inline' => 'span',
 					'classes' => 'text-lowercase'
 				),
+				array(
+					'title' => 'None (unset)',
+					'inline' => 'span',
+					'classes' => 'text-transform-none'
+				),
 			),
 		),
 	);

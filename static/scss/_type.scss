@@ -32,6 +32,27 @@ aside > br:first-child {
   text-transform: lowercase;
 }
 
+.text-transform-none {
+  text-transform: none;
+}
+
+
+ol,
+ul {
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+li {
+  line-height: 1.25;
+  margin-bottom: 10px;
+
+  > ol,
+  > ul {
+    margin-top: 10px;
+  }
+}
+
 
 hr {
   margin-bottom: 30px;
@@ -58,6 +79,12 @@ h6,
 .h6 {
   @include font-smoothing();
   font-family: $font-family-sans-serif;
+
+  > span {
+    // allow line-height to reset properly
+    display: block;
+    letter-spacing: initial;
+  }
 }
 
 h2,

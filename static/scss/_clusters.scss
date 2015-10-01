@@ -78,6 +78,8 @@
 // Basic Faculty Cluster lists (generated from [cluster-list])
 
 .cluster-list {
+  @include list-unstyled();
+  font-family: $font-family-sans-serif;
   font-size: 16px;
 
   li {

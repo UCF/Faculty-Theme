@@ -181,43 +181,9 @@
     }
   }
 
-  .bordered-dots-left {
-    background-position: 0% 0%;
-    background-repeat: repeat-y;
-  }
-
   .smaller {
     font-family: $font-family-sans-serif-alt;
     font-size: 15px;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-
-    @media (max-width: $screen-xs-max) {
-      text-align: center;
-    }
-  }
-
-  li {
-    font-family: $font-family-sans-serif;
-    font-weight: 600;
-    list-style-type: none;
-    margin: 0 0 7px;
-    padding: 0;
-
-    @media (max-width: $screen-xs-max) {
-      margin: 20px 0 0;
-    }
-
-    a {
-      text-decoration: underline;
-
-      @media (max-width: $screen-xs-max) {
-        padding: 10px 20px;
-      }
-    }
   }
 }
 
@@ -715,6 +681,7 @@
     font-size: 18px;
     font-style: normal;
     font-weight: bold;
+    line-height: 1.25;
   }
 
   + br {
