@@ -396,7 +396,7 @@ function sc_cluster_parallax( $attr, $content='' ) {
 			<div class="container"> <!-- Re-open .container -->
 				<div class="row">
 					<div class="col-md-8 col-sm-7">
-						<h2 class="cluster-pl-title">
+						<h2 class="cluster-pl-title" id="<?php echo $post->post_name; ?>">
 							<?php if ( $post->post_content ): ?>
 							<a class="cluster-pl-title-inner ga-event-link" href="<?php echo get_permalink( $post->ID ); ?>">
 								<?php echo $post->post_title; ?>
