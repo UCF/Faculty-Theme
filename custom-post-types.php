@@ -454,6 +454,17 @@ class Cluster extends CustomPostType {
 			),
 		);
 	}
+
+	public function toHTML( $object ) {
+		$html = '';
+		if ( $object->post_content ) {
+			$html = '<a href="'.get_permalink( $object->ID ).'">'.$object->post_title.'</a>';
+		}
+		else {
+			$html = $object->post_title;
+		}
+		return $html;
+	}
 }
 
 

@@ -296,7 +296,11 @@ function sc_clusters_list( $attr, $content=null ) {
 				<div class="cluster-short">
 					<div class="cluster-short-inner">
 						<h3>
+						<?php if ( $post->post_content ): ?>
 							<a class="ga-event-link" href="<?php echo get_permalink( $post ); ?>"><?php echo $post->post_title; ?></a>
+						<?php else: ?>
+							<?php echo $post->post_title; ?>
+						<?php endif; ?>
 						</h3>
 
 						<div class="cluster-short-desc">
@@ -322,9 +326,12 @@ function sc_clusters_list( $attr, $content=null ) {
 					</div>
 
 					<div class="cluster-short-buttons-container">
+						<?php if ( $post->post_content ): ?>
 						<a href="<?php echo get_permalink( $post ); ?>" class="ga-event-link btn btn-primary cluster-short-btn">
 							Learn More <span class="sr-only">about the <?php echo $post->post_title; ?> faculty cluster</span>
 						</a>
+						<?php endif; ?>
+
 						<a href="<?php echo $positions_url; ?>" class="ga-event-link btn btn-primary cluster-short-btn">
 							See Positions <span class="sr-only">for the <?php echo $post->post_title; ?> faculty cluster</span>
 						</a>
@@ -390,9 +397,15 @@ function sc_cluster_parallax( $attr, $content='' ) {
 				<div class="row">
 					<div class="col-md-8 col-sm-7">
 						<h2 class="cluster-pl-title">
-							<a class="ga-event-link" href="<?php echo get_permalink( $post->ID ); ?>">
+							<?php if ( $post->post_content ): ?>
+							<a class="cluster-pl-title-inner ga-event-link" href="<?php echo get_permalink( $post->ID ); ?>">
 								<?php echo $post->post_title; ?>
 							</a>
+							<?php else: ?>
+							<span class="cluster-pl-title-inner">
+								<?php echo $post->post_title; ?>
+							</span>
+							<?php endif; ?>
 						</h2>
 						<div class="row">
 							<div class="col-md-11 col-sm-11">
