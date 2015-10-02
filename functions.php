@@ -110,14 +110,12 @@ function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
 	$text = get_post_meta( $post_id, 'cluster_cta_text', true );
 	$url = get_post_meta( $post_id, 'cluster_cta_url', true );
 
-	if ( !$text ) {
-		$text = 'Apply Now for Open Cluster Positions';
+	if ( $text && $url ) {
+		return display_cta_btn( $url, $text, $classes . ' btn-block', $id );
 	}
-	if ( !$url ) {
-		$url = '#';
+	else {
+		return;
 	}
-
-	return display_cta_btn( $url, $text, $classes . ' btn-block', $id );
 }
 
 
