@@ -213,14 +213,14 @@
 // Basic Faculty Cluster list
 
 .cluster-short h3 {
+  font-family: $font-family-sans-serif;
   font-size: 25px;
+  font-weight: 600;
   line-height: 1.1;
   margin: 15px 0 10px;
 
   a {
     color: #000;
-    font-family: $font-family-sans-serif;
-    font-weight: 600;
   }
 }
 
