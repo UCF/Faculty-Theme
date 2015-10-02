@@ -388,15 +388,16 @@ function sc_cluster_parallax( $attr, $content='' ) {
 		$img = wp_get_attachment_url( $img_id );
 		$cluster_leads = Cluster::get_leads( $post );
 		$cluster_contacts = Cluster::get_contacts( $post );
+		$parallax_img = display_parallax_image( $img, array( 'id' => $post->post_name ) );
 	?>
 			</div> <!-- Close .container -->
 	<?php
-			echo display_parallax_image( $img );
+			echo $parallax_img;
 	?>
 			<div class="container"> <!-- Re-open .container -->
 				<div class="row">
 					<div class="col-md-8 col-sm-7">
-						<h2 class="cluster-pl-title" id="<?php echo $post->post_name; ?>">
+						<h2 class="cluster-pl-title" <?php if ( empty( $parallax_img ) ): ?>id="<?php echo $post->post_name; ?>"<?php endif; ?>>
 							<?php if ( $post->post_content ): ?>
 							<a class="cluster-pl-title-inner ga-event-link" href="<?php echo get_permalink( $post->ID ); ?>">
 								<?php echo $post->post_title; ?>
