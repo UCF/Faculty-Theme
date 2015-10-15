@@ -114,7 +114,12 @@
 
   a {
     text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: $highlight-gold;
+    }
   }
+
 }
 
 
@@ -145,6 +150,10 @@
   display: inline-block;
   margin: 0 20px 0 0; // Force at least 20px of visible dotted line (in case title is multiline)
   padding: 0 20px 0 0;
+
+  &:hover {
+    color: #000;
+  }
 
   @media (max-width: $screen-sm-max) {
     background-color: transparent;
