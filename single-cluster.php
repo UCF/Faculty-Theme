@@ -43,8 +43,17 @@ endif;
 
 	<article class="page-content">
 		<div class="container">
-			<?php if ( !$header_image ) { echo $h1; } ?>
+			<?php if ( !$header_image ): ?>
+				<?php echo $h1; ?>
 
+				<div id="home-cta-no-banner" class="row">
+					<div class="col-lg-5 col-lg-offset-7 col-md-6 col-md-offset-6 col-sm-7 col-sm-offset-5">
+						<a class="ga-event-link btn btn-primary btn-cta" href="<?php echo $cta_url; ?>">
+							<?php echo $cta_text; ?>
+						</a>
+					</div>
+				</div>
+			<?php endif; ?>
 	<?php
 	$cluster_leads = Cluster::get_leads( $post );
 	$cluster_contacts = Cluster::get_contacts( $post );
@@ -122,6 +131,7 @@ endif;
 				<?php endif; ?>
 			</div>
 		</div>
+
 		<div class="container">
 	<?php endif; ?>
 

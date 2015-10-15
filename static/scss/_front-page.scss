@@ -72,8 +72,8 @@
   }
 }
 
-
-#home-header-cta {
+#home-header-cta
+ {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -93,6 +93,39 @@
     bottom: -30px;
     font-size: 30px;
     position: absolute;
+
+    @include body-prefix('.ie8') {
+      bottom: 0;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 0;
+      font-size: 21px;
+      left: 0;
+      margin: auto;
+      right: 0;
+    }
+  }
+}
+
+#home-cta-no-banner
+ {
+
+  &.container,
+  .row,
+  div[class^="col-"] {
+    height: 100%;
+  }
+
+  .btn-cta {
+    // bottom: -30px;
+    font-size: 30px;
+    // position: absolute;
+    margin-bottom: -30px;
 
     @include body-prefix('.ie8') {
       bottom: 0;
