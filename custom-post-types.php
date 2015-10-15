@@ -384,17 +384,6 @@ class Cluster extends CustomPostType {
 		return $lead_posts;
 	}
 
-	public static function get_contacts( $cluster ) {
-		$contact_posts = array();
-		$contacts = get_post_meta( $cluster->ID, 'cluster_contacts' );
-		if ( $contacts ) {
-			foreach ( $contacts[0] as $post_id ) {
-				$contact_posts[] = get_post( intval( $post_id ) );
-			}
-		}
-		return $contact_posts;
-	}
-
 	public function fields() {
 		$prefix = $this->options( 'name' ) . '_';
 		return array(
@@ -420,13 +409,6 @@ class Cluster extends CustomPostType {
 				'name' => 'Cluster Leads',
 				'desc' => 'One or more people that serve as the lead(s) of this cluster.',
 				'id' => $prefix . 'leads',
-				'type' => 'multiselect',
-				'options' => $this->get_people_as_options()
-			),
-			array(
-				'name' => 'Cluster Contacts',
-				'desc' => 'One or more people that serve as the contacts for this cluster.',
-				'id' => $prefix . 'contacts',
 				'type' => 'multiselect',
 				'options' => $this->get_people_as_options()
 			),

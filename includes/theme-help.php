@@ -40,7 +40,7 @@
 					<dl>
 						<dt><a href="#people">People</a></dt>
 						<dd>Describes individual people</dd>
-						<dd>Can be associated with Faculty Clusters (as a cluster's Lead or Contact person)</dd>
+						<dd>Can be associated with Faculty Clusters (as a cluster's Lead)</dd>
 						<dt><a href="#faqs">FAQs</a></dt>
 						<dd>A simple Question + Answer post type</dd>
 						<dd>Generally should only be displayed via shortcode on Pages</dd>
@@ -122,8 +122,8 @@
 							<td>
 								This value is used when displaying lists of People on the site frontend to determine sort order.
 								<br>
-								<strong>This value is required</strong>; People will not be available as Cluster Lead or Cluster
-								Contact options for the	Faculty Cluster post type if this value is blank!
+								<strong>This value is required</strong>; People will not be available as Cluster Lead options for the
+								Faculty Cluster post type if this value is blank!
 							</td>
 							<td>Doe</td>
 						</tr>
@@ -228,18 +228,8 @@
 							<td>
 								One or more People that serve as the lead(s) of the Cluster.
 								<br>
-								When these People are selected, their names will be displayed where Clusters are listed on the site
-								frontend.
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Cluster Contacts</td>
-							<td>
-								One or more People that serve as the contacts(s) of the Cluster.
-								<br>
-								When these People are selected, their names and contact information will be displayed where the
-								[cluster-parallax] and [cluster-parallax-list] shortcodes are called.
+								When these People are selected, their names and contact information will be displayed where
+								Clusters are listed on the site frontend.
 							</td>
 							<td></td>
 						</tr>
@@ -936,7 +926,7 @@ and fall *under* the image, instead of next to it.
 						Displays all Faculty Clusters with parallax header images and short descriptions.
 					</p>
 					<p>
-						Use this shortcode to display a large preview of an individual Faculty Cluster. The preview utilizes the full width of the page and lists the Cluster lead(s) and Cluster point(s) of contact. Cluster can be <a href="#shortcodes-cluster-parallax_attributes">specified by ID or by slug</a>
+						Use this shortcode to display a large preview of an individual Faculty Cluster. The preview utilizes the full width of the page and lists the Cluster lead(s) and their contact information. Cluster can be <a href="#shortcodes-cluster-parallax_attributes">specified by ID or by slug</a>
 					</p>
 
 					<h4>Content</h4>
@@ -977,7 +967,7 @@ and fall *under* the image, instead of next to it.
 						Displays all Faculty Clusters with parallax header images and short descriptions.
 					</p>
 					<p>
-						Use this shortcode to display a list of large previews of Faculty Clusters. The previews utilize the full width of the page and lists the Cluster lead(s) and Cluster point(s) of contact. To list a single Faculty Cluster, use <a href="#shortcodes-cluster-parallax">[cluster-parallax]</a>.
+						Use this shortcode to display a list of large previews of Faculty Clusters. The previews utilize the full width of the page and lists the Cluster lead(s) and their contact information. To list a single Faculty Cluster, use <a href="#shortcodes-cluster-parallax">[cluster-parallax]</a>.
 					</p>
 
 					<h4>Content</h4>
