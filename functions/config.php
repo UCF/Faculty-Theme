@@ -167,12 +167,6 @@ add_action( 'customize_register', 'define_customizer_panels' );
 
 function define_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
-		THEME_CUSTOMIZER_PREFIX . 'header',
-		array(
-			'title' => 'Header',
-		)
-	);
-	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'footer',
 		array(
 			'title' => 'Footer'
@@ -236,12 +230,12 @@ add_action( 'customize_register', 'define_customizer_sections' );
  **/
 
 Config::$setting_defaults = array(
-	'header_text_primary' => 'Faculty Jobs',
-	'header_text_secondary' => 'We\'re Hiring.',
 	'footer_description' => '<h3>About UCF</h3>
 <p>The University of Central Florida and its 12 colleges provide opportunities to 60,000 students from all 50 states and 140 countries. Located in Orlando, Florida, UCF is the nation’s second-largest university with 210 degree programs to choose from. UCF is ranked as one of the “Most Innovative” universities by U.S. News & World Report, a best-value university by The Princeton Review and Kiplinger’s, and one of the nation’s most affordable colleges by Forbes.</p>
 
 <p><a href="http://www.ucf.edu/about-ucf">Learn More About UCF…</a><br><br></p>',
+	'home_header_text_primary' => 'Faculty Jobs',
+	'home_header_text_secondary' => 'We\'re Hiring.',
 	'home_header_content' => '<div class="container">
 <div class="row">
 <div class="col-md-8 col-sm-8">
@@ -274,40 +268,6 @@ function get_setting_default( $setting, $fallback=null ) {
 
 function define_customizer_fields( $wp_customize ) {
 
-	// Header
-	$wp_customize->add_setting(
-		'header_text_primary',
-		array(
-			'default'     => get_setting_default( 'header_text_primary' ),
-		)
-	);
-	$wp_customize->add_control(
-		'header_text_primary',
-		array(
-			'type'        => 'text',
-			'label'       => 'Primary Header Text',
-			'description' => 'Smaller text displayed within the site\'s primary title.',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
-		)
-	);
-
-	$wp_customize->add_setting(
-		'header_text_secondary',
-		array(
-			'default'     => get_setting_default( 'header_text_secondary' ),
-		)
-	);
-	$wp_customize->add_control(
-		'header_text_secondary',
-		array(
-			'type'        => 'text',
-			'label'       => 'Secondary Header Text',
-			'description' => 'Larger text displayed within the site\'s primary title.',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'header',
-		)
-	);
-
-
 	// Footer
 	$wp_customize->add_setting(
 		'footer_description',
@@ -326,6 +286,38 @@ function define_customizer_fields( $wp_customize ) {
 
 
 	// Home Page Header
+	$wp_customize->add_setting(
+		'home_header_text_primary',
+		array(
+			'default'     => get_setting_default( 'home_header_text_primary' ),
+		)
+	);
+	$wp_customize->add_control(
+		'home_header_text_primary',
+		array(
+			'type'        => 'text',
+			'label'       => 'Primary Header Text',
+			'description' => 'Smaller text displayed within the home page\'s primary title.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'home_header_text_secondary',
+		array(
+			'default'     => get_setting_default( 'home_header_text_secondary' ),
+		)
+	);
+	$wp_customize->add_control(
+		'home_header_text_secondary',
+		array(
+			'type'        => 'text',
+			'label'       => 'Secondary Header Text',
+			'description' => 'Larger text displayed within the home page\'s primary title.',
+			'section'     => THEME_CUSTOMIZER_PREFIX . 'home_header',
+		)
+	);
+
 	$wp_customize->add_setting(
 		'home_header_content',
 		array(

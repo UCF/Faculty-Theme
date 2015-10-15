@@ -123,25 +123,53 @@ function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
  * Display's the site title's markup based on the current page.
  **/
 function display_site_title() {
-	$primary_text = get_theme_mod_or_default( 'header_text_primary' );
-	$secondary_text = get_theme_mod_or_default( 'header_text_secondary' );
-	$elem = ( is_home() || is_front_page() ) ? 'h1' : 'span';
+	$elem = 'span';
+	$primary_text = $secondary_text = null;
+	$title_markup = '';
+
+	// Home page <h1> with primary and secondary title text
+	if ( is_home() || is_front_page() ) {
+		$elem = 'h1';
+		$primary_text = get_theme_mod_or_default( 'home_header_text_primary' );
+		$secondary_text = get_theme_mod_or_default( 'home_header_text_secondary' );
+
+		ob_start();
+	?>
+
+		<?php if ( $primary_text ): ?>
+		<span class="site-title-primary">
+			<?php echo wptexturize( $primary_text ); ?>
+		</span>
+		<?php endif; ?>
+
+		<?php if ( $secondary_text ): ?>
+		<span class="site-title-secondary">
+			<?php echo wptexturize( $secondary_text ); ?>
+		</span>
+		<?php endif; ?>
+
+	<?php
+		$title_markup = ob_get_clean();
+	}
+
+	// Subpage <span> title text
+	else {
+		$secondary_text = get_bloginfo( 'name' );
+
+		ob_start();
+	?>
+
+		<span class="site-title-secondary"><?php echo wptexturize( $secondary_text ); ?></span>
+
+	<?php
+		$title_markup = ob_get_clean();
+	}
 
 	ob_start();
 ?>
 	<<?php echo $elem; ?> id="site-title" class="clearfix">
-		<a href="<?php echo bloginfo( 'url' ); ?>">
-			<?php if ( $primary_text ): ?>
-			<span class="site-title-primary">
-				<?php echo wptexturize( $primary_text ); ?>
-			</span>
-			<?php endif; ?>
-
-			<?php if ( $secondary_text ): ?>
-			<span class="site-title-secondary">
-				<?php echo wptexturize( $secondary_text ); ?>
-			</span>
-			<?php endif; ?>
+		<a href="<?php echo get_bloginfo( 'url' ); ?>">
+			<?php echo $title_markup; ?>
 		</a>
 	</<?php echo $elem; ?>>
 <?php
