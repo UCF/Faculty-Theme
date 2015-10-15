@@ -187,7 +187,7 @@ function supports3dTransforms() {
  * Force equal height divs.
  **/
 function equalHeightDivs() {
-  $('.cluster-short-inner, .faculty-statistics .col, .open-position, .cluster-single-contacts > li').matchHeight();
+  $('.cluster-short-inner, .faculty-statistics .col, .open-position, .cluster-single-leads > li').matchHeight();
 }
 
 

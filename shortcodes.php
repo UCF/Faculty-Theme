@@ -387,7 +387,6 @@ function sc_cluster_parallax( $attr, $content='' ) {
 		$img_id = get_post_meta( $post->ID, 'cluster_header_image', true );
 		$img = wp_get_attachment_url( $img_id );
 		$cluster_leads = Cluster::get_leads( $post );
-		$cluster_contacts = Cluster::get_contacts( $post );
 		$parallax_img = display_parallax_image( $img, array( 'id' => $post->post_name ) );
 	?>
 			</div> <!-- Close .container -->
@@ -426,21 +425,8 @@ function sc_cluster_parallax( $attr, $content='' ) {
 						<?php
 						foreach ( $cluster_leads as $lead ):
 							$name = Person::get_name( $lead );
-						?>
-							<li><?php echo $name; ?></li>
-						<?php endforeach; ?>
-						</ul>
-						<?php endif; ?>
-
-						<?php if ( $cluster_contacts ): ?>
-						<h3 class="cluster-pl-sidebar-title">Cluster Contact<?php if ( count( $cluster_contacts ) > 1 ): ?>s<?php endif; ?>:</h3>
-
-						<ul class="cluster-pl-sidebar-list">
-						<?php
-						foreach ( $cluster_contacts as $contact ):
-							$name = Person::get_name( $contact );
-							$phones = Person::get_phones( $contact );
-							$email = get_post_meta( $contact->ID, 'person_email', true );
+							$phones = Person::get_phones( $lead );
+							$email = get_post_meta( $lead->ID, 'person_email', true );
 						?>
 							<li>
 								<?php echo $name; ?>

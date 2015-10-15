@@ -41,12 +41,6 @@
   }
 }
 
-.cluster-single-leads {
-  > li {
-    display: inline-block;
-  }
-}
-
 .cluster-single-contact-info {
   @include list-unstyled();
   margin-top: 5px;
@@ -63,7 +57,7 @@
   }
 }
 
-.cluster-single-contacts {
+.cluster-single-leads {
   margin-bottom: 0;
 
   > li {
@@ -191,7 +185,7 @@
   margin-bottom: 40px;
 
   li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 }
 

@@ -56,14 +56,12 @@ endif;
 			<?php endif; ?>
 	<?php
 	$cluster_leads = Cluster::get_leads( $post );
-	$cluster_contacts = Cluster::get_contacts( $post );
 
-	if ( $cluster_leads && $cluster_contacts ):
+	if ( $cluster_leads ):
 	?>
 		</div>
 		<div class="container-wide cluster-single-people">
 			<div class="container">
-				<?php if ( $cluster_leads ): ?>
 				<div class="row">
 					<div class="col-lg-2 col-md-3 col-sm-4">
 						<h2 class="cluster-single-people-heading">Cluster Lead<?php if ( count( $cluster_leads ) > 1 ): ?>s<?php endif; ?>:</h2>
@@ -71,34 +69,11 @@ endif;
 					<div class="col-lg-10 col-md-9 col-sm-8">
 						<ul class="cluster-single-people-list cluster-single-leads">
 						<?php
-						$cluster_lead_count = 0;
 						foreach ( $cluster_leads as $lead ):
-							$cluster_lead_count++;
 							$name = Person::get_name( $lead );
-							if ( $cluster_lead_count !== count( $cluster_leads ) ) {
-								$name = trim( $name ) . ', ';
-							}
-						?>
-							<li><?php echo $name; ?></li>
-						<?php endforeach; ?>
-						</ul>
-					</div>
-				</div>
-				<?php endif; ?>
-
-				<?php if ( $cluster_contacts ): ?>
-				<div class="row">
-					<div class="col-lg-2 col-md-3 col-sm-4">
-						<h2 class="cluster-single-people-heading">Cluster Contact<?php if ( count( $cluster_contacts ) > 1 ): ?>s<?php endif; ?>:</h2>
-					</div>
-					<div class="col-lg-10 col-md-9 col-sm-8">
-						<ul class="cluster-single-people-list cluster-single-contacts">
-						<?php
-						foreach ( $cluster_contacts as $contact ):
-							$name = Person::get_name( $contact );
-							$title = get_post_meta( $contact->ID, 'person_jobtitle', true );
-							$phones = Person::get_phones( $contact );
-							$email = get_post_meta( $contact->ID, 'person_email', true );
+							$title = get_post_meta( $lead->ID, 'person_jobtitle', true );
+							$phones = Person::get_phones( $lead );
+							$email = get_post_meta( $lead->ID, 'person_email', true );
 						?>
 							<li>
 								<?php echo $name; ?>
@@ -128,7 +103,6 @@ endif;
 						</ul>
 					</div>
 				</div>
-				<?php endif; ?>
 			</div>
 		</div>
 
