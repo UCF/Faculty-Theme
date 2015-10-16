@@ -155,6 +155,10 @@ function display_site_title() {
 	// Subpage <span> title text
 	else {
 		$secondary_text = get_bloginfo( 'name' );
+		$title_link = get_theme_mod_or_default( 'title_link' );
+		if ( $title_link == '' ) {
+			$title_link = get_bloginfo( 'url' );
+		}
 
 		ob_start();
 	?>
@@ -168,7 +172,7 @@ function display_site_title() {
 	ob_start();
 ?>
 	<<?php echo $elem; ?> id="site-title" class="clearfix">
-		<a href="<?php echo get_bloginfo( 'url' ); ?>">
+		<a href="<?php echo $title_link; ?>">
 			<?php echo $title_markup; ?>
 		</a>
 	</<?php echo $elem; ?>>

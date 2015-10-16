@@ -284,6 +284,23 @@ function define_customizer_fields( $wp_customize ) {
 		)
 	);
 
+	// Footer
+	$wp_customize->add_setting(
+		'title_link',
+		array(
+			'default'     => get_setting_default( 'title_link' ),
+		)
+	);
+	$wp_customize->add_control(
+		'title_link',
+		array(
+			'type'        => 'text',
+			'label'       => 'Site Title Custom Link',
+			'description' => 'URL overriding the site title\'s default URL.',
+			'section'     => 'title_tagline'
+		)
+	);
+
 
 	// Home Page Header
 	$wp_customize->add_setting(
