@@ -36,10 +36,39 @@
 
 .btn-primary {
   border-bottom: 6px solid $btn-primary-border;
+
   &:hover {
     background: $highlight-gold;
     border-color: darken($highlight-gold, 12%);
   }
+
+  // hover focus overrides
+  &:focus {
+    background: $dark-gold;
+    border-color: darken($dark-gold, 12%);
+
+    &:hover {
+      background: $highlight-gold;
+      border-color: darken($highlight-gold, 12%);
+    }
+  }
+
+  // hover active overrides
+  &:active {
+    background: $dark-gold;
+    border-color: darken($dark-gold, 12%);
+
+    &:focus {
+      background: $dark-gold;
+      border-color: darken($dark-gold, 12%);
+    }
+
+    &:hover {
+      background: $highlight-gold;
+      border-color: darken($highlight-gold, 12%);
+    }
+  }
+
 }
 
 .btn-success {
