@@ -99,17 +99,20 @@
   .parallax-featured-header & {
     h1 {
       color: #fff;
+      filter: Shadow(Color=#666666,
+          Direction=135,
+          Strength=5);
       font-size: 55px;
       letter-spacing: -.02em;
       margin: 0 auto;
       padding: 0 $grid-gutter-width / 2;
       position: absolute;
       text-align: center;
-      text-shadow: 3px 4px 0 rgba(0,0,0,.34),
-        -1px -1px 0 rgba(0,0,0,.09),
-        1px -1px 0 rgba(0,0,0,.09),
-        -1px 1px 0 rgba(0,0,0,.09),
-        1px 1px 0 rgba(0,0,0,.09);
+      text-shadow: 3px 4px 0 rgba(0, 0, 0, .34),
+        -1px -1px 0 rgba(0, 0, 0, .09),
+        1px -1px 0 rgba(0, 0, 0, .09),
+        -1px 1px 0 rgba(0, 0, 0, .09),
+        1px 1px 0 rgba(0, 0, 0, .09);
       text-transform: uppercase;
       top: 46%;
       transform: translate(0, -60%);
