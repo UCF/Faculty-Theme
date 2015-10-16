@@ -251,7 +251,8 @@ Config::$setting_defaults = array(
 	'news_url' => 'http://today.ucf.edu/feed/',
 	'enable_google' => 1,
 	'search_per_page' => 10,
-	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css' // Main site css key
+	'cloud_typography_key' => '//cloud.typography.com/730568/675644/css/fonts.css', // Main site css key
+	'title_link' => get_bloginfo( 'url' )
 );
 
 function get_setting_default( $setting, $fallback=null ) {
@@ -284,7 +285,7 @@ function define_customizer_fields( $wp_customize ) {
 		)
 	);
 
-	// Footer
+	// Site Identity
 	$wp_customize->add_setting(
 		'title_link',
 		array(

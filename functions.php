@@ -155,10 +155,7 @@ function display_site_title() {
 	// Subpage <span> title text
 	else {
 		$secondary_text = get_bloginfo( 'name' );
-		$title_link = get_theme_mod( 'title_link' );
-		if ( $title_link == '' ) {
-			$title_link = get_bloginfo( 'url' );
-		}
+		$title_link = get_theme_mod_or_default( 'title_link' );
 
 		ob_start();
 	?>
