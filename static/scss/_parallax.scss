@@ -105,7 +105,11 @@
       padding: 0 $grid-gutter-width / 2;
       position: absolute;
       text-align: center;
-      text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+      text-shadow: 3px 4px 0 rgba(0,0,0,.34),
+        -1px -1px 0 rgba(0,0,0,.09),
+        1px -1px 0 rgba(0,0,0,.09),
+        -1px 1px 0 rgba(0,0,0,.09),
+        1px 1px 0 rgba(0,0,0,.09);
       text-transform: uppercase;
       top: 46%;
       transform: translate(0, -60%);
