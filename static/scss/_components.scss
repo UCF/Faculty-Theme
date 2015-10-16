@@ -163,6 +163,10 @@
     }
   }
 
+  &> .container > h3 {
+    margin-top: 0;
+  }
+
   a {
     font-weight: 600;
   }
