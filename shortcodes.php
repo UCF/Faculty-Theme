@@ -490,7 +490,10 @@ add_shortcode( 'cluster-parallax-list', 'sc_cluster_parallax_list' );
 function sc_cluster_open_positions_list( $attr, $content='' ) {
 	ob_start();
 
-	if ( is_active_sidebar( 'open_positions' ) ) :
+	$sidebar_name = 'open_positions_';
+	$list_type = isset( $attr['list'] ) ? $attr['list'] : 'cluster';
+
+	if ( is_active_sidebar( $sidebar_name . $list_type ) ) :
 ?>
 	</div> <!-- Close .container -->
 
@@ -499,7 +502,7 @@ function sc_cluster_open_positions_list( $attr, $content='' ) {
 			<section class="open-positions">
 				<h2>Open Positions</h2>
 				<ul>
-					<?php dynamic_sidebar( 'open_positions' ); ?>
+					<?php dynamic_sidebar( $sidebar_name . $list_type ); ?>
 				</ul>
 			</section>
 		</div>
