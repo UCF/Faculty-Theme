@@ -23,9 +23,19 @@ function __init__() {
 	register_nav_menu( 'ucf-colleges' , __( 'UCF Colleges' ));
 
 	register_sidebar( array(
-		'name'          => __( 'Open Positions' ),
-		'id'            => 'open_positions',
-		'description'   => 'Section that lists open positions; can be displayed using the [cluster-open-positions-list] shortcode.',
+		'name'          => __( 'Open Cluster Positions' ),
+		'id'            => 'open_positions_cluster',
+		'description'   => 'Section that lists open faculty cluster positions; can be displayed using the [cluster-open-positions-list] shortcode.',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Open Faculty Positions' ),
+		'id'            => 'open_positions_faculty',
+		'description'   => 'Section that lists open positions; can be displayed using the [cluster-open-positions-list list="faculty"] shortcode.',
 		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '',
