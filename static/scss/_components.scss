@@ -16,6 +16,7 @@
 .navbar,
 .pagination,
 .panel,
+.tooltip,
 .well {
   @include no-font-smoothing();
   font-family: $font-family-sans-serif;
@@ -163,6 +164,12 @@
       color: #666;
     }
   }
+}
+
+
+// Tooltip overrides
+.tooltip {
+  font-size: 12px;
 }
 
 

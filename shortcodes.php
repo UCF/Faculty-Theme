@@ -751,3 +751,33 @@ function sc_clearfix( $attr ) {
 	return '<div class="clearfix"></div>';
 }
 add_shortcode( 'clearfix', 'sc_clearfix' );
+
+
+/**
+ * Creates a tooltip around the wrapped content.
+ **/
+function sc_tooltip( $attr, $content='' ) {
+	$attr = shortcode_atts( array(
+		'create_link' => true,
+		'title' => '',
+		'position' => 'top',
+		'href' => '#',
+		'class' => '',
+		'id' => ''
+	), $attr, 'tooltip' );
+
+	$attr['create_link'] = filter_var( $attr['create_link'], FILTER_VALIDATE_BOOLEAN );
+
+	ob_start();
+?>
+
+	<?php if ( $attr['create_link'] ): ?>
+		<a href="<?php echo $attr['href']; ?>" data-toggle="tooltip" data-placement="<?php echo $attr['position']; ?>" title="<?php echo $attr['title']; ?>"><?php echo trim( do_shortcode( $content ) ); ?></a>
+	<?php else: ?>
+		<span data-toggle="tooltip" data-placement="<?php echo $attr['position']; ?>" tabindex="0" data-title="<?php echo $attr['title']; ?>"><?php echo do_shortcode( $content ); ?></span>
+	<?php endif; ?>
+
+<?php
+	return ob_get_clean();
+}
+add_shortcode( 'tooltip', 'sc_tooltip' );
