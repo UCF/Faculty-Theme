@@ -191,6 +191,14 @@ function equalHeightDivs() {
 }
 
 
+/**
+ * Enable tooltips
+ **/
+function tooltips() {
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
+
 if (typeof jQuery !== 'undefined') {
   jQuery(document).ready(function($) {
 
@@ -202,6 +210,7 @@ if (typeof jQuery !== 'undefined') {
 
     gaEventTracking();
     equalHeightDivs();
+    tooltips();
 
   });
 }
