@@ -137,7 +137,8 @@ Config::$custom_post_types = array(
 	'Post',
 	'Person',
 	'FAQ',
-	'Cluster'
+	'Cluster',
+	'Feature'
 );
 
 

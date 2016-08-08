@@ -542,6 +542,9 @@ function sc_callout( $attr, $content ) {
 			$extra_classes .= ' callout-static-bg';
 		}
 	}
+	else {
+		$extra_classes .= ' callout';
+	}
 
 	if ( $min_height ) {
 		$style_str .= 'min-height: ' . $min_height . '; ';
@@ -621,6 +624,22 @@ function sc_sidebar_content( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'sidebar-content', 'sc_sidebar_content' );
+
+
+/**
+ * Wraps content in a Bootstrap .container.
+ **/
+function sc_container( $attr, $content='' ) {
+	$class = isset( $attr['class'] ) ? $attr['class'] : '';
+	ob_start();
+	?>
+	<div class="container <?php echo $class; ?>">
+		<?php echo do_shortcode( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'container', 'sc_container' );
 
 
 /**

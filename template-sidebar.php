@@ -3,6 +3,8 @@
  * Template Name: With Faculty Cluster Sidebar
  */
 
+disallow_direct_load( 'template-sidebar.php' );
+
 get_header(); the_post();
 
 $featured_image = wp_get_attachment_url( get_post_thumbnail_id() );
