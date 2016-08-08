@@ -9,6 +9,11 @@
   @media (max-width: $screen-sm-max) {
     height: 300px;
   }
+
+  @media (max-width: $screen-xs-max) {
+    height: auto;
+    min-height: 300px;
+  }
 }
 
 .parallax-container {
@@ -23,6 +28,11 @@
 
       @media (max-width: $screen-sm-max) {
         height: 300px;
+      }
+
+      @media (max-width: $screen-xs-max) {
+        height: auto;
+        min-height: 300px;
       }
     }
   }
@@ -95,6 +105,10 @@
   position: relative;
   width: 100%;
   z-index: 3;
+
+  @media (max-width: $screen-xs-max) {
+    min-height: inherit;
+  }
 
   .parallax-featured-header & {
     h1 {
