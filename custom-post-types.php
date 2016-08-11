@@ -589,7 +589,7 @@ class Feature extends CustomPostType {
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,
-		$use_order      = False,
+		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
 		$taxonomies     = array( 'post_tag' );
