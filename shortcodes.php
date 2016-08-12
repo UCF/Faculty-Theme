@@ -560,7 +560,7 @@ function sc_callout( $attr, $content ) {
 
 	ob_start();
 ?>
-	</div> <!-- Close out existing .container -->
+</div> <!-- Close out existing .container -->
 <?php
 	if ( $parallax ):
 		echo display_parallax_image(
@@ -582,7 +582,7 @@ function sc_callout( $attr, $content ) {
 <?php
 	endif;
 ?>
-	<div class="container"> <!-- Re-open .container -->
+<div class="container"> <!-- Re-open .container -->
 <?php
 	return ob_get_clean();
 }

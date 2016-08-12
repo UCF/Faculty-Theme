@@ -9,7 +9,8 @@ body {
 div > br:first-child,
 section > br:first-child,
 article > br:first-child,
-aside > br:first-child {
+aside > br:first-child,
+.container > p:only-child:empty {
   display: none;
 }
 
