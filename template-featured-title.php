@@ -3,7 +3,7 @@
  * Template Name: With Title over Featured Image
  */
 
-disallow_direct_load( 'page-featured-title.php' ); ?>
+disallow_direct_load( 'template-featured-title.php' ); ?>
 
 <?php
 get_header(); the_post();

@@ -268,7 +268,7 @@ class Page extends CustomPostType {
 				'desc' => '',
 				'id' => $prefix.'stylesheet',
 				'type' => 'file',
-			),
+			)
 		);
 	}
 }
@@ -576,5 +576,49 @@ class Person extends CustomPostType {
 		return ob_get_clean();
 	}
 } // END class
+
+
+class Feature extends CustomPostType {
+	public
+		$name           = 'feature',
+		$plural_name    = 'Features',
+		$singular_name  = 'Feature',
+		$add_new_item   = 'Add New Feature',
+		$edit_item      = 'Edit Feature',
+		$new_item       = 'New Feature',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True,
+		$taxonomies     = array( 'post_tag' );
+
+	public function fields() {
+		$prefix = $this->options( 'name' ).'_';
+		return array(
+			array(
+				'name' => 'Stylesheet',
+				'desc' => '',
+				'id' => $prefix.'stylesheet',
+				'type' => 'file',
+			),
+			array(
+				'name' => 'Primary Title Text',
+				'desc' => 'Smaller text displayed within the Feature\'s title.',
+				'id' => $prefix . 'header_text_primary',
+				'type' => 'text',
+				'default' => ''
+			),
+			array(
+				'name' => 'Secondary Title Text',
+				'desc' => 'Larger text displayed within the Feature\'s title. If unset, the Feature\'s post title will be used.',
+				'id' => $prefix . 'header_text_secondary',
+				'type' => 'text',
+				'default' => ''
+			),
+		);
+	}
+}
 
 ?>

@@ -123,9 +123,12 @@ function display_cluster_cta_btn( $post_id, $classes='', $id='' ) {
  * Display's the site title's markup based on the current page.
  **/
 function display_site_title() {
+	global $post;
+
 	$elem = 'span';
 	$primary_text = $secondary_text = null;
 	$title_markup = '';
+	$title_link = get_theme_mod_or_default( 'title_link' );
 
 	// Home page <h1> with primary and secondary title text
 	if ( is_home() || is_front_page() ) {
@@ -152,10 +155,34 @@ function display_site_title() {
 		$title_markup = ob_get_clean();
 	}
 
+	// Feature post <h1> with primary and secondary text
+	elseif ( $post->post_type == 'feature' ) {
+		$elem = 'h1';
+		$primary_text = get_post_meta( $post->ID, 'feature_header_text_primary', true );
+		$secondary_text = get_post_meta( $post->ID, 'feature_header_text_secondary', true ) ?: $post->post_title;
+
+		ob_start();
+	?>
+
+		<?php if ( $primary_text ): ?>
+		<span class="site-title-primary">
+			<?php echo wptexturize( $primary_text ); ?>
+		</span>
+		<?php endif; ?>
+
+		<?php if ( $secondary_text ): ?>
+		<span class="site-title-secondary">
+			<?php echo wptexturize( $secondary_text ); ?>
+		</span>
+		<?php endif; ?>
+
+	<?php
+		$title_markup = ob_get_clean();
+	}
+
 	// Subpage <span> title text
 	else {
 		$secondary_text = get_bloginfo( 'name' );
-		$title_link = get_theme_mod_or_default( 'title_link' );
 
 		ob_start();
 	?>
