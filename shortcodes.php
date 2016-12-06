@@ -542,6 +542,9 @@ function sc_callout( $attr, $content ) {
 			$extra_classes .= ' callout-static-bg';
 		}
 	}
+	else {
+		$extra_classes .= ' callout';
+	}
 
 	if ( $min_height ) {
 		$style_str .= 'min-height: ' . $min_height . '; ';
@@ -557,7 +560,7 @@ function sc_callout( $attr, $content ) {
 
 	ob_start();
 ?>
-	</div> <!-- Close out existing .container -->
+</div> <!-- Close out existing .container -->
 <?php
 	if ( $parallax ):
 		echo display_parallax_image(
@@ -579,7 +582,7 @@ function sc_callout( $attr, $content ) {
 <?php
 	endif;
 ?>
-	<div class="container"> <!-- Re-open .container -->
+<div class="container"> <!-- Re-open .container -->
 <?php
 	return ob_get_clean();
 }
@@ -621,6 +624,22 @@ function sc_sidebar_content( $attr, $content ) {
 	return ob_get_clean();
 }
 add_shortcode( 'sidebar-content', 'sc_sidebar_content' );
+
+
+/**
+ * Wraps content in a Bootstrap .container.
+ **/
+function sc_container( $attr, $content='' ) {
+	$class = isset( $attr['class'] ) ? $attr['class'] : '';
+	ob_start();
+	?>
+	<div class="container <?php echo $class; ?>">
+		<?php echo do_shortcode( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'container', 'sc_container' );
 
 
 /**
@@ -732,3 +751,33 @@ function sc_clearfix( $attr ) {
 	return '<div class="clearfix"></div>';
 }
 add_shortcode( 'clearfix', 'sc_clearfix' );
+
+
+/**
+ * Creates a tooltip around the wrapped content.
+ **/
+function sc_tooltip( $attr, $content='' ) {
+	$attr = shortcode_atts( array(
+		'create_link' => true,
+		'title' => '',
+		'position' => 'top',
+		'href' => '#',
+		'class' => '',
+		'id' => ''
+	), $attr, 'tooltip' );
+
+	$attr['create_link'] = filter_var( $attr['create_link'], FILTER_VALIDATE_BOOLEAN );
+
+	ob_start();
+?>
+
+	<?php if ( $attr['create_link'] ): ?>
+		<a href="<?php echo $attr['href']; ?>" data-toggle="tooltip" data-placement="<?php echo $attr['position']; ?>" title="<?php echo $attr['title']; ?>"><?php echo trim( do_shortcode( $content ) ); ?></a>
+	<?php else: ?>
+		<span data-toggle="tooltip" data-placement="<?php echo $attr['position']; ?>" tabindex="0" data-title="<?php echo $attr['title']; ?>"><?php echo do_shortcode( $content ); ?></span>
+	<?php endif; ?>
+
+<?php
+	return ob_get_clean();
+}
+add_shortcode( 'tooltip', 'sc_tooltip' );
