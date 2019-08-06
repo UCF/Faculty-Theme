@@ -211,12 +211,6 @@ function define_customizer_sections( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_section(
-		THEME_CUSTOMIZER_PREFIX . 'search',
-		array(
-			'title'       => 'Search',
-		)
-	);
-	$wp_customize->add_section(
 		THEME_CUSTOMIZER_PREFIX . 'social',
 		array(
 			'title' => 'Social Media'
@@ -501,59 +495,6 @@ function define_customizer_fields( $wp_customize ) {
 			'label'       => 'News Feed',
 			'description' => 'Use the following URL for the news RSS feed <br>Example: <em>http://today.ucf.edu/feed/</em>',
 			'section'     => THEME_CUSTOMIZER_PREFIX . 'news'
-		)
-	);
-
-
-	// Search
-	$wp_customize->add_setting(
-		'enable_google',
-		array(
-			'default'     => get_setting_default( 'enable_google' ),
-		)
-	);
-	$wp_customize->add_control(
-		'enable_google',
-		array(
-			'type'        => 'checkbox',
-			'label'       => 'Enable Google Search',
-			'description' => 'Enable to use the google search appliance to power the search functionality.',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'search'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'search_domain'
-	);
-	$wp_customize->add_control(
-		'search_domain',
-		array(
-			'type'        => 'text',
-			'label'       => 'Search Domain',
-			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'search'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'search_per_page',
-		array(
-			'default'     => get_setting_default( 'search_per_page' ),
-			'type'        => 'option'
-		)
-	);
-	$wp_customize->add_control(
-		'search_per_page',
-		array(
-			'type'        => 'number',
-			'label'       => 'Search Results Per Page',
-			'description' => 'Number of search results to show per page of results',
-			'section'     => THEME_CUSTOMIZER_PREFIX . 'search',
-			'input_attrs' => array(
-				'min'  => 1,
-				'max'  => 50,
-				'step' => 1
-			)
 		)
 	);
 
