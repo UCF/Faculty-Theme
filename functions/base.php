@@ -480,7 +480,7 @@ function dump() {
  * @return void
  * @author Jared Lang
  * */
-if ( defined( 'DEBUG' ) ) {
+if ( defined( 'WP_DEBUG' ) ) {
 	function debug( $string ) { /*
 		print "<!-- DEBUG: {$string} -->\n"; */
 	}
@@ -497,7 +497,7 @@ if ( defined( 'DEBUG' ) ) {
  * @return mixed
  * @author Jared Lang
  * */
-if ( defined( 'DEBUG' ) ) {
+if ( defined( 'WP_DEBUG' ) ) {
 	function debug_callfunc( $func, $args ) {
 		return call_user_func_array( $func, $args );
 	}
@@ -858,74 +858,6 @@ function get_menu( $name, $classes=null, $id=null, $callback=null ) {
 
 
 /**
- * Uses the google search appliance to search the current site or the site
- * defined by the argument $domain.
- *
- * @return array
- * @author Jared Lang
- * */
-function get_search_results(
-	$query,
-	$start=null,
-	$per_page=null,
-	$domain=null,
-	$search_url="http://google.cc.ucf.edu/search"
-) {
-	$start     = ( $start ) ? $start : 0;
-	$per_page  = ( $per_page ) ? $per_page : 10;
-	$domain    = ( $domain ) ? $domain : $_SERVER['SERVER_NAME'];
-	$results   = array(
-		'number' => 0,
-		'items'  => array(),
-	);
-	$query     = trim( $query );
-	$per_page  = (int)$per_page;
-	$start     = (int)$start;
-	$query     = urlencode( $query );
-	$arguments = array(
-		'num'        => $per_page,
-		'start'      => $start,
-		'ie'         => 'UTF-8',
-		'oe'         => 'UTF-8',
-		'client'     => 'default_frontend',
-		'output'     => 'xml',
-		'sitesearch' => $domain,
-		'q'          => $query,
-	);
-
-	if ( strlen( $query ) > 0 ) {
-		$query_string = http_build_query( $arguments );
-		$url          = $search_url.'?'.$query_string;
-		$response     = wp_remote_retrieve_body( wp_remote_get( $url ) );
-
-		if ( $response ) {
-			$xml   = simplexml_load_string( $response );
-			$items = $xml->RES->R;
-			$total = $xml->RES->M;
-
-			$temp = array();
-
-			if ( $total ) {
-				foreach ( $items as $result ) {
-					$item            = array();
-					$item['url']     = str_replace( 'https', 'http', $result->U );
-					$item['title']   = $result->T;
-					$item['rank']    = $result->RK;
-					$item['snippet'] = $result->S;
-					$item['mime']    = $result['MIME'];
-					$temp[]          = $item;
-				}
-				$results['items'] = $temp;
-			}
-			$results['number'] = $total;
-		}
-	}
-
-	return $results;
-}
-
-
-/**
  * Returns true if the current request is on the login screen.
  *
  * @return boolean
@@ -1230,13 +1162,20 @@ function opengraph_setup() {
 
 	setup_postdata( $post );
 
+	$title       = '';
+	$url         = '';
+	$site_name   = '';
+	$description = '';
+
 	if ( is_front_page() ) {
 		$title       = htmlentities( get_bloginfo( 'name' ) );
 		$url         = get_bloginfo( 'url' );
 		$site_name   = $title;
 	} else {
-		$title     = htmlentities( $post->post_title );
-		$url       = get_permalink( $post->ID );
+		if ( $post ) {
+			$title = htmlentities( $post->post_title );
+			$url   = get_permalink( $post->ID );
+		}
 		$site_name = htmlentities( get_bloginfo( 'name' ) );
 	}
 
@@ -1261,15 +1200,23 @@ function opengraph_setup() {
 		}
 	}
 
-	$metas = array(
-		array( 'property' => 'og:title'      , 'content' => $title ),
-		array( 'property' => 'og:url'        , 'content' => $url ),
-		array( 'property' => 'og:site_name'  , 'content' => $site_name ),
-		array( 'property' => 'og:description', 'content' => $description ),
-	);
+	$metas = array();
+
+	if ( $title ) {
+		$metas[] = array( 'property' => 'og:title', 'content' => $title );
+	}
+	if ( $url ) {
+		$metas[] = array( 'property' => 'og:url', 'content' => $url );
+	}
+	if ( $site_name ) {
+		$metas[] = array( 'property' => 'og:site_name', 'content' => $site_name );
+	}
+	if ( $description ) {
+		$metas[] = array( 'property' => 'og:description', 'content' => $description );
+	}
 
 	// Include image if available
-	if ( !is_front_page() and has_post_thumbnail( $post->ID ) ) {
+	if ( !is_front_page() && has_post_thumbnail( $post ) ) {
 		$image = wp_get_attachment_image_src(
 			get_post_thumbnail_id( $post->ID ),
 			'single-post-thumbnail'
@@ -1328,74 +1275,6 @@ function header_links() {
 	$links_html = implode( "\n", $links_html );
 	echo $links_html;
 }
-
-
-/**
- * Generates a title based on context page is viewed.  Stolen from Thematic
- * */
-function header_title( $title, $separator ) {
-	$site_name = get_bloginfo( 'name' );
-
-	if ( is_single() ) {
-		$content = single_post_title( '', FALSE );
-	}
-	elseif ( is_home() || is_front_page() ) {
-		$content = get_bloginfo( 'description' );
-	}
-	elseif ( is_page() ) {
-		$content = single_post_title( '', FALSE );
-	}
-	elseif ( is_search() ) {
-		$content = __( 'Search Results for:' );
-		$content .= ' ' . esc_html( stripslashes( get_search_query() ) );
-	}
-	elseif ( is_category() ) {
-		$content = __( 'Category Archives:' );
-		$content .= ' ' . single_cat_title( '', false );
-	}
-	elseif ( is_404() ) {
-		$content = __( 'Not Found' );
-	}
-	else {
-		$content = get_bloginfo( 'description' );
-	}
-
-	if ( get_query_var( 'paged' ) ) {
-		$content .= ' ' .$separator. ' ';
-		$content .= 'Page';
-		$content .= ' ';
-		$content .= get_query_var( 'paged' );
-	}
-
-	if ( $content ) {
-		if ( is_home() || is_front_page() ) {
-			$elements = array(
-				'site_name' => $site_name,
-				'separator' => $separator,
-				'content' => $content,
-			);
-		} else {
-			$elements = array(
-				'content' => $content,
-			);
-		}
-	} else {
-		$elements = array(
-			'site_name' => $site_name,
-		);
-	}
-
-	// But if they don't, it won't try to implode
-	if ( is_array( $elements ) ) {
-		$doctitle = implode( ' ', $elements );
-	}
-	else {
-		$doctitle = $elements;
-	}
-
-	return $doctitle;
-}
-add_filter( 'wp_title', 'header_title', 10, 2 );
 
 
 /**
@@ -1523,6 +1402,7 @@ add_action( 'do_meta_boxes', 'register_meta_boxes' );
  * @author Jared Lang
  * */
 function save_meta_data( $post ) {
+	$meta_box = null;
 	//Register custom post types metaboxes
 	foreach ( installed_custom_post_types() as $custom_post_type ) {
 		if ( post_type( $post ) == $custom_post_type->options( 'name' ) ) {
