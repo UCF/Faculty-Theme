@@ -156,7 +156,7 @@ function display_site_title() {
 	}
 
 	// Feature post <h1> with primary and secondary text
-	elseif ( $post instanceof WP_POST && $post->post_type === 'feature' ) {
+	elseif ( $post instanceof WP_Post && $post->post_type === 'feature' ) {
 		$elem = 'h1';
 		$primary_text = get_post_meta( $post->ID, 'feature_header_text_primary', true );
 		$secondary_text = get_post_meta( $post->ID, 'feature_header_text_secondary', true ) ?: $post->post_title;
