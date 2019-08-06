@@ -77,7 +77,7 @@ function login_scripts() {
  * @author Jared Lang
  * */
 function create_utility_pages() {
-	add_utility_page(
+	add_menu_page(
 		__( 'Help' ),
 		__( 'Help' ),
 		'edit_posts',
