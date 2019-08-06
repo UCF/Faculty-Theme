@@ -1153,7 +1153,7 @@ function footer_( $tabs=2 ) {
  * @author Jared Lang
  * */
 function opengraph_setup() {
-	if ( ! isset( $options['enable_og'] ) || ! (bool)$options['enable_og'] ) { return; }
+	if ( !(bool)get_theme_mod_or_default( 'enable_og' ) ) { return; }
 	if ( is_search() || is_404() ) { return; }
 
 	global $post;
